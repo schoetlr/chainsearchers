@@ -20,7 +20,7 @@
 //= require underscore-min.js
 //= require restangular.min.js
 //= require angular-modal-service.js
-//= require angular-sortable-view.min.js
+
 
 
 //= require_tree .
