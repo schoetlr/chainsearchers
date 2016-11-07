@@ -10,7 +10,7 @@ class List < ActiveRecord::Base
 
     json.merge!(self.attributes)
 
-    json["link"] = self.link.to_node
+    json["link"] = self.link ? self.link.to_node : {}
 
     json
   end
