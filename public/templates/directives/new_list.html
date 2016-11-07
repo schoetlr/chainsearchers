@@ -1,5 +1,5 @@
 <div class="row">
-  <form>
+  <form ng-if="creating">
     <div class="form-group">
       <label>Title</label>
       <input type="text" class="form-control" placeholder="Title">
@@ -13,4 +13,10 @@
 
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+
+  <button class="btn-primary btn-lg btn" ng-if="revealForm()" ng-click="toggleCreating()">New List</button>
+  
+  <a class="btn-primary btn-lg btn" ng-if="!currentUser" href="/users/sign_in">New User</a>
+
+  <button class="btn-primary btn-lg btn" ng-if="creating" ng-click="toggleCreating()">Hide Form</button>
 </div>

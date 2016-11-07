@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :lists
 
-  validates :username, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+  
 end

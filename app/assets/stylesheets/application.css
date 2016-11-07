@@ -14,3 +14,11 @@
  *= require_tree .
  *= require_self
  */
+
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+.navbar-inverse .navbar-right .logout-link, .navbar-inverse .navbar-right .login-link {
+  color: white;
+}

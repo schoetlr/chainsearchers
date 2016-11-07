@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-
+  get 'home' => 'static_pages#home', as: "home"
   devise_for :users
 
   root 'static_pages#home'
