@@ -1,4 +1,4 @@
-app.controller("ListsCtrl", ['$scope', 'listService', function($scope, listService){
+app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', function($scope, listService, ModalService){
 
   
 
@@ -8,5 +8,36 @@ app.controller("ListsCtrl", ['$scope', 'listService', function($scope, listServi
     console.log("something went wrong getting lists");
   });
   
+  $scope.listLinks = function(list){
+    var links = [list.link];
+
+    var link = list.link;
+
+    while(link){
+      link = link.children[0];
+      links.push(link);
+    }
+
+    return links;
+  };
+
+  $scope.browseList = function(list){
+    var links = $scope.listLinks(list);
+
+    ModalService.showModal({
+      templateUrl: "/templates/lists/browse.html",
+      controller: "BrowseCtrl",
+      inputs: {
+        list: list,
+        links: links
+      }
+    }).then(function(modal) {
+    
+      modal.element.modal();
+      modal.close.then(function(result) {
+        console.log("modal closed");
+      });
+    });
+  };
 
 }]);

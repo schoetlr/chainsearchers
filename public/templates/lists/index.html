@@ -7,3 +7,22 @@
 
   </div>
 </div>
+
+
+<div class="row">
+  <div ng-repeat="list in lists" class="col-xs-12 list">
+    <h2>{{ list.title }}</h2>
+    <h7>{{ list.description }}</h7>
+    <p>Published by</p>
+    <button ng-click="browseList(list)" class="btn btn-primary">Browse</button><br>
+    
+
+    <div class="row">
+      <div ng-repeat="link in listLinks(list)" class="col-xs-12 col-lg-6">
+        <p>{{ link.url }}</p>
+        <p>{{ link.description }}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
