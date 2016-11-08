@@ -3,7 +3,7 @@ class List < ActiveRecord::Base
   has_one :link
   has_many :list_taggings
   has_many :tags, through: :list_taggings
-
+  has_many :votes
 
   def to_tree
     json = {}

@@ -21,7 +21,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '
     $scope.listData = {};
     $scope.linkData = {};
     $scope.linkData.links = [{}, {}, {}];
-
+    $scope.toggleCreating();
   };
 
   $scope.addLink = function(){
