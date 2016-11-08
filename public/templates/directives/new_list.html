@@ -2,12 +2,14 @@
   <form ng-if="creating">
     <div class="form-group">
       <label>Title</label>
-      <input ng-model="listData.title" type="text" class="form-control" placeholder="Title">
+      <input ng-model="listData.title" type="text" class="form-control">
     </div>
     <div class="form-group">
       <label>Description</label>
-      <input ng-model="listData.description" type="text" class="form-control" placeholder="Description">
+      <textarea ng-model="listData.description" class="form-control"></textarea>
     </div>
+
+    <tag-select selectedTags={{listData.selectedTags}}></tag-select>
 
     <div id="link-fields" ng-repeat="form in linkData.links">
       <div class="form-group">

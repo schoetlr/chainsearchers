@@ -1,6 +1,7 @@
 app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '$rootScope', function($scope, listService, Auth, linkService, $rootScope){
 
   $scope.listData = {};
+  $scope.listData.selectedTags = [];
   $scope.linkData = {};
   $scope.linkData.links = [{}, {}, {}];
 
@@ -53,5 +54,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '
     console.log("No user logged in");
     $scope.currentUser = undefined;
   });
+
+
 
 }]);
