@@ -4,7 +4,11 @@ app.factory("listService", ['Restangular', function(Restangular){
 
   service.getPopularLists = function(){
 
-  }
+  };
+
+  service.createList = function(listData){
+    return Restangular.all("lists").post(listData);
+  };
 
   return service;
 
