@@ -2,11 +2,11 @@ app.controller("ListsCtrl", ['$scope', 'listService', function($scope, listServi
 
   
 
-  // listService.getPopularLists().then(function(response){
-  //   $scope.lists = response;
-  // }, function(){
-  //   console.log("something went wrong getting lists");
-  // });
+  listService.getPopularLists().then(function(response){
+    $scope.lists = response;
+  }, function(){
+    console.log("something went wrong getting lists");
+  });
   
 
 }]);

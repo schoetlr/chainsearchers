@@ -15,6 +15,20 @@ class ListsController < ApplicationController
     end
   end
 
+  def index
+    @lists = List.popular
+
+    formatted = []
+    @lists.each do |list|
+      formatted.push(list.to_tree)
+    end
+
+    respond_to do |format|
+      format.json { render json: formatted }
+    end
+
+  end
+
 
   private
 

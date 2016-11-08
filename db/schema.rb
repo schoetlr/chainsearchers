@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107221428) do
+ActiveRecord::Schema.define(version: 20161108132551) do
 
   create_table "links", force: :cascade do |t|
     t.integer  "list_id"
@@ -35,10 +35,11 @@ ActiveRecord::Schema.define(version: 20161107221428) do
 
   create_table "lists", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title",       null: false
+    t.string   "title",                   null: false
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "vote_count",  default: 0
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"

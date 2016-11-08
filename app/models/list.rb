@@ -5,6 +5,8 @@ class List < ActiveRecord::Base
   has_many :tags, through: :list_taggings
   has_many :votes
 
+  scope :popular, -> { order("vote_count DESC") }
+
   def to_tree
     json = {}
 
