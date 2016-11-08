@@ -4,12 +4,12 @@ class LinksController < ApplicationController
     list_id = params[:list_id].to_i
     list_links = []
 
-    params[:links].each_with_index do |link_data, index|
+    params[:links].each do |link_data|
       link = Link.new(link_params(link_data))
       link.list_id = list_id
       link.save
       
-      if index > 0
+      if list_links.length > 0
         link.link_id = list_links.last.id
         link.save
       end

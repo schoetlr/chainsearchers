@@ -1,4 +1,4 @@
-app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '$rootScope', function($scope, listService, Auth, linkService){
+app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '$rootScope', function($scope, listService, Auth, linkService, $rootScope){
 
   $scope.listData = {};
   $scope.linkData = {};
@@ -13,9 +13,14 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '
 
     linkService.createLinks($scope.linkData).then(function(){
       $rootScope.$broadcast("list.created");
+      console.log("DONE fellow");
     }, function(){
       console.log("could not create links");
     });
+
+    $scope.listData = {};
+    $scope.linkData = {};
+    $scope.linkData.links = [{}, {}, {}];
 
   };
 
