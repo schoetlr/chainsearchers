@@ -4,7 +4,7 @@ app.directive('tagSelect', function(){
     restrict: "E",
     controller: "TagSelectCtrl",
     scope: {
-      selectedTags: '=selectedTags'
+      selectedTags: '='
     }
   }
 });

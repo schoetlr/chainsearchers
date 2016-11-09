@@ -9,7 +9,7 @@
       <textarea ng-model="listData.description" class="form-control"></textarea>
     </div>
 
-    <tag-select selectedTags={{listData.selectedTags}}></tag-select>
+    <tag-select selected-tags="listData.selectedTags"></tag-select>
 
     <div id="link-fields" ng-repeat="form in linkData.links">
       <div class="form-group">

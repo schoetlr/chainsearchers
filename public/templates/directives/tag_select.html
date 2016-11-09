@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label>Tags</label>
+  <div id="selected-tags" class="row">
+    <span ng-repeat="tag in selectedTags" class="selected-tag">
+      <h5>{{tag.name}}</h5>
+    </span>
+  </div>
+  <input type="search" ng-model="search" class="form-control">
+  <ul ng-show="tagging()">
+    <li ng-repeat="tag in tags | filter:{name: search}" ng-click="selectTag(tag)">
+      {{tag.name}}
+    </li>
+  <ul>
+
+</div>
