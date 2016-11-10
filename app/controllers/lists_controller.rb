@@ -20,21 +20,32 @@ class ListsController < ApplicationController
   end
 
   def index
-    @lists = List.popular
-
-    formatted = []
-    @lists.each do |list|
-      formatted.push(list.to_tree)
+    if params[:tags]
+      @lists = List.with_tags(params[:tags])
+    else
+      @lists = List.popular
     end
 
+
+    @lists = format_lists(@lists)
+
     respond_to do |format|
-      format.json { render json: formatted }
+      format.json { render json: @lists }
     end
 
   end
 
 
   private
+
+  def format_lists(lists)
+    formatted = []
+    lists.each do |list|
+      formatted.push(list.to_tree)
+    end
+
+    formatted
+  end
 
   def create_taggings(tags, list_id)
     tags.map! do |tag|
@@ -43,11 +54,12 @@ class ListsController < ApplicationController
         tag[:id] = saved_tag.id
       end
       
-      return tag
+      tag
     end
 
     tags.each do |tag|
-      ListTagging.create(list_id: list_id, tag_id: tag.id)
+      tagging = ListTagging.new(list_id: list_id, tag_id: tag[:id])
+      tagging.save
     end
 
   end

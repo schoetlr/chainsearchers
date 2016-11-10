@@ -10,6 +10,15 @@ app.factory("listService", ['Restangular', function(Restangular){
     return Restangular.all("lists").post(listData);
   };
 
+  service.getListsByTag = function(tags){
+    var params = { "tags[]": tags };
+    foofoo = params;
+    return Restangular.all("lists").getList(params);
+    //get list is turning the params into an object
+
+    //could store previous tags in session
+  };
+
   return service;
 
 }])

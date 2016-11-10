@@ -16,4 +16,17 @@ class List < ActiveRecord::Base
 
     json
   end
+
+
+  def self.with_tags(tags)
+    tags.map! { |tag| JSON.parse(tag) }
+
+    self.all.select do |list|
+      tags.all? do |tag|
+        ListTagging.where(list_id: list.id, tag_id: tag["id"]).length > 0
+      end
+    end
+
+  end
+
 end

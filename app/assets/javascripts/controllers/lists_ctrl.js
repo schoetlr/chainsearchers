@@ -1,4 +1,4 @@
-app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', function($scope, listService, ModalService){
+app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', function($scope, listService, ModalService, tagService){
 
   
 
@@ -7,16 +7,44 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', function($
   }, function(){
     console.log("something went wrong getting lists");
   });
+
+  tagService.getTags().then(function(tags){
+    $scope.tags = tags;
+  }, function(){
+    console.log('could not get tags');
+  })
+
+  $scope.selectedTags = [];
+  $scope.tagSearch = "";
+  $scope.filtering = function(){
+    return $scope.tagSearch.length > 0;
+  };
+
+  $scope.filterByTag = function(tag){
+    
+    $scope.selectedTags.push(tag);
+    $scope.tagSearch = "";
+
+    listService.getListsByTag($scope.selectedTags).then(function(lists){
+      $scope.lists = lists;
+    }, function(){
+      console.log("something went wrong filtering lists by tag");
+    })
+  }
   
   $scope.listLinks = function(list){
-    var links = [list.link];
+    var links = [];
 
     var link = list.link;
 
+    
     while(link){
-      link = link.children[0];
       links.push(link);
+      link = link.children[0];
+      
     }
+    
+    
 
     return links;
   };

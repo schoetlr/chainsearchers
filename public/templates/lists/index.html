@@ -1,5 +1,25 @@
 <div class="row">
   <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
+        <div ng-repeat="tag in selectedTags" class="filtered-tag">
+          <h5>{{ tag.name }}</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <label>Find lists by Tag</label>
+      <input type="search" ng-model="tagSearch" class="form-control col-xs-3">
+    </div>
+    <ul ng-show="filtering()">
+      <li ng-repeat="tag in tags | filter:{name: tagSearch}" ng-click="filterByTag(tag)">{{ tag.name }}</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
 
     
 
@@ -10,7 +30,7 @@
 
 
 <div class="row">
-  <div ng-repeat="list in lists" class="col-xs-12 list">
+  <div ng-repeat="list in lists" class="col-xs-12 col-lg-6 list">
     <h2>{{ list.title }}</h2>
     <h7>{{ list.description }}</h7>
     <p>Published by</p>
@@ -18,7 +38,7 @@
     
 
     <div class="row">
-      <div ng-repeat="link in listLinks(list)" class="col-xs-12 col-lg-6">
+      <div ng-repeat="link in listLinks(list)" class="col-xs-12">
         <p>{{ link.url }}</p>
         <p>{{ link.description }}</p>
       </div>
