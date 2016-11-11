@@ -130,8 +130,24 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     return voteObject.up - voteObject.down;
   };
 
-  $scope.favorite = function(list){
-    favoriteService.favoriteList(list);
+  $scope.handleFavorite = function(list){
+    //if a favorite in list.favorites w the currentUser id exists then remove it AND delete in DB
+    var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
+    var favorite = favorites[0];
+    if(favorite){
+      var index = _.indexOf(list.favorites, favorite);
+      favorite = list.favorites.splice(index, 1);
+      favorite.remove();
+    } else {
+      //else make a new one
+      favoriteService.favoriteList(list).then(function(response){
+        list.favorites.push(response);
+      }, function(){
+        console.log("something went wrong favoriting");
+      });
+    }
+
+    
   };
 
   $scope.browseList = function(list){

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :links
   resources :tags
   resources :votes
+  resources :favorites
 
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

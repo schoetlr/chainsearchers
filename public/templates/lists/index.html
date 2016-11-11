@@ -35,6 +35,7 @@
     <span ng-click="upvote(list)">^</span><span ng-click="downvote(list)">v</span><p>{{ voteCount(list) }}</p><br>
     <h7>{{ list.description }}</h7>
     <p>Published by</p>
+    <p ng-click="handleFavorite(list)">STAR</p>
     <button ng-click="browseList(list)" class="btn btn-primary">Browse</button><br>
     
 

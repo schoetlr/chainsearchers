@@ -8,6 +8,10 @@ app.factory("favoriteService", ["Restangular", function(Restangular){
     return Restangular.all("favorites").post(data);
   };
 
+  service.deleteFavorite = function(id){
+    return Restangular.one("favorites", id).remove();
+  };
+
 
   return service;
 }]);
