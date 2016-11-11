@@ -5,7 +5,7 @@ class List < ActiveRecord::Base
   has_many :tags, through: :list_taggings
   has_many :votes
 
-  scope :popular, -> { order("vote_count DESC") }
+  
 
   def to_tree
     json = {}
@@ -13,6 +13,7 @@ class List < ActiveRecord::Base
     json.merge!(self.attributes)
 
     json["link"] = self.link ? self.link.to_node : {}
+    json["votes"] = self.votes
 
     json
   end
@@ -27,6 +28,10 @@ class List < ActiveRecord::Base
       end
     end
 
+  end
+
+  def self.popular
+    self.all
   end
 
 end

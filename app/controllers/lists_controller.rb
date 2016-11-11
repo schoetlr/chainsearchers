@@ -28,7 +28,7 @@ class ListsController < ApplicationController
 
 
     @lists = format_lists(@lists)
-
+    
     respond_to do |format|
       format.json { render json: @lists }
     end

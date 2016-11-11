@@ -31,7 +31,8 @@
 
 <div class="row">
   <div ng-repeat="list in lists" class="col-xs-12 col-lg-6 list">
-    <h2>{{ list.title }}</h2>
+    <h2>{{ list.title }}</h2><br>
+    <span ng-click="upvote(list)">^</span><span ng-click="downvote(list)">v</span><p>{{ voteCount(list) }}</p><br>
     <h7>{{ list.description }}</h7>
     <p>Published by</p>
     <button ng-click="browseList(list)" class="btn btn-primary">Browse</button><br>
