@@ -136,7 +136,8 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     var favorite = favorites[0];
     if(favorite){
       var index = _.indexOf(list.favorites, favorite);
-      favorite = list.favorites.splice(index, 1);
+      favorite = list.favorites.splice(index, 1)[0];
+      favorite = Restangular.restangularizeElement(null, favorite, 'favorites');
       favorite.remove();
     } else {
       //else make a new one

@@ -16,6 +16,20 @@ class FavoritesController < ApplicationController
 
   end
 
+  def destroy
+    @favorite = Favorite.find(params[:id])
+
+    if @favorite.destroy
+      respond_to do |format|
+        format.json { render json: @favorite }
+      end
+    else
+      respond_to do |format|
+        format.json {}
+      end
+    end
+  end
+
   private
 
   def favorite_params
