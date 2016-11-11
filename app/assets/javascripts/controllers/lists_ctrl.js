@@ -1,4 +1,4 @@
-app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', 'voteService', '_', 'Auth', 'Restangular', function($scope, listService, ModalService, tagService, voteService, _, Auth, Restangular){
+app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', 'voteService', '_', 'Auth', 'Restangular', 'favoriteService', function($scope, listService, ModalService, tagService, voteService, _, Auth, Restangular, favoriteService){
 
   
 
@@ -128,6 +128,10 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     };
 
     return voteObject.up - voteObject.down;
+  };
+
+  $scope.favorite = function(list){
+    favoriteService.favoriteList(list);
   };
 
   $scope.browseList = function(list){
