@@ -15,5 +15,10 @@ app.factory("voteService", ["Restangular", function(Restangular){
 
   };
 
+  service.updateVote = function(vote){
+    vote = Restangular.restangularizeElement(null, vote, '/votes');
+    vote.patch();
+  };
+
   return service;
 }]);

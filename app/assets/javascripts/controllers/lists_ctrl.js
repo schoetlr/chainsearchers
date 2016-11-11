@@ -67,7 +67,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
 
       if(match.downvote){
         match.downvote = false;
-        match.patch();
+        voteService.updateVote(match);
       } else {
         //do nothing since it is an upvote
       }
@@ -97,7 +97,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
 
       if(!match.downvote){
         match.downvote = true;
-        match.patch();
+        voteService.updateVote(match);
       } else {
         //do nothing since it is an downvote
       }
@@ -126,7 +126,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     if(!voteObject.down){
       voteObject.down = 0;
     };
-    
+
     return voteObject.up - voteObject.down;
   };
 

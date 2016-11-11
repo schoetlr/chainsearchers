@@ -3,7 +3,7 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
-    
+
     if @vote.save
       respond_to do |format|
         format.json { render json: @vote }
@@ -14,6 +14,20 @@ class VotesController < ApplicationController
       end
     end
 
+  end
+
+  def update
+    @vote = Vote.find(params[:id])
+
+    if @vote.update(vote_params)
+      respond_to do |format|
+        format.json { render json: @vote }
+      end
+    else
+      respond_to do |format|
+        format.json {}
+      end
+    end
   end
 
 
