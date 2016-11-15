@@ -1,4 +1,4 @@
-app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', function($scope, list, links, selectedIndex, $sce){
+app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService){
 
   $scope.list = list;
 
@@ -6,6 +6,8 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
 
   $scope.selectedIndex = selectedIndex;
   $scope.selectedLink = $scope.links[$scope.selectedIndex];
+
+  $scope.viewDescription = false;
 
   $scope.generatePath = function(){
     if($scope.selectedLink.url[0] === 'w'){
@@ -32,5 +34,107 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
       $scope.selectedLink = $scope.links[$scope.selectedIndex];
     }
   };
+
+  $scope.handleFavorite = function(){
+    //if a favorite in list.favorites w the currentUser id exists then remove it AND delete in DB
+    var list = $scope.list;
+    var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
+    var favorite = favorites[0];
+    if(favorite){
+      var index = _.indexOf(list.favorites, favorite);
+      favorite = list.favorites.splice(index, 1)[0];
+      favorite = Restangular.restangularizeElement(null, favorite, 'favorites');
+      favorite.remove();
+    } else {
+      //else make a new one
+      favoriteService.favoriteList(list).then(function(response){
+        list.favorites.push(response);
+      }, function(){
+        console.log("something went wrong favoriting");
+      });
+    }
+
+    
+  };
+
+  $scope.upvote = function(){
+    //if the listvotes has a votes  with current_user id and with downvote prop as true then splice in the new vote for it
+    var list = $scope.list;
+    //patch it on backend
+    var matches = _.where(list.votes, { user_id: $scope.currentUser.id });
+
+    if(matches.length > 0) {
+      var match = matches[0];
+
+      if(match.downvote){
+        match.downvote = false;
+        voteService.updateVote(match);
+      } else {
+        //do nothing since it is an upvote
+      }
+      
+    } else {
+      //otherwise create new vote
+      voteService.upvoteList(list).then(function(response){
+        list.votes.push(response)
+
+      }, function(){ console.log("something went wrong voting") });
+    }
+
+    
+
+    
+
+  };
+
+  $scope.downvote = function(){
+    //if the listvotes has a votes with downvote prop as false then splice in the new vote for it
+    var list = $scope.list;
+    //patch the vote on the back end
+    var matches = _.where(list.votes, { user_id: $scope.currentUser.id });
+
+    if(matches.length > 0) {
+      var match = matches[0];
+
+      if(!match.downvote){
+        match.downvote = true;
+        voteService.updateVote(match);
+      } else {
+        //do nothing since it is an downvote
+      }
+      
+    } else {
+      //otherwise create a new vote
+      voteService.downvoteList(list).then(function(response){
+        list.votes.push(response);
+
+      }, function(){ console.log("something went wrong voting") });
+      
+    }
+
+  };
+
+  $scope.voteCount = function(){
+    var list = $scope.list;
+    var voteObject = _.countBy(list.votes, function(vote){
+      return vote.downvote ? 'down' : 'up';
+    });
+    county = list;
+    booboo = voteObject;
+    if(!voteObject.up){
+      voteObject.up = 0;
+    };
+
+    if(!voteObject.down){
+      voteObject.down = 0;
+    };
+
+    return voteObject.up - voteObject.down;
+  };
+
+  $scope.favorited = function(){
+    return false;
+  }
+
 
 }]);

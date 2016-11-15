@@ -1,19 +1,45 @@
-<div class="modal fade study-cards" role="dialog">
+<div class="modal fade" role="dialog" id="browse">
   <div class="modal-dialog">
 
     
     <div class="modal-content">
       <div class="modal-header">
-        <div class="row">
-          <div class="col-xs-9">
+        <div class="row" id="browse-navbar">
+          
+
+          <div class="col-xs-5">
+            <p id="vote-count">{{ voteCount() }}</p>
+
+            <i ng-click="upvote()" class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
+            <i ng-click="downvote()" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+
+            <i ng-click="handleFavorite()" class="fa fa-star fa-2x" aria-hidden="true" ng-if="favorited()"></i>
+            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-2x" aria-hidden="true" ng-if="!favorited()"></i>
+          </div>
+
+          <div class="col-xs-4">
+            <button class="btn btn-primary">Comment</button>
+            <button class="btn btn-primary" ng-click="viewDescription = true">View Description</button>
             
           </div>
 
           <div class="col-xs-3">
-            <button ng-click="previous()" class="btn btn-success">Previous</button>
-            <button ng-click="next()" class="btn btn-success">Next</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <i ng-click="previous()" class="fa fa-long-arrow-left fa-3x" aria-hidden="true"></i>
+            <i ng-click="next()" class="fa fa-long-arrow-right fa-3x" aria-hidden="true"></i>
+            
+            <i class="fa fa-times fa-3x pull-right" aria-hidden="true" data-dismiss="modal"></i>
           </div>
+        </div>
+
+        <div class="row" id="description" ng-show="viewDescription">
+          <div class="col-xs-12">
+            <i class="fa fa-times fa-2x" aria-hidden="true" ng-click="viewDescription = false"></i>
+          </div>
+
+          <div class="col-xs-12">
+            <p class="text-center">{{ list.description }}</p>
+          </div>
+
         </div>
       </div>
 

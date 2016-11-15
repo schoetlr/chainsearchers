@@ -58,7 +58,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
 
   $scope.upvote = function(list){
     //if the listvotes has a votes  with current_user id and with downvote prop as true then splice in the new vote for it
-    foofoo = list;
+    
     //patch it on backend
     var matches = _.where(list.votes, { user_id: $scope.currentUser.id });
 
