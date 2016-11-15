@@ -28,9 +28,18 @@ class ListsController < ApplicationController
 
 
     @lists = format_lists(@lists)
-    
+
     respond_to do |format|
       format.json { render json: @lists }
+    end
+
+  end
+
+  def show
+    @list = List.find(params[:id])
+
+    respond_to do |format|
+      format.json { render json: @list.to_tree }
     end
 
   end

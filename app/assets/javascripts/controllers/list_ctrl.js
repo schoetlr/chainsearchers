@@ -1,44 +1,11 @@
-app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', 'voteService', '_', 'Auth', 'Restangular', 'favoriteService', function($scope, listService, ModalService, tagService, voteService, _, Auth, Restangular, favoriteService){
+app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', function($scope, voteService, favoriteService, listService, $stateParams){
 
-  
-
-  listService.getPopularLists().then(function(response){
-    $scope.lists = response;
+  listService.getList($stateParams.id).then(function(list){
+    $scope.list = list;
   }, function(){
-    console.log("something went wrong getting lists");
+    console.log("could not get list");
   });
 
-  tagService.getTags().then(function(tags){
-    $scope.tags = tags;
-  }, function(){
-    console.log('could not get tags');
-  })
-
-  Auth.currentUser().then(function(response){
-    $scope.currentUser = response;
-  }, function(){
-    console.log("No user logged in");
-    $scope.currentUser = undefined;
-  });
-
-  $scope.selectedTags = [];
-  $scope.tagSearch = "";
-  $scope.filtering = function(){
-    return $scope.tagSearch.length > 0;
-  };
-
-  $scope.filterByTag = function(tag){
-
-    $scope.selectedTags.push(tag);
-    $scope.tagSearch = "";
-
-    listService.getListsByTag($scope.selectedTags).then(function(lists){
-      $scope.lists = lists;
-    }, function(){
-      console.log("something went wrong filtering lists by tag");
-    })
-  }
-  
   $scope.listLinks = function(list){
     var links = [];
 
@@ -149,33 +116,6 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     }
 
     
-  };
-
-  $scope.browseList = function(list){
-    var links = $scope.listLinks(list);
-    
-    var selectedIndex = 0;
-
-    ModalService.showModal({
-      templateUrl: "/templates/lists/browse.html",
-      controller: "BrowseCtrl",
-      inputs: {
-        list: list,
-        links: links, 
-        selectedIndex: selectedIndex, 
-        currentUser: $scope.currentUser
-      }
-    }).then(function(modal) {
-    
-      modal.element.modal();
-      modal.close.then(function(result) {
-        console.log("modal closed");
-      });
-    });
-  };
-
-  $scope.showList = function(list){
-    $state.go("lists.show", { id: list.id });
   };
 
 }]);

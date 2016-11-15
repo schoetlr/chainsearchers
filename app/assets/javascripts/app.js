@@ -39,6 +39,12 @@ app.config(function($stateProvider, $urlRouterProvider){
       controller: "ListsCtrl"
     })
 
+    .state("lists.show", {
+      url: ":id",
+      templateUrl: '/templates/lists/show.html',
+      controller: "ListCtrl"
+    })
+
 
     
 })

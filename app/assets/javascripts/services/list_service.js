@@ -19,6 +19,10 @@ app.factory("listService", ['Restangular', function(Restangular){
     //could store previous tags in session
   };
 
+  service.getList = function(id){
+    return Restangular.one("lists", id).get();
+  };
+
   return service;
 
 }])
