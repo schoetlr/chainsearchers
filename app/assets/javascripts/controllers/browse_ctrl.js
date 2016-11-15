@@ -1,4 +1,4 @@
-app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService){
+app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService, currentUser){
 
   $scope.list = list;
 
@@ -8,6 +8,8 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   $scope.selectedLink = $scope.links[$scope.selectedIndex];
 
   $scope.viewDescription = false;
+
+  $scope.currentUser = currentUser;
 
   $scope.generatePath = function(){
     if($scope.selectedLink.url[0] === 'w'){

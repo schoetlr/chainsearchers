@@ -162,7 +162,8 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
       inputs: {
         list: list,
         links: links, 
-        selectedIndex: selectedIndex
+        selectedIndex: selectedIndex, 
+        currentUser: $scope.currentUser
       }
     }).then(function(modal) {
     
