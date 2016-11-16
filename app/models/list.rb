@@ -5,6 +5,7 @@ class List < ActiveRecord::Base
   has_many :tags, through: :list_taggings
   has_many :votes
   has_many :favorites
+  has_many :comments, as: :commentable
 
   
 
