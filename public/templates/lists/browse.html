@@ -3,20 +3,23 @@
 
     
     <div class="modal-content">
-      <div class="modal-header">
-        <div class="row" id="browse-navbar">
+
+      <div class="modal-body">
+        <div class="row" id="hover-row" ng-mouseover="showToolBar = true">
+        </div>
+        <div class="row" id="browse-navbar" ng-show="showToolBar" ng-mouseleave="showToolBar = false">
           
 
           <div class="col-xs-5">
-            <p id="vote-count">{{ voteCount() }}</p>
+            <p id="vote-count" class="spacing">{{ voteCount() }}</p>
 
-            <i ng-click="upvote()" class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
-            <i ng-click="downvote()" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+            <i ng-click="upvote()" class="fa fa-arrow-up fa-3x" aria-hidden="true"></i>
+            <i ng-click="downvote()" class="fa fa-arrow-down fa-3x spacing" aria-hidden="true"></i>
 
-            <i ng-click="handleFavorite()" class="fa fa-star fa-2x" aria-hidden="true" ng-if="favorited()"></i>
-            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-2x" aria-hidden="true" ng-if="!favorited()"></i>
+            <i ng-click="handleFavorite()" class="fa fa-star fa-3x spacing" aria-hidden="true" ng-if="favorited()"></i>
+            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-3x spacing" aria-hidden="true" ng-if="!favorited()"></i>
 
-            <i class="fa fa-share-square-o fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-share-square-o fa-3x spacing" aria-hidden="true"></i>
           </div>
 
           <div class="col-xs-4">
@@ -33,7 +36,7 @@
           </div>
         </div>
 
-        <div class="row" id="description" ng-show="viewDescription">
+        <div class="row" id="description" ng-show="showDescription()" ng-mouseover="showToolBar = true" ng-mouseleave="showToolBar = false">
           <div class="col-xs-12">
             <i class="fa fa-times fa-2x" aria-hidden="true" ng-click="viewDescription = false"></i>
           </div>
@@ -43,9 +46,7 @@
           </div>
 
         </div>
-      </div>
 
-      <div class="modal-body">
         <iframe id="selected" ng-src="{{ generatePath() }}">
 
         </iframe>

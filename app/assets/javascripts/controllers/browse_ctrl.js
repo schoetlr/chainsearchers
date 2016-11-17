@@ -11,6 +11,10 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
 
   $scope.currentUser = currentUser;
 
+  $scope.showDescription = function(){
+    return $scope.viewDescription && $scope.showToolBar;
+  };
+
   $scope.generatePath = function(){
     if($scope.selectedLink.url[0] === 'w'){
       var url = 'http://' + $scope.selectedLink.url;

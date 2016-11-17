@@ -24,11 +24,20 @@
 #browse {
   #vote-count {
     display: inline-block;
-    font-size: 20px;
+    font-size: 30px;
   }
   
   #description {
     border: solid 1px black;
+  }
+
+  .spacing {
+    margin-right: 15px;
+  }
+
+  #hover-row {
+    height: 10px;
+    width: 100%;
   }
 }
 
