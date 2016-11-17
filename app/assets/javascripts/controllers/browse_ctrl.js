@@ -7,7 +7,7 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   $scope.selectedIndex = selectedIndex;
   $scope.selectedLink = $scope.links[$scope.selectedIndex];
 
-  $scope.viewDescription = false;
+  $scope.viewDescription = true;
 
   $scope.currentUser = currentUser;
 
