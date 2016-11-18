@@ -1,4 +1,4 @@
-app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService, currentUser){
+app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService){
 
   $scope.list = list;
 
@@ -10,6 +10,25 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   $scope.viewDescription = true;
 
   $scope.currentUser = currentUser;
+
+  $scope.commentForm = {};
+  $scope.commenting = false;
+
+  $scope.toggleCommenting = function(){
+    if($scope.commenting){
+      $scope.commenting = false;
+    } else {
+      $scope.commenting = true;
+    }
+  };
+
+  $scope.comment = function(){
+    $scope.commentForm.commentable_id = $scope.list.id;
+    
+    commentService.commentOnList($scope.commentForm);
+    $scope.commenting = false;
+    $scope.commentForm = {};
+  };
 
   $scope.showDescription = function(){
     return $scope.viewDescription && $scope.showToolBar;
