@@ -1,34 +1,49 @@
 <div class="row">
+  <!-- SELECTED TAGS -->
   <div class="col-xs-12">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-6">
         <div ng-repeat="tag in selectedTags" class="filtered-tag">
           <h5>{{ tag.name }}</h5>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <label>Find lists by Tag</label>
-      <input type="search" ng-model="tagSearch" class="form-control col-xs-3">
-    </div>
-    <ul ng-show="filtering()">
-      <li ng-repeat="tag in tags | filter:{name: tagSearch}" ng-click="filterByTag(tag)">{{ tag.name }}</li>
-    </ul>
   </div>
-</div>
+  <!-- END SELECTED TAGS -->
 
-<div class="row">
-  <div class="col-xs-12">
-
+  <!-- TAG FILTER FORM -->
+  <div class="col-xs-4">
+    <label>Filter by Tag</label>
+    <input type="search" ng-model="tagSearch" class="form-control">
     
-
-    <list-form></list-form>
+    <ul ng-show="filtering()">
+      <li class="filtered-tag" ng-repeat="tag in tags | filter:{name: tagSearch}" ng-click="filterByTag(tag)">{{ tag.name }}</li>
+    </ul>
 
   </div>
+  <!-- END TAG FILTER FORM -->
+
+  <!-- INDEX FILTER SELECT -->
+  <div class="col-xs-4">
+    <select class="form-control">
+      <option ng-selected>Popular</option>
+    </select>
+
+  </div>
+
+  <div class="col-xs-4">
+    <list-form></list-form>
+  </div>
+
+
+
+  
+
 </div>
 
 
+<!-- LISTS HERE -->
 <div class="row">
   <div ng-repeat="list in lists" class="col-xs-12 col-lg-6 list">
     <h2>{{ list.title }}</h2><br>
