@@ -1,0 +1,48 @@
+<div class="modal fade" role="dialog" id="browse">
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-2">
+          </div>
+          
+          <form class="col-xs-8">
+            <div class="form-group">
+              <label>Title</label>
+              <input ng-model="listData.title" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea ng-model="listData.description" class="form-control"></textarea>
+            </div>
+
+            <tag-select selected-tags="listData.selectedTags"></tag-select>
+
+            <div id="link-fields" ng-repeat="form in linkData.links">
+              <div class="form-group">
+                <label>URL</label>
+                <input ng-model="form.url" type="text" class="form-control" placeholder="http://example.com">
+              </div>
+
+              <div class="form-group">
+                <label>Link Description</label>
+                <textarea ng-model="form.description" class="form-control"></textarea>
+              </div>
+            </div>
+            
+            <button class="btn btn-primary btn-lg" ng-click="addLink()">Add Link</button><br>
+
+            <button ng-click="createList()" type="submit" class="btn btn-success btn-lg">Submit</button>
+          </form>
+
+          
+        </div> 
+      </div>
+
+    </div>
+
+  </div>
+</div>

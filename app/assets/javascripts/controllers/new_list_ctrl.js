@@ -1,9 +1,10 @@
-app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '$rootScope', function($scope, listService, Auth, linkService, $rootScope){
+app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '$rootScope', 'currentUser', function($scope, listService, Auth, linkService, $rootScope, currentUser){
 
   $scope.listData = {};
   $scope.listData.selectedTags = [];
   $scope.linkData = {};
   $scope.linkData.links = [{}, {}, {}];
+  $scope.currentUser = currentUser;
 
   $scope.createList = function(){
     listService.createList($scope.listData).then(function(list){
@@ -48,12 +49,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '
     return $scope.currentUser && !$scope.creating;
   };
   
-  Auth.currentUser().then(function(response){
-    $scope.currentUser = response;
-  }, function(){
-    console.log("No user logged in");
-    $scope.currentUser = undefined;
-  });
+  
 
 
 

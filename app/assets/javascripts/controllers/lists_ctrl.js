@@ -174,6 +174,23 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     });
   };
 
+  $scope.showNewList = function(){
+
+    ModalService.showModal({
+      templateUrl: "/templates/lists/new.html",
+      controller: "NewListCtrl",
+      inputs: {
+        currentUser: $scope.currentUser
+      }
+    }).then(function(modal) {
+    
+      modal.element.modal();
+      modal.close.then(function(result) {
+        console.log("modal closed");
+      });
+    });
+  };
+
   $scope.showList = function(list){
     $state.go("lists.show", { id: list.id });
   };
