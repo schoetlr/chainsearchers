@@ -18,6 +18,7 @@ class List < ActiveRecord::Base
     json["votes"] = self.votes
     json["favorites"] = self.favorites
     json["user"] = self.user
+    json["comments"] = self.comments.map { |comment| comment.to_node }
 
     json
   end
