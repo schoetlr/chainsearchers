@@ -1,45 +1,53 @@
-<div class="row" id="list-show">
-  <div class="col-xs-12 col-lg-6 col-lg-offset-3">
-    <div class="list">
-      <!-- top row -->
-      <div class="row">
-        <div class="col-xs-6">
-          <p class="vote-count">{{ voteCount(list) }}</p>
+<div id="list-show">
 
-          <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
-            <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+
+  <div class="row" id="list-show">
+    <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+      <div class="list">
+        <!-- top row -->
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="vote-count">{{ voteCount(list) }}</p>
+
+            <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
+              <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+          </div>
+
+
+          <div class="col-xs-3">
+            <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x" aria-hidden="true"></i>
+          </div>
+
+          <div class="col-xs-3">
+            <button ng-click="browseList(list)" class="btn btn-primary">Browse</button>
+          </div>
         </div>
 
+        <h2 class="text-center">{{ list.title }}</h2><br>
+        <p class="text-center">Published by {{ list.user.username }}</p>
+        <p class="text-center">{{ list.description }}</p>
+        
+        
+        
 
-        <div class="col-xs-3">
-          <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x" aria-hidden="true"></i>
+        <div class="row">
+          <div ng-repeat="link in listLinks(list)" class="col-xs-12">
+            <p class="text-center link-url">{{ link.url }}</p>
+            <p class="text-center">{{ link.description }}</p>
+          </div>
         </div>
 
-        <div class="col-xs-3">
-          <button ng-click="browseList(list)" class="btn btn-primary">Browse</button>
+        <div class="row">
+          <div class="col-xs-12">
+            
+          </div>
         </div>
       </div>
 
-      <h2 class="text-center">{{ list.title }}</h2><br>
-      <p class="text-center">Published by {{ list.user.username }}</p>
-      <p class="text-center">{{ list.description }}</p>
-      
-      
-      
-
-      <div class="row">
-        <div ng-repeat="link in listLinks(list)" class="col-xs-12">
-          <p class="text-center link-url">{{ link.url }}</p>
-          <p class="text-center">{{ link.description }}</p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-primary center-block" ui-sref="lists.show({id: list.id})">View Comments</button>
-        </div>
-      </div>
     </div>
-
   </div>
+
+  <!-- COMMENT SECTION -->
+
+
 </div>
