@@ -60,12 +60,13 @@
         <div class="col-xs-6">
           <p class="vote-count">{{ voteCount(list) }}</p>
 
-          <span ng-click="upvote(list)">^</span><span ng-click="downvote(list)">v</span>
+          <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
+            <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
         </div>
 
 
         <div class="col-xs-3">
-          <p ng-click="handleFavorite(list)">STAR</p>
+          <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x" aria-hidden="true"></i>
         </div>
 
         <div class="col-xs-3">
