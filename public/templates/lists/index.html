@@ -14,8 +14,10 @@
 
   <!-- TAG FILTER FORM -->
   <div class="col-xs-4">
-    <label>Filter by Tag</label>
-    <input type="search" ng-model="tagSearch" class="form-control">
+    <div class="row">
+      <label id="tag-filter-label" class="col-xs-4">Filter by Tag</label>
+      <input id="tag-search" type="search" ng-model="tagSearch" class="col-xs-8 form-control form-horizontal">
+    </div>
     
     <ul ng-show="filtering()">
       <li class="filtered-tag" ng-repeat="tag in tags | filter:{name: tagSearch}" ng-click="filterByTag(tag)">{{ tag.name }}</li>
@@ -23,9 +25,12 @@
 
   </div>
   <!-- END TAG FILTER FORM -->
+  
+  <div class="col-xs-1">
+  </div>
 
   <!-- INDEX FILTER SELECT -->
-  <div class="col-xs-4">
+  <div class="col-xs-3">
     <select class="form-control">
       <option ng-selected>Popular</option>
     </select>

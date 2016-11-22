@@ -1,4 +1,4 @@
-app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '$rootScope', 'currentUser', function($scope, listService, Auth, linkService, $rootScope, currentUser){
+app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootScope', 'currentUser', function($scope, listService, linkService, $rootScope, currentUser){
 
   $scope.listData = {};
   $scope.listData.selectedTags = [];
@@ -35,19 +35,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'Auth', 'linkService', '
     $scope.linkData.links.push({});
   };
 
-  $scope.creating = false;
-
-  $scope.toggleCreating = function(){
-    if($scope.creating === false){
-      $scope.creating = true;
-    } else {
-      $scope.creating = false;
-    }
-  }
-
-  $scope.revealForm = function(){
-    return $scope.currentUser && !$scope.creating;
-  };
+  
   
   
 
