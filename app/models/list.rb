@@ -17,6 +17,7 @@ class List < ActiveRecord::Base
     json["link"] = self.link ? self.link.to_node : {}
     json["votes"] = self.votes
     json["favorites"] = self.favorites
+    json["user"] = self.user
 
     json
   end

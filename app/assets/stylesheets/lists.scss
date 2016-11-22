@@ -70,3 +70,18 @@ label#tag-filter-label {
 #tag-search.form-control {
   display: inline-block;
 }
+
+#lists {
+  .list {
+    border: solid 1px black;
+    margin-bottom: 25px;
+  }
+
+  .link-url {
+    text-decoration: underline;
+  }
+
+  .vote-count {
+    display: inline-block;
+  }
+}

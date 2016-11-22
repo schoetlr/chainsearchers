@@ -52,28 +52,46 @@
 
 
 <!-- LISTS HERE -->
-<div class="row">
-  <div ng-repeat="list in lists" class="col-xs-12 col-lg-6 list">
-    <h2>{{ list.title }}</h2><br>
-    <span ng-click="upvote(list)">^</span><span ng-click="downvote(list)">v</span><p>{{ voteCount(list) }}</p><br>
-    <h7>{{ list.description }}</h7>
-    <p>Published by</p>
-    <p ng-click="handleFavorite(list)">STAR</p>
-    <button ng-click="browseList(list)" class="btn btn-primary">Browse</button><br>
-    
+<div class="row" id="lists">
+  <div ng-repeat="list in lists" class="col-xs-12 col-lg-6">
+    <div class="list">
+      <!-- top row -->
+      <div class="row">
+        <div class="col-xs-6">
+          <p class="vote-count">{{ voteCount(list) }}</p>
 
-    <div class="row">
-      <div ng-repeat="link in listLinks(list)" class="col-xs-12">
-        <p>{{ link.url }}</p>
-        <p>{{ link.description }}</p>
+          <span ng-click="upvote(list)">^</span><span ng-click="downvote(list)">v</span>
+        </div>
+
+
+        <div class="col-xs-3">
+          <p ng-click="handleFavorite(list)">STAR</p>
+        </div>
+
+        <div class="col-xs-3">
+          <button ng-click="browseList(list)" class="btn btn-primary">Browse</button>
+        </div>
+      </div>
+
+      <h2 class="text-center">{{ list.title }}</h2><br>
+      <p class="text-center">Published by {{ list.user.username }}</p>
+      <p class="text-center">{{ list.description }}</p>
+      
+      
+      
+
+      <div class="row">
+        <div ng-repeat="link in listLinks(list)" class="col-xs-12">
+          <p class="text-center link-url">{{ link.url }}</p>
+          <p class="text-center">{{ link.description }}</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-primary center-block" ui-sref="lists.show({id: list.id})">View Comments</button>
+        </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-xs-12">
-        <button ui-sref="lists.show({id: list.id})">View Comments</button>
-      </div>
-    </div>
-
   </div>
 </div>
