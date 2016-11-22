@@ -85,3 +85,18 @@ label#tag-filter-label {
     display: inline-block;
   }
 }
+
+#list-show {
+  .list {
+    border: solid 1px black;
+    margin-bottom: 25px;
+  }
+
+  .link-url {
+    text-decoration: underline;
+  }
+
+  .vote-count {
+    display: inline-block;
+  }
+}
