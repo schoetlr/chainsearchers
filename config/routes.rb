@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   get 'home' => 'static_pages#home', as: "home"
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :lists
   resources :links
