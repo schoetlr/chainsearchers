@@ -15,6 +15,18 @@ class CommentsController < ApplicationController
     end
   end
 
+  def index
+    @list = List.find(params[:list_id])
+
+    @comments = @list.comments
+    @comments.map! { |comment| comment.to_node }
+
+    respond_to do |format|
+      format.json { render json: @comments }
+    end
+
+  end
+
 
   private
 

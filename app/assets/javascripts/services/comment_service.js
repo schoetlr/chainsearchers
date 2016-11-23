@@ -15,5 +15,11 @@ app.factory("commentService", ['Restangular', function(Restangular){
     return Restangular.all("comments").post(params);
   };
 
+  service.getListComments = function(list){
+    var data = { list_id: list.id };
+
+    return Restangular.all("comments").getList(data);
+  };
+
   return service;
 }]);

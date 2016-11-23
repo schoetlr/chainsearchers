@@ -1,4 +1,4 @@
-app.controller("NewCommentCtrl", ['$scope', 'commentService', 'comment', 'list', function($scope, commentService, comment, list){
+app.controller("NewCommentCtrl", ['$scope', 'commentService', 'comment', 'list', '$rootScope', function($scope, commentService, comment, list, $rootScope){
   
   $scope.commentData = {};
   $scope.comment = comment;
@@ -8,12 +8,16 @@ app.controller("NewCommentCtrl", ['$scope', 'commentService', 'comment', 'list',
   $scope.createComment = function(){
     if($scope.comment){
       $scope.commentData.commentable_id = $scope.comment.id;
-      commentService.respondToComment($scope.commentData);
+      commentService.respondToComment($scope.commentData).then(function(response){
+        $rootScope.$broadcast("comment.created");
+      });
 
       $scope.commentData = {};
     } else {
       $scope.commentData.commentable_id = $scope.list.id;
-      commentService.commentOnList($scope.commentData);
+      commentService.commentOnList($scope.commentData).then(function(response){
+        $rootScope.$broadcast("comment.created");
+      });
 
       $scope.commentData = {};
     }

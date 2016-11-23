@@ -4,6 +4,14 @@ app.controller("CommentsCtrl", ['$scope', 'ModalService', function($scope, Modal
     return comment.comments.length > 0;
   };
 
+  $scope.$on("comment.created", function(){
+    commentService.getListComments($scope.list).then(function(response){
+      $scope.comments = response;
+    }, function(){
+      console.log("there was an error getting comments");
+    });
+  });
+
   $scope.newComment = function(comment){
     console.log("running");
     if(!comment){
