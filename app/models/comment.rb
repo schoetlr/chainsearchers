@@ -10,6 +10,7 @@ class Comment < ActiveRecord::Base
 
     json.merge!(self.attributes)
     json["comments"] = self.comments.map { |comment| comment.to_node }
+    json["user"] = self.user
 
     json
 

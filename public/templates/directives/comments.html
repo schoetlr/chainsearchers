@@ -1,0 +1,24 @@
+<div class="row" ng-repeat="comment in comments">
+  <div class="col-xs-12">
+    <h4>{{ commment.user.username }}</h4>
+  </div>
+
+  <div class="col-xs-12">
+    <p>{{ comment.content }}</p>
+  </div>
+
+  <div class="col-xs-12">
+    <p ng-click="respondToComment(comment)">Reply</p>
+  </div>
+
+  <!-- NESTED COMMENTS -->
+  <div class="col-xs-10 col-xs-offset-2" ng-if="parentComment(comment)">
+    <comments comments="comment.comments"></comments>
+    
+
+  </div>
+  <!-- END NESTED COMMENTS -->
+  
+
+
+</div>

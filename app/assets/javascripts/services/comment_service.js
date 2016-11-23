@@ -8,7 +8,7 @@ app.factory("commentService", ['Restangular', function(Restangular){
     return Restangular.all("comments").post(params);
   };
 
-  service.respondToComment = function(){
+  service.respondToComment = function(formData){
     var data = { commentable_type: "Comment", commentable_id: formData.commentable_id, content: formData.content };
 
     var params = { comment: data };

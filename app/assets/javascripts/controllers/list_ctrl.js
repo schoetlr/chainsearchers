@@ -1,5 +1,7 @@
 app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', function($scope, voteService, favoriteService, listService, $stateParams){
 
+  
+  // PUT THIS IN A RESOLVE?
   listService.getList($stateParams.id).then(function(list){
     $scope.list = list;
   }, function(){
