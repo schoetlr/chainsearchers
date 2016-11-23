@@ -4,7 +4,7 @@ app.controller("NewCommentCtrl", ['$scope', 'commentService', 'comment', 'list',
   $scope.comment = comment;
   $scope.list = list;
 
-
+  // CLOSE THE MODAL ON SUBMISSION
   $scope.createComment = function(){
     if($scope.comment){
       $scope.commentData.commentable_id = $scope.comment.id;

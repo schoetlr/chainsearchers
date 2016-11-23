@@ -4,7 +4,11 @@ app.controller("CommentsCtrl", ['$scope', 'ModalService', function($scope, Modal
     return comment.comments.length > 0;
   };
 
-  $scope.comment = function(comment){
+  $scope.newComment = function(comment){
+    console.log("running");
+    if(!comment){
+      var comment = undefined;
+    };
 
     ModalService.showModal({
       templateUrl: "/templates/comments/new.html",
