@@ -15,10 +15,27 @@
  *= require_self
  */
 
+/*
+NAVBAR
+*/
 
 .navbar-inverse .navbar-brand {
   color: white;
 }
 .navbar-inverse .navbar-right .logout-link, .navbar-inverse .navbar-right .login-link {
   color: white;
+}
+
+/*
+Application Wide Styles
+*/
+
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  
+
+}
+
+body {
+  background-color: #f2f2f2;
 }
