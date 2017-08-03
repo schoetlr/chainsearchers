@@ -26,14 +26,29 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
       console.log("something went wrong creating list");
     });
 
+    //where is this defined???
     $scope.toggleCreating();    
 
     
   };
 
+  $scope.heightenModal = function(){
+    console.log("running");
+    var $modal = $(".modal .modal-content");
+    var currentHeight = $modal.height();
+    var newHeight = currentHeight + 180;
+
+    $modal.height(newHeight);
+  };
+
   $scope.addLink = function(){
     $scope.linkData.links.push({});
+
+    $scope.heightenModal();
+
   };
+
+
 
   
   
