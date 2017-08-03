@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//BROWSE
 
 .modal .modal-dialog {
   width: 98%;
@@ -62,6 +63,10 @@
 
 
 //Index
+
+#index-header {
+  margin-bottom: 50px;
+}
 
 label#tag-filter-label {
   display: inline-block;
