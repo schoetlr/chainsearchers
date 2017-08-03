@@ -5,6 +5,10 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
 
+    list_voted = List.find(@vote.list_id)
+    params[:downvote] ? list_voted.vote_count -= 1 : list_voted.vote_count += 1
+    list_voted.save
+
     if @vote.save
       respond_to do |format|
         format.json { render json: @vote }
