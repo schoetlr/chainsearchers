@@ -36,7 +36,15 @@ class List < ActiveRecord::Base
   end
 
   def self.popular
-    self.all
+    self.all.sort  { |a, b| b.vote_count - a.vote_count }
+  end
+
+  def vote_count
+    upvotes = self.votes.to_a.count { |vote| vote.downvote == false}
+    downvotes = self.votes.to_a.count { |vote| vote.downvote == true }
+
+    upvotes - downvotes
+
   end
 
 end
