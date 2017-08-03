@@ -40,7 +40,7 @@
 
   <!-- FORM BUTTONS  -->
   <div class="col-xs-4">
-    <button class="btn-primary btn-lg btn" ng-if="currentUser" ng-click="showNewList()">New List</button>
+    <button id="new-list-btn" class="btn-primary btn" ng-if="currentUser" ng-click="showNewList()">New List</button>
           
     <a class="btn-primary btn-lg btn" ng-if="!currentUser" href="/users/sign_in">New List</a>
   </div>
