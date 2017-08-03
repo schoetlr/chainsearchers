@@ -32,7 +32,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
     
   };
 
-  $scope.heightenModal = function(){
+  $scope.elongateModal = function(){
     console.log("running");
     var $modal = $(".modal .modal-content");
     var currentHeight = $modal.height();
@@ -44,7 +44,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
   $scope.addLink = function(){
     $scope.linkData.links.push({});
 
-    $scope.heightenModal();
+    $scope.elongateModal();
 
   };
 
