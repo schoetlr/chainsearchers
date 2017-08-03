@@ -76,6 +76,10 @@ label#tag-filter-label {
   display: inline-block;
 }
 
+#filter-lists, #new-list-btn {
+  margin-top: 25px;
+}
+
 #lists {
   .list {
     border: solid 1px black;
@@ -93,6 +97,7 @@ label#tag-filter-label {
   }
 }
 
+//SHOW PAGE FOR LIST
 #list-show {
   .list {
     border: solid 1px black;
