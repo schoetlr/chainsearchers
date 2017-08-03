@@ -80,6 +80,8 @@ label#tag-filter-label {
   .list {
     border: solid 1px black;
     margin-bottom: 25px;
+    box-sizing: border-box;
+    padding: 10px;
   }
 
   .link-url {
