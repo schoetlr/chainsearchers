@@ -99,7 +99,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
         match.downvote = true;
         voteService.updateVote(match);
       } else {
-        //do nothing since it is an downvote
+        //do nothing since it is an upvote
       }
       
     } else {
@@ -194,5 +194,14 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
   $scope.showList = function(list){
     $state.go("lists.show", { id: list.id });
   };
+  
+  //Change this to get the proper popular or recent lists
+  $scope.$on("list.created", function(){
+    listService.getPopularLists().then(function(response){
+      $scope.lists = response;
+    }, function(){
+      console.log("something went wrong getting lists");
+    });
+  });
 
 }]);

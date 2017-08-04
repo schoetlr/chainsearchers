@@ -57,18 +57,20 @@ class ListsController < ApplicationController
   end
 
   def create_taggings(tags, list_id)
-    tags.map! do |tag|
-      if !tag[:id]
-        saved_tag = Tag.create(name: tag[:name])
-        tag[:id] = saved_tag.id
+    if tags
+      tags.map! do |tag|
+        if !tag[:id]
+          saved_tag = Tag.create(name: tag[:name])
+          tag[:id] = saved_tag.id
+        end
+        
+        tag
       end
-      
-      tag
-    end
 
-    tags.each do |tag|
-      tagging = ListTagging.new(list_id: list_id, tag_id: tag[:id])
-      tagging.save
+      tags.each do |tag|
+        tagging = ListTagging.new(list_id: list_id, tag_id: tag[:id])
+        tagging.save
+      end
     end
 
   end
