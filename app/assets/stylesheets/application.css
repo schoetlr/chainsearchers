@@ -31,11 +31,12 @@ Application Wide Styles
 */
 
 html {
-  font-family: Helvetica, Arial, sans-serif;
+  
   
 
 }
 
 body {
   background-color: #f2f2f2;
+  font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 }
