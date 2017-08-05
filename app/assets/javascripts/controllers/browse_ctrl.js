@@ -35,6 +35,7 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   };
 
   $scope.generatePath = function(){
+    
     if($scope.selectedLink.url[0] === 'w'){
       var url = 'http://' + $scope.selectedLink.url;
       return $sce.trustAsResourceUrl(url);
