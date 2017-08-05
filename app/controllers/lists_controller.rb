@@ -22,6 +22,8 @@ class ListsController < ApplicationController
   def index
     if params[:tags]
       @lists = List.with_tags(params[:tags])
+    elsif params[:option] == "Recent"
+      @lists = List.recent
     else
       @lists = List.popular
     end
@@ -76,6 +78,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:title, :description)
+    params.require(:list).permit(:title, :description, :option)
   end
 end

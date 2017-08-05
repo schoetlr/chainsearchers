@@ -39,6 +39,10 @@ class List < ActiveRecord::Base
     self.all.sort  { |a, b| b.vote_count - a.vote_count }
   end
 
+  def self.recent
+    order(created_at: :desc)
+  end
+
   def vote_count
     upvotes = self.votes.to_a.count { |vote| vote.downvote == false}
     downvotes = self.votes.to_a.count { |vote| vote.downvote == true }

@@ -37,7 +37,26 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     }, function(){
       console.log("something went wrong filtering lists by tag");
     })
-  }
+  };
+
+
+
+  $scope.filterByOption = function(){
+    console.log("ran filterByOption");
+    if($scope.filterOption === "Popular"){
+      listService.getPopularLists().then(function(response){
+        $scope.lists = response;
+      }, function(){
+        console.log("something went wrong getting lists");
+      });
+    } else if($scope.filterOption === "Recent"){
+      listService.getRecentLists().then(function(response){
+        $scope.lists = response;
+      }, function(){
+        console.log("something went wrong getting lists");
+      })
+    }
+  };
   
   $scope.listLinks = function(list){
     var links = [];

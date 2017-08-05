@@ -30,8 +30,9 @@
 
   <!-- INDEX FILTER SELECT -->
   <div class="col-xs-3">
-    <select class="form-control" id="filter-lists">
-      <option ng-selected>Popular</option>
+    <select ng-model="filterOption" ng-change="filterByOption()" class="form-control" id="filter-lists">
+      <option value="Popular" ng-selected>Popular</option>
+      <option value="Recent">Recent</option>
     </select>
 
   </div>
