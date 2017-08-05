@@ -43,6 +43,8 @@
   }
 
 
+
+
 }
 
 
@@ -97,6 +99,18 @@ label#tag-filter-label {
   .vote-count {
     display: inline-block;
     font-size: 25px;
+  }
+
+  .fa-star {
+    color: #E4E45E;
+  }
+
+  .fa-arrow-up {
+    color: green;
+  }
+
+  .fa-arrow-down {
+    color: red;
   }
 }
 
