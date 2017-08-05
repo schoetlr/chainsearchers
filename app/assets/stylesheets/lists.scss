@@ -97,6 +97,7 @@ label#tag-filter-label {
 
 #lists {
   
+
   .list {
     border: solid 1px white;
     border-radius: 5px;
@@ -110,6 +111,19 @@ label#tag-filter-label {
       color: black;
       text-decoration: underline;
     }
+
+    p {
+    font-size: 18px;
+  }
+
+    .publisher, .description {
+      font-style: italic;
+    }
+
+    .description-wrapper {
+      margin-bottom: 20px;
+    }
+
   }
 
   .link-url {
