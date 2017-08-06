@@ -6,7 +6,7 @@
     </span>
   </div>
   <input type="search" ng-model="search" class="form-control">
-  <ul ng-show="tagging()">
+  <ul ng-show="tagging()" id="available-tags">
     <li ng-repeat="tag in tags | filter:{name: search}" ng-click="selectTag(tag)">
       {{tag.name}}
     </li>
