@@ -20,7 +20,7 @@
       <input id="tag-search" type="search" ng-model="tagSearch" class="col-xs-7 form-control form-horizontal">
     </div>
     
-    <ul ng-show="filtering()">
+    <ul ng-show="filtering()" id="filtering-tags">
       <li class="filtered-tag" ng-repeat="tag in tags | filter:{name: tagSearch}" ng-click="filterByTag(tag)">{{ tag.name }}</li>
     </ul>
 
