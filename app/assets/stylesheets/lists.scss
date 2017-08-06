@@ -102,8 +102,19 @@
   margin-left: -30px;
 }
 
-.filtered-tag h5 {
-  display: inline-block;
+.filtered-tag {
+
+  h5 {
+    display: inline-block;
+  }
+}
+
+.selected-tag {
+  background-color: #e6e6e6;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 
