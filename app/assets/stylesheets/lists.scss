@@ -160,7 +160,7 @@ label#tag-filter-label {
 
     p {
     font-size: 18px;
-  }
+    }
 
     .publisher, .description {
       font-style: italic;
@@ -170,7 +170,9 @@ label#tag-filter-label {
       margin-bottom: 20px;
     }
 
-
+    .vote-count {
+      font-size: 25px;
+    }
 
   }
 
