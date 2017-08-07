@@ -2,6 +2,12 @@ app.factory("listService", ['Restangular', function(Restangular){
 
   var service = {};
 
+  service.getLists = function(tags, filterOption){
+    var params = {option: filterOption, "tags[]": tags};
+    
+    return Restangular.all("lists").getList(params);
+  };
+
   service.getPopularLists = function(){
     return Restangular.all("lists").getList();
   };

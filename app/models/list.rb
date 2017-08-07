@@ -36,12 +36,31 @@ class List < ActiveRecord::Base
   end
 
   def self.popular
+    #refactor this to return ActiveRecord Association Object
+    #then can chain with_tags on popular
     self.all.sort  { |a, b| b.vote_count - a.vote_count }
+  end
+
+  def self.popular_with_tags(tags)
+    tags.map! { |tag| JSON.parse(tag) }
+
+    popular
+    .select do |list|
+      tags.all? do |tag|
+        ListTagging.where(list_id: list.id, tag_id: tag["id"]).length > 0
+      end
+    end
   end
 
   def self.recent
     order(created_at: :desc)
   end
+
+  def self.recent_with_tags(tags)
+    recent
+    .with_tags(tags)
+  end
+
 
   def vote_count
     upvotes = self.votes.to_a.count { |vote| vote.downvote == false}

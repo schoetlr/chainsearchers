@@ -19,15 +19,21 @@ class ListsController < ApplicationController
     end
   end
 
-  def index
-    if params[:tags]
-      @lists = List.with_tags(params[:tags])
-    elsif params[:option] == "Recent"
-      @lists = List.recent
-    else
-      @lists = List.popular
-    end
 
+  def index
+    tags = params[:tags]
+    option = params[:option]
+    tags = !tags ? [] : tags
+    
+    if tags.length > 0 && option == "Popular"
+      @lists = List.popular_with_tags(tags)
+    elsif tags.length == 0 && option == "Popular"
+      @lists = List.popular
+    elsif tags.length > 0 && option == "Recent"
+      @lists = List.recent_with_tags(tags)
+    elsif tags.length == 0 && option == "Recent"
+      @lists = List.recent
+    end
 
     @lists = format_lists(@lists)
 
@@ -78,6 +84,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:title, :description, :option)
+    params.require(:list).permit(:title, :description)
   end
 end

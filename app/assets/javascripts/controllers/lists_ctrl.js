@@ -1,8 +1,9 @@
 app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', 'voteService', '_', 'Auth', 'Restangular', 'favoriteService', function($scope, listService, ModalService, tagService, voteService, _, Auth, Restangular, favoriteService){
 
-  
+  $scope.selectedTags = [];
+  $scope.filterOption = "Popular";
 
-  listService.getPopularLists().then(function(response){
+  listService.getLists($scope.selectedTags, $scope.filterOption).then(function(response){
     $scope.lists = response;
   }, function(){
     console.log("something went wrong getting lists");
@@ -21,7 +22,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     $scope.currentUser = undefined;
   });
 
-  $scope.selectedTags = [];
+  
   $scope.tagSearch = "";
   $scope.filtering = function(){
     return $scope.tagSearch.length > 0;
@@ -32,7 +33,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     $scope.selectedTags.push(tag);
     $scope.tagSearch = "";
 
-    listService.getListsByTag($scope.selectedTags).then(function(lists){
+    listService.getLists($scope.selectedTags, $scope.filterOption).then(function(lists){
       $scope.lists = lists;
     }, function(){
       console.log("something went wrong filtering lists by tag");
@@ -41,24 +42,24 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
 
   $scope.removeTag = function(index){
     $scope.selectedTags.splice(index, 1);
+
+    listService.getLists($scope.selectedTags, $scope.filterOption).then(function(response){
+        $scope.lists = response;
+      }, function(){
+        console.log("something went wrong getting lists");
+      }
+    );
   };
 
-  $scope.filterOption = "Popular";
+  
 
   $scope.filterByOption = function(){
-    if($scope.filterOption === "Popular"){
-      listService.getPopularLists().then(function(response){
-        $scope.lists = response;
-      }, function(){
-        console.log("something went wrong getting lists");
-      });
-    } else if($scope.filterOption === "Recent"){
-      listService.getRecentLists().then(function(response){
-        $scope.lists = response;
-      }, function(){
-        console.log("something went wrong getting lists");
-      })
-    }
+    listService.getLists($scope.selectedTags, $scope.filterOption).then(function(response){
+      $scope.lists = response;
+    }, function(){
+      console.log("something went wrong getting lists");
+    });
+    
   };
   
   $scope.listLinks = function(list){
@@ -226,7 +227,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
   
   //Change this to get the proper popular or recent lists
   $scope.$on("list.created", function(){
-    listService.getPopularLists().then(function(response){
+    listService.getLists($scope.selectedTags, $scope.filterOption).then(function(response){
       $scope.lists = response;
     }, function(){
       console.log("something went wrong getting lists");
