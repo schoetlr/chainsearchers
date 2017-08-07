@@ -46,7 +46,6 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
   $scope.filterOption = "Popular";
 
   $scope.filterByOption = function(){
-    console.log("ran filterByOption");
     if($scope.filterOption === "Popular"){
       listService.getPopularLists().then(function(response){
         $scope.lists = response;
