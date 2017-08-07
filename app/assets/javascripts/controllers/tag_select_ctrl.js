@@ -39,4 +39,8 @@ app.controller("TagSelectCtrl", ['$scope', 'tagService', function($scope, tagSer
     $scope.search = "";
   };
 
+  $scope.removeTag = function(index){
+    $scope.selectedTags.splice(index, 1);
+  };
+
 }]);

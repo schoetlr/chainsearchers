@@ -39,6 +39,10 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     })
   };
 
+  $scope.removeTag = function(index){
+    $scope.selectedTags.splice(index, 1);
+  };
+
   $scope.filterOption = "Popular";
 
   $scope.filterByOption = function(){
