@@ -115,6 +115,14 @@
   padding-bottom: 7px;
   padding-left: 10px;
   padding-right: 10px;
+  position: relative;
+}
+
+.selected-tag-exit {
+  position: absolute;
+  right: 0px;
+  top: -6px;
+  color: #808080;
 }
 
 #selected-tags-wrapper {
