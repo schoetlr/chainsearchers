@@ -2,7 +2,7 @@
   <label>Tags</label>
   <div id="selected-tags" class="row">
     <span ng-repeat="tag in selectedTags" class="selected-tag">
-      <h5>{{tag.name}}</h5><span class="selected-tag-exit">x</span>
+      <h5>{{tag.name}}</h5><span ng-click="removeTag()" class="selected-tag-exit">x</span>
     </span>
   </div>
   <input type="search" ng-model="search" class="form-control">
