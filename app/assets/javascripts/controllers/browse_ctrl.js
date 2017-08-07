@@ -35,7 +35,7 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   };
 
   $scope.generatePath = function(){
-    
+
     if($scope.selectedLink.url[0] === 'w'){
       var url = 'http://' + $scope.selectedLink.url;
       return $sce.trustAsResourceUrl(url);
@@ -159,7 +159,11 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   };
 
   $scope.favorited = function(){
-    return false;
+    var list = $scope.list;
+    var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
+    var favorite = favorites[0];
+
+    return !!favorite;
   }
 
 
