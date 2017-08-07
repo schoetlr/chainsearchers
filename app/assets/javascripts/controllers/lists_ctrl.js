@@ -173,6 +173,13 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     
   };
 
+  $scope.favorited = function(list){
+    var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
+    var favorite = favorites[0];
+
+    return !!favorite;
+  };
+
   $scope.browseList = function(list){
     var links = $scope.listLinks(list);
     

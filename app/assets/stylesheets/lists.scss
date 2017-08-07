@@ -59,7 +59,7 @@
   }
 
   .fa-star-o {
-    color: yellow;
+    color: #E4E45E;
   }
 
 }
@@ -180,6 +180,10 @@ label#tag-filter-label {
 
     .vote-count {
       font-size: 25px;
+    }
+
+    .fa-star-o, .fa-star {
+      color: #E4E45E;
     }
 
   }
