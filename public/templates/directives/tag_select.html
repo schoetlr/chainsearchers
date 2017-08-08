@@ -7,9 +7,11 @@
   </div>
   <input type="search" ng-model="search" class="form-control">
   <ul ng-show="tagging()" id="available-tags">
-    <li ng-repeat="tag in tags | filter:{name: search}" ng-click="selectTag(tag)">
-      {{tag.name}}
-    </li>
+    <div class="potential-tag-wrapper" ng-repeat="tag in tags | filter:{name: search}">
+      <li ng-click="selectTag(tag)" class="potential-tag">
+        {{tag.name}}
+      </li></div><br>
+    </div>
   <ul>
 
 </div>

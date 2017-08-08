@@ -92,7 +92,23 @@
 }
 
 #available-tags {
-  margin-left: -20px;
+  margin-left: -40px;
+
+  list-style: none;
+
+  .potential-tag-wrapper {
+    margin-bottom: 2px;
+  }
+
+  .potential-tag {
+    background-color: #e6e6e6;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 3px;
+    display: inline-block;
+  }
 }
 
 
