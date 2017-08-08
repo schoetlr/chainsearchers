@@ -149,6 +149,25 @@ label#tag-filter-label {
   margin-top: 25px;
 }
 
+#filtering-tags {
+  list-style: none;
+  margin-left: -55px;
+
+  .filtered-tag-wrapper {
+    margin-bottom: 2px;
+  }
+
+  .filtered-tag {
+    background-color: #e6e6e6;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+}
+
 #lists {
   
 

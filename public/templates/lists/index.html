@@ -23,7 +23,9 @@
     </div>
     
     <ul ng-show="filtering()" id="filtering-tags">
-      <li class="filtered-tag" ng-repeat="tag in tags | filter:{name: tagSearch}" ng-click="filterByTag(tag)">{{ tag.name }}</li>
+      <div class="filtered-tag-wrapper" ng-repeat="tag in tags | filter:{name: tagSearch}">
+        <li class="filtered-tag" ng-click="filterByTag(tag)">{{ tag.name }}</li><br>
+      </div>
     </ul>
 
   </div>
