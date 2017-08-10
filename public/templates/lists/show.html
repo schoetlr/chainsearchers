@@ -40,9 +40,15 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            
+        <div class="row" id="comment-section">
+          <div class="col-xs-12"">
+            <form class="row">
+              <div class="form-group col-xs-9">
+                <textarea ng-model="commentForm.content" class="form-control"></textarea>
+              </div>
+
+              <button ng-click="comment()" class="btn btn-success" id="show-comment-btn">Submit Comment</button>
+            </form>
           </div>
         </div>
       </div>
@@ -51,6 +57,6 @@
   </div>
 
   <!-- COMMENT SECTION -->
-  <comments comments="list.comments" list="list"></comments>
+  <comments comments="comments" list="list"></comments>
 
 </div>

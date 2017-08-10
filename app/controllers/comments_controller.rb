@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @list = List.find(params[:list_id])
 
     @comments = @list.comments
-    @comments.map! { |comment| comment.to_node }
+    @comments = @comments.map { |comment| comment.to_node }
 
     respond_to do |format|
       format.json { render json: @comments }

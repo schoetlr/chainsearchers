@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//Index Header
-#index-header {
-  margin-left: 5px;
-}
 //BROWSE
 
 .modal .modal-dialog {
@@ -154,6 +150,7 @@
 
 #index-header {
   margin-bottom: 50px;
+  margin-left: 5px;
 }
 
 label#tag-filter-label {
@@ -300,6 +297,15 @@ label#tag-filter-label {
       font-size: 25px;
       margin-left: 10px;
     }
+
+    #comment-section {
+      margin-top: 50px;
+
+      button#show-comment-btn {
+        margin-top: 10px;
+      }
+    }
+
   }
 
   

@@ -1,9 +1,10 @@
-app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', 'ModalService', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, ModalService){
+app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', 'ModalService', 'commentService', '$rootScope', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, ModalService, commentService, $rootScope){
 
   
   // PUT THIS IN A RESOLVE?
   listService.getList($stateParams.id).then(function(list){
     $scope.list = list;
+    $scope.comments = $scope.list.comments;
   }, function(){
     console.log("could not get list");
   });
@@ -159,5 +160,24 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
       });
     });
   };
+
+  $scope.commentForm = {};
+
+  $scope.comment = function(){
+    $scope.commentForm.commentable_id = $scope.list.id;
+    
+    commentService.commentOnList($scope.commentForm);
+
+    $rootScope.$broadcast("comment.created");
+    $scope.commentForm = {};
+  };
+
+  $scope.$on("comment.created", function(){
+    commentService.getListComments($scope.list).then(function(response){
+      $scope.comments = response;
+    }, function(){
+      console.log("there was an error getting comments");
+    });
+  });
 
 }]);
