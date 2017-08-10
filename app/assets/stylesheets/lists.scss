@@ -257,6 +257,14 @@ label#tag-filter-label {
     padding: 10px;
     background-color: #fff;
 
+    p {
+      font-size: 18px;
+    }
+
+    #publisher, #description {
+      font-style: italic;
+    }
+
     .fa-arrow-up {
       color: green;
     }
