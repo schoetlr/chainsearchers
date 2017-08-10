@@ -1,4 +1,4 @@
-app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular){
+app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', 'ModalService', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, ModalService){
 
   
   // PUT THIS IN A RESOLVE?
@@ -134,6 +134,30 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     var favorite = favorites[0];
 
     return !!favorite;
+  };
+
+  $scope.browseList = function(list){
+    var list = $scope.list;
+    var links = $scope.listLinks(list);
+    
+    var selectedIndex = 0;
+
+    ModalService.showModal({
+      templateUrl: "/templates/lists/browse.html",
+      controller: "BrowseCtrl",
+      inputs: {
+        list: list,
+        links: links, 
+        selectedIndex: selectedIndex, 
+        currentUser: $scope.currentUser
+      }
+    }).then(function(modal) {
+    
+      modal.element.modal();
+      modal.close.then(function(result) {
+        console.log("modal closed");
+      });
+    });
   };
 
 }]);
