@@ -1,4 +1,4 @@
-app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', function($scope, voteService, favoriteService, listService, $stateParams){
+app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular){
 
   
   // PUT THIS IN A RESOLVE?
@@ -6,6 +6,13 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     $scope.list = list;
   }, function(){
     console.log("could not get list");
+  });
+
+  Auth.currentUser().then(function(response){
+    $scope.currentUser = response;
+  }, function(){
+    console.log("No user logged in");
+    $scope.currentUser = undefined;
   });
 
   $scope.listLinks = function(list){
@@ -99,8 +106,9 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     return voteObject.up - voteObject.down;
   };
 
-  $scope.handleFavorite = function(list){
+  $scope.handleFavorite = function(){
     //if a favorite in list.favorites w the currentUser id exists then remove it AND delete in DB
+    var list = $scope.list;
     var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
     var favorite = favorites[0];
     if(favorite){
@@ -118,6 +126,14 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     }
 
     
+  };
+
+  $scope.favorited = function(){
+    var list = $scope.list;
+    var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
+    var favorite = favorites[0];
+
+    return !!favorite;
   };
 
 }]);
