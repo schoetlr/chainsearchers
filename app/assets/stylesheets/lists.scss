@@ -257,6 +257,12 @@ label#tag-filter-label {
     padding: 10px;
     background-color: #fff;
 
+    a#browse-list {
+      font-size: 20px;
+      color: black;
+      text-decoration: underline;
+    }
+
     p {
       font-size: 18px;
     }
