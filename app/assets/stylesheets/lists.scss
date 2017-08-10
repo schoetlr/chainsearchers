@@ -250,13 +250,39 @@ label#tag-filter-label {
   .list {
     border: solid 1px black;
     margin-bottom: 25px;
+
+    border: solid 1px white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+
+    .fa-arrow-up {
+      color: green;
+    }
+
+    .fa-arrow-down {
+      color: red;
+    }
+
+    .fa-star {
+      color: #E4E45E;
+    }
+
+    .fa-star-o {
+      color: #E4E45E;
+    }
+
+    .link-url {
+      text-decoration: underline;
+    }
+
+    .vote-count {
+      display: inline-block;
+      font-size: 25px;
+      margin-left: 10px;
+    }
   }
 
-  .link-url {
-    text-decoration: underline;
-  }
-
-  .vote-count {
-    display: inline-block;
-  }
+  
 }
