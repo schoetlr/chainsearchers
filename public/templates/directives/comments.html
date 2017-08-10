@@ -1,4 +1,4 @@
-<div class="row" ng-repeat="comment in comments">
+<div class="row" ng-repeat="comment in comments" id="show-comments">
   <div class="col-xs-12">
     <h4>{{ commment.user.username }}</h4>
   </div>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="col-xs-12">
-    <p ng-click="newComment(comment)">Reply</p>
+    <p class="reply" ng-click="newComment(comment)">Reply</p>
   </div>
 
   <!-- NESTED COMMENTS -->

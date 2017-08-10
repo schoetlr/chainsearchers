@@ -298,6 +298,7 @@ label#tag-filter-label {
       margin-left: 10px;
     }
 
+    //rename to comment form section
     #comment-section {
       margin-top: 50px;
 
@@ -308,5 +309,15 @@ label#tag-filter-label {
 
   }
 
-  
+
+}
+
+#show-comments {
+  p {
+    font-size: 17px;
+  }
+
+  .reply {
+    font-size: 12px;
+  }
 }
