@@ -13,7 +13,6 @@ app.controller("CommentsCtrl", ['$scope', 'ModalService', function($scope, Modal
   });
 
   $scope.newComment = function(comment){
-    console.log("running");
     if(!comment){
       var comment = undefined;
     };
