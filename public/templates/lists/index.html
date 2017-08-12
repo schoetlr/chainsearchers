@@ -89,6 +89,15 @@
         </div>
       </div>
 
+      <div id="display-tags-wrapper" class="row">
+        <div class="col-xs-12 text-center">
+          <div ng-repeat="tag in list.tags" class="display-tag">
+            <h5>{{ tag.name }}</h5>
+          </div>
+          
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-xs-12">
           <p class="text-center publisher">Published by {{ list.user.username }}</p>

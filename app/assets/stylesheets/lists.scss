@@ -223,6 +223,22 @@ label#tag-filter-label {
       color: #E4E45E;
     }
 
+    #display-tags-wrapper {
+      margin-bottom: 10px;
+    }
+
+    .display-tag {
+      background-color: #e6e6e6;
+      padding-top: 0px;
+      padding-bottom: 2px;
+      padding-left: 7px;
+      padding-right: 7px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-left: 3px;
+    }
+  
+
   }
 
   .link-url {
@@ -306,6 +322,21 @@ label#tag-filter-label {
       button#show-comment-btn {
         margin-top: 10px;
       }
+    }
+
+    #display-tags-wrapper {
+      margin-bottom: 10px;
+    }
+
+    .display-tag {
+      background-color: #e6e6e6;
+      padding-top: 0px;
+      padding-bottom: 2px;
+      padding-left: 7px;
+      padding-right: 7px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-left: 3px;
     }
 
   }

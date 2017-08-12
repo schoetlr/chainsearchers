@@ -27,6 +27,16 @@
         </div>
 
         <h2 class="text-center">{{ list.title }}</h2><br>
+
+        <div id="display-tags-wrapper" class="row">
+          <div class="col-xs-12 text-center">
+            <div ng-repeat="tag in list.tags" class="display-tag">
+              <h5>{{ tag.name }}</h5>
+            </div>
+            
+          </div>
+        </div>
+        
         <p class="text-center" id="publisher">Published by {{ list.user.username }}</p>
         <p class="text-center" id="description">{{ list.description }}</p>
         

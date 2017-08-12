@@ -19,6 +19,7 @@ class List < ActiveRecord::Base
     json["favorites"] = self.favorites
     json["user"] = self.user
     json["comments"] = self.comments.map { |comment| comment.to_node }
+    json["tags"] = self.tags
 
     json
   end
