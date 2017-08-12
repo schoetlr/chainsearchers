@@ -40,3 +40,13 @@ body {
   background-color: #f2f2f2;
   font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 }
+
+
+/* 
+Devise Styles (find a better place for these)
+*/
+
+#sign-up-link {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
