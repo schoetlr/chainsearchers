@@ -45,7 +45,17 @@ app.config(function($stateProvider, $urlRouterProvider){
       controller: "ListCtrl"
     })
 
+    .state("users", {
+      url: "/users",
+      abstract: true,
+      template: '<div ui-view></div>'
+    })
 
+    .state("users.show", {
+      url: "/:id",
+      templateUrl: '/templates/users/show.html',
+      controller: "UserCtrl"
+    })
     
 })
 
