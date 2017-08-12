@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_filter :authenticate_user!, only: [:index]
 
   def create
     @comment = Comment.new(comment_params)

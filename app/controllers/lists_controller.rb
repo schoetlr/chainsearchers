@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  skip_filter :authenticate_user!, only: [:index, :show]
 
   def create
     @list = List.new(list_params)
