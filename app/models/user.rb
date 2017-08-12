@@ -7,5 +7,16 @@ class User < ActiveRecord::Base
   has_many :lists
   has_many :votes
   has_many :favorites
+
+
+  def format_json
+    json = {}
+
+    json.merge!(self.attributes)
+
+    json["lists"] = self.lists
+
+    json
+  end
   
 end
