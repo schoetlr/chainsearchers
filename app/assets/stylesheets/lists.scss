@@ -266,7 +266,6 @@ label#tag-filter-label {
 //SHOW PAGE FOR LIST
 #list-show {
   .list {
-    border: solid 1px black;
     margin-bottom: 25px;
 
     border: solid 1px white;
@@ -344,12 +343,26 @@ label#tag-filter-label {
 
 }
 
+//Comment Template
+
 #show-comments {
+  .show-comment {
+    background-color: #fff;
+    border-radius: 5px;
+    
+    margin-bottom: 10px;
+  }
+
   p {
     font-size: 17px;
   }
 
   .reply {
     font-size: 12px;
+    font-weight: bold;
+  }
+
+  .comment-username {
+    font-weight: bold;
   }
 }
