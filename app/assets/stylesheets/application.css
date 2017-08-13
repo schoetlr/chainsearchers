@@ -24,6 +24,12 @@ NAVBAR
 }
 .navbar-inverse .navbar-right .logout-link, .navbar-inverse .navbar-right .login-link {
   color: white;
+
+}
+
+.fa-user {
+  color: #0000CD;
+  
 }
 
 /*

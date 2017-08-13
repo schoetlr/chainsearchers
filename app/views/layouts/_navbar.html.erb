@@ -18,6 +18,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "/home#/users/#{current_user.id}" do %>
+            <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+          <% end %>
+        </li>
+
         <% if current_user %>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "logout-link" %></li>
         <% else %>
