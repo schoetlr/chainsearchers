@@ -9,7 +9,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <p id="karma">Karma: CALC USER.KARMA HERE</p>
+        <p id="karma">karma: <span id="karma-score">{{ user.karma }}</span></p>
       </div>
 
     </div>
@@ -23,7 +23,7 @@
   <div class="col-xs-12 col-sm-7" id="user-lists">
     <div class="row">
       <div class="col-xs-12">
-        <h1 class="text-center" id="recent-header">Recent Lists</h1>
+        <h1 class="text-center" id="recent-header">Recent Lists ({{ user.lists.length }})</h1>
       </div>
     </div>
 

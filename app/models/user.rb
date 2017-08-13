@@ -15,8 +15,13 @@ class User < ActiveRecord::Base
     json.merge!(self.attributes)
 
     json["lists"] = self.lists.recent
+    json["karma"] = self.karma
 
     json
+  end
+
+  def karma
+    lists.inject(0) { |memo, list| memo + list.vote_count }
   end
   
 end
