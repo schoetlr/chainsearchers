@@ -211,6 +211,14 @@ label#tag-filter-label {
       font-style: italic;
     }
 
+    .publisher {
+      font-weight: bold;
+    }
+
+    .list-title {
+      font-weight: bold;
+    }
+
     .description-wrapper {
       margin-bottom: 20px;
     }
@@ -284,8 +292,16 @@ label#tag-filter-label {
       font-size: 18px;
     }
 
+    h2 {
+      font-weight: bold;
+    }
+
     #publisher, #description {
       font-style: italic;
+    }
+
+    #publisher {
+      font-weight: bold;
     }
 
     .fa-arrow-up {

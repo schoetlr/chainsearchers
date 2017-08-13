@@ -37,7 +37,7 @@
           </div>
         </div>
         
-        <p class="text-center" id="publisher">Published by {{ list.user.username }}</p>
+        <p class="text-center" id="publisher">Published by <span ui-sref="users.show({id: list.user.id})">{{ list.user.username }}</span></p>
         <p class="text-center" id="description">{{ list.description }}</p>
         
         

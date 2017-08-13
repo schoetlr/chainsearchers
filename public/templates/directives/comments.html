@@ -4,7 +4,7 @@
     <div class="col-xs-12 show-comment">
       <div class="row">
         <div class="col-xs-8">
-          <p class="comment-username">{{ comment.user.username }}</p>
+          <p class="comment-username" ui-sref="users.show({id: comment.user.id})">{{ comment.user.username }}</p>
         </div>
 
         <div class="col-xs-4">
