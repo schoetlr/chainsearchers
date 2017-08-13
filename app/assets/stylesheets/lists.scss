@@ -203,6 +203,15 @@ label#tag-filter-label {
       text-decoration: underline;
     }
 
+    .links {
+      max-height: 400px;
+      overflow: auto;
+    }
+
+    ::-webkit-scrollbar {
+
+    } 
+
     p {
     font-size: 18px;
     }
@@ -288,6 +297,11 @@ label#tag-filter-label {
       text-decoration: underline;
     }
 
+    #links {
+      max-height: 750px;
+      overflow: auto;
+    }
+
     p {
       font-size: 18px;
     }
@@ -302,6 +316,10 @@ label#tag-filter-label {
 
     #publisher {
       font-weight: bold;
+    }
+
+    #description {
+      margin-bottom: 40px;
     }
 
     .fa-arrow-up {
