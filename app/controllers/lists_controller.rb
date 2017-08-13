@@ -69,7 +69,7 @@ class ListsController < ApplicationController
     if tags
       tags.map! do |tag|
         if !tag[:id]
-          saved_tag = Tag.create(name: tag[:name])
+          saved_tag = Tag.create(name: tag[:name].downcase)
           tag[:id] = saved_tag.id
         end
         
