@@ -35,12 +35,19 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   };
 
   $scope.generatePath = function(){
+    var url = $scope.selectedLink.url;
+    //make youtube vids embeddable
+    if(url.match(/youtube/) !== null){
+      var url = url.replace(/watch\?v=/, function(){ 
+        return "embed/";
+      });
+    }; 
 
-    if($scope.selectedLink.url[0] === 'w'){
-      var url = 'http://' + $scope.selectedLink.url;
+    if(url[0] === 'w'){
+      var url = 'http://' + url;
       return $sce.trustAsResourceUrl(url);
     } else {
-      return $sce.trustAsResourceUrl($scope.selectedLink.url);
+      return $sce.trustAsResourceUrl(url);
     }
   };
 
