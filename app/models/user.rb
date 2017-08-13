@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username
   validates :username, length: { maximum: 20 }
+  validates :username, presence: true
+  validates :email, presence: true
 
 
   def format_json
