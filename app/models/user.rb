@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :favorites
 
+  validates_uniqueness_of :username
+  validates :username, length: { maximum: 20 }
+
 
   def format_json
     json = {}

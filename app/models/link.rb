@@ -3,6 +3,8 @@ class Link < ActiveRecord::Base
   belongs_to :link
   belongs_to :list
 
+  validates :description, length: { maximum: 150 }
+
 
   def to_node
     json = {}

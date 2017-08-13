@@ -7,7 +7,8 @@ class List < ActiveRecord::Base
   has_many :favorites
   has_many :comments, as: :commentable
 
-  
+  validates :title, length: { maximum: 50 }
+  validates :description, length: { maximum: 200 }  
 
   def to_tree
     json = {}

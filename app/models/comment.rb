@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  validates :content, length: { maximum: 150 }
+
 
   def to_node
     json = {}
