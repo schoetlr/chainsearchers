@@ -1,3 +1,22 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#profile-info, #user-lists {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+#user-lists {
+  #recent-header {
+    text-style: italic;
+  }
+}
+
+
+#profile-info {
+  p {
+    font-size: 18px;
+  }
+}

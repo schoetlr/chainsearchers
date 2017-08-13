@@ -1,1 +1,37 @@
-<h1>USER USER USER YEAH</h1>
+<div class="row">
+  <!-- Profile Info -->
+  <div class="col-xs-12 col-sm-4" id="profile-info">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 id="username">{{ user.username }}</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <p id="karma">Karma: CALC USER.KARMA HERE</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-sm-1">
+  </div>
+
+  <!-- Recent Lists -->
+  <div class="col-xs-12 col-sm-7" id="user-lists">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="text-center" id="recent-header">Recent Lists</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 ng-repeat="list in user.lists" ui-sref="lists.show({id: list.id})" class="text-center">{{ list.title }}</h3>
+      </div>
+    </div>
+  </div>
+
+</div>

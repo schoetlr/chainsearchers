@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
     json.merge!(self.attributes)
 
-    json["lists"] = self.lists
+    json["lists"] = self.lists.recent
 
     json
   end
