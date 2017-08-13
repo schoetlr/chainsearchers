@@ -44,6 +44,7 @@ gem 'hirb'
 group :production do 
   gem 'pg'
   gem 'rails_12factor'
+  gem 'ngannotate-rails'
 end
 
 group :development, :test do
