@@ -31,6 +31,7 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
 
   $scope.updateList = function(){
     //update list
+    $scope.list.tags = $scope.selectedTags;
     var list = Restangular.restangularizeElement(null, $scope.list, "lists");
     list.patch();
 
@@ -66,8 +67,8 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
       var $modal = $(".modal .modal-content");
       foofoo = $modal;
       var currentHeight = $modal.height();
-      var linksOverThree = $scope.links.length - 3;
-      var newHeight = currentHeight + (180 * linksOverThree);
+      var factor = $scope.links.length;
+      var newHeight = currentHeight + (180 * factor);
 
       $modal.height(newHeight);
     }, 500);
