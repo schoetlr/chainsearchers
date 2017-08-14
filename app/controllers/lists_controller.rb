@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   skip_filter :authenticate_user!, only: [:index, :show]
+  before_filter :validate_ownership, only: [:update]
 
   def create
     @list = List.new(list_params)
@@ -117,6 +118,15 @@ class ListsController < ApplicationController
       end
     end
 
+  end
+
+  def validate_ownership
+    list_id = params[:id].to_i
+    owner = current_user.lists.pluck(:id).include?(list_id)
+
+    unless owner
+      redirect_to :back
+    end
   end
 
   def list_params
