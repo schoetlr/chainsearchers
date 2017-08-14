@@ -23,8 +23,22 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
   $scope.updateLinks = function(links){
     //helper method for updateList, this updates each link
     links.forEach(function(link){
-      link = Restangular.restangularizeElement(null, link, "links");
-      link.patch();
+      var newLinkMade = false;
+      //if link has had patch() it
+      if(link.id !== undefined){
+        link = Restangular.restangularizeElement(null, link, "links");
+        link.patch();
+      } else {
+        newLinkMade = true;
+        var linkData = { list_id: $scope.list.id, links: [], update: true };
+        linkData.links.push(link);
+        linkService.createLinks(linkData);
+      };
+
+      if(newLinkMade){
+        $rootScope.$broadcast("link.created");
+      };
+      
     });
   };
   

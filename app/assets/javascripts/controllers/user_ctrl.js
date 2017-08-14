@@ -13,6 +13,15 @@ app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Mo
     $scope.currentUser = undefined;
   });
 
+  //if link created in list update from EditListCtrl get the user again so it's links are up to date
+  $scope.$on("link.created", function(){
+    userService.getUser($stateParams.id).then(function(response){
+      $scope.user = response;
+    }, function error(){
+      console.log("something went wrong getting user");
+    });
+  });
+
   $scope.editList = function(list){
     ModalService.showModal({
       templateUrl: "/templates/lists/edit.html",

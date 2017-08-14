@@ -4,6 +4,7 @@ class LinksController < ApplicationController
   def create
     list_id = params[:list_id].to_i
     list_links = []
+    @list = List.find(list_id)
 
     params[:links].each do |link_data|
       link = Link.new(link_params(link_data))
@@ -12,6 +13,10 @@ class LinksController < ApplicationController
       
       if list_links.length > 0
         link.link_id = list_links.last.id
+        link.save
+      elsif params[:update] #if creating from EditListCtrl do this
+        last_link = @list.last_link
+        link.link_id = last_link.id
         link.save
       end
 

@@ -72,4 +72,8 @@ class List < ActiveRecord::Base
 
   end
 
+  def last_link
+    Link.where(list_id: self.id).order(created_at: :desc)[0]
+  end
+
 end
