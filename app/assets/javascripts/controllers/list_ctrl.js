@@ -28,8 +28,6 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
       
     }
     
-    
-
     return links;
   };
 

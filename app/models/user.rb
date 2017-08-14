@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
     json = {}
 
     json.merge!(self.attributes)
+    lists = self.lists.recent.map { |list| list.to_tree }
 
-    json["lists"] = self.lists.recent
+    json["lists"] = lists
     json["karma"] = self.karma
 
     json

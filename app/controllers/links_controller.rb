@@ -23,6 +23,29 @@ class LinksController < ApplicationController
 
   end
 
+  def update
+    @link = Link.find(params[:id])
+    @link.url = params[:url]
+    @link.description = params[:description]
+
+    if @link.save
+      respond_to do |format|
+        format.json { render json: @link }
+      end
+    end    
+  end
+
+  def destroy
+    @link = Link.find(params[:id])
+
+    if @link.destroy
+      respond_to do |format|
+        format.json { render json: @link }
+        format.html {}
+      end
+    end
+  end
+
   private
 
   def link_params(link_data)

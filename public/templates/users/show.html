@@ -27,9 +27,13 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 ng-repeat="list in user.lists" ui-sref="lists.show({id: list.id})" class="text-center">{{ list.title }}</h3>
+    <div class="row" ng-repeat="list in user.lists">
+      <div class="col-xs-8">
+        <h3 ui-sref="lists.show({id: list.id})" class="text-center">{{ list.title }}</h3>
+      </div>
+
+      <div class="col-xs-4">
+        <button class="btn btn-md btn-success edit-btn" ng-if="currentUser.id === user.id" ng-click="editList(list)">Edit List</button>
       </div>
     </div>
   </div>
