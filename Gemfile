@@ -33,7 +33,6 @@ end
 
 gem 'hirb'
 
-gem 'ahoy_matey'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
