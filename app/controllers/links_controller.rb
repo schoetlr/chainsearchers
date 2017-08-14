@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_action :validate_ownership, only: [:update, :destroy]
 
   def create
     list_id = params[:list_id].to_i
@@ -47,6 +48,16 @@ class LinksController < ApplicationController
   end
 
   private
+
+  def validate_ownership
+    @link = Link.find(params[:id])
+    list_id = @link.list.id
+    owner = current_user.lists.pluck(:id).include?(list_id)
+
+    unless owner
+      redirect_to :back
+    end
+  end
 
   def link_params(link_data)
     link_data.permit(:url, :description)
