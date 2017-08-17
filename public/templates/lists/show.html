@@ -17,8 +17,11 @@
           </div>
 
           <div class="col-xs-3">
-            <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x" aria-hidden="true" ng-if="favorited()"></i>
-            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-2x spacing" aria-hidden="true" ng-if="!favorited()"></i>
+            <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x" aria-hidden="true" ng-if="currentUser && favorited()"></i>
+            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-2x spacing" aria-hidden="true" ng-if="currentUser && !favorited()"></i>
+            <a href="/users/sign_in">
+              <i class="fa fa-star-o fa-md fa-2x" aria-hidden="true" ng-if="!currentUser"></i>
+            </a>
           </div>
 
           <div class="col-xs-3">
