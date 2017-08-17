@@ -19,13 +19,12 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
   $scope.listLinks = function(list){
     var links = [];
 
-    var link = list.link;
+    var link = list ? list.link : false;
 
     
     while(link){
       links.push(link);
-      link = link.children[0];
-      
+      link = link.children ? link.children[0] : false;
     }
     
     return links;
