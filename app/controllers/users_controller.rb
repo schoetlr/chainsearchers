@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_filter :authenticate_user!, only: [:index]
+  skip_filter :authenticate_user!, only: [:index, :show]
 
   def show
     @user = User.find(params[:id])
