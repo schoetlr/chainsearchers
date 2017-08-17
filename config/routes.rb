@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :votes
   resources :favorites
   resources :comments
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
 
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

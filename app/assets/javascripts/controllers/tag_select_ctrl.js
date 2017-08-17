@@ -30,7 +30,7 @@ app.controller("TagSelectCtrl", ['$scope', 'tagService', function($scope, tagSer
     } else {
       $(document).off('keypress');
     }
-  })
+  });
 
   
 
