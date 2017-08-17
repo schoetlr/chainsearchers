@@ -71,7 +71,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     
     while(link){
       links.push(link);
-      link = link.children[0];
+      link = link.children ? link.children[0] : false;
       
     }
     

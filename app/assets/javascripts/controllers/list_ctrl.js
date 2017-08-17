@@ -1,5 +1,11 @@
 app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', 'ModalService', 'commentService', '$rootScope', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, ModalService, commentService, $rootScope){
 
+  Auth.currentUser().then(function(response){
+    $scope.currentUser = response;
+  }, function(){
+    console.log("No user logged in");
+    $scope.currentUser = undefined;
+  });
   
   // PUT THIS IN A RESOLVE?
   listService.getList($stateParams.id).then(function(list){
@@ -9,12 +15,6 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     console.log("could not get list");
   });
 
-  Auth.currentUser().then(function(response){
-    $scope.currentUser = response;
-  }, function(){
-    console.log("No user logged in");
-    $scope.currentUser = undefined;
-  });
 
   $scope.listLinks = function(list){
     var links = [];
