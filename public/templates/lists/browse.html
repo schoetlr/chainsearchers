@@ -16,8 +16,8 @@
             <i ng-click="upvote()" class="fa fa-arrow-up fa-3x" aria-hidden="true"></i>
             <i ng-click="downvote()" class="fa fa-arrow-down fa-3x spacing" aria-hidden="true"></i>
 
-            <i ng-click="handleFavorite()" class="fa fa-star fa-3x spacing" aria-hidden="true" ng-if="favorited()"></i>
-            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-3x spacing" aria-hidden="true" ng-if="!favorited()"></i>
+            <i ng-click="handleFavorite()" class="fa fa-star fa-3x spacing" aria-hidden="true" ng-if="currentUser && favorited()"></i>
+            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-3x spacing" aria-hidden="true" ng-if="currentUser && !favorited()"></i>
             <a ng-href="{{generatePath()}}" target="_blank">
               <i class="fa fa-share-square-o fa-3x spacing" aria-hidden="true"></i>
             </a>
