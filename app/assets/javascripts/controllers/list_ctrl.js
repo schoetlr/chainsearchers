@@ -89,20 +89,22 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
   };
 
   $scope.voteCount = function(list){
-    var voteObject = _.countBy(list.votes, function(vote){
-      return vote.downvote ? 'down' : 'up';
-    });
-    county = list;
-    booboo = voteObject;
-    if(!voteObject.up){
-      voteObject.up = 0;
-    };
+    if(list){
+      var voteObject = _.countBy(list.votes, function(vote){
+        return vote.downvote ? 'down' : 'up';
+      });
 
-    if(!voteObject.down){
-      voteObject.down = 0;
-    };
+      if(!voteObject.up){
+        voteObject.up = 0;
+      };
 
-    return voteObject.up - voteObject.down;
+      if(!voteObject.down){
+        voteObject.down = 0;
+      };
+
+      return voteObject.up - voteObject.down;
+    };
+    
   };
 
   $scope.handleFavorite = function(){
