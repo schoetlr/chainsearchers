@@ -3,6 +3,14 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
   $scope.selectedTags = [];
   $scope.filterOption = "Popular";
 
+  Auth.currentUser().then(function(response){
+    $scope.currentUser = response;
+  }, function(){
+    console.log("No user logged in");
+    $scope.currentUser = undefined;
+  });
+
+
   listService.getLists($scope.selectedTags, $scope.filterOption).then(function(response){
     $scope.lists = response;
   }, function(){
@@ -14,13 +22,6 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
   }, function(){
     console.log('could not get tags');
   })
-
-  Auth.currentUser().then(function(response){
-    $scope.currentUser = response;
-  }, function(){
-    console.log("No user logged in");
-    $scope.currentUser = undefined;
-  });
 
   
   $scope.tagSearch = "";
