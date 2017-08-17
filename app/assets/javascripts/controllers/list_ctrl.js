@@ -131,10 +131,13 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
 
   $scope.favorited = function(){
     var list = $scope.list;
-    var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
-    var favorite = favorites[0];
+    //using the if(list) so the favorited code doesn't run unless the list is loaded
+    if(list){
+      var favorites = _.where(list.favorites, { user_id: $scope.currentUser.id });
+      var favorite = favorites[0];
 
-    return !!favorite;
+      return !!favorite;
+    };
   };
 
   $scope.browseList = function(list){
