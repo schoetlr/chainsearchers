@@ -16,7 +16,7 @@
   <!-- END SELECTED TAGS -->
 
   <!-- TAG FILTER FORM -->
-  <div class="col-xs-5">
+  <div class="col-xs-12 col-sm-5">
     <div class="row">
       <label id="tag-filter-label" class="col-xs-5">Filter by Tag</label>
       <input id="tag-search" type="search" ng-model="tagSearch" class="col-xs-7 form-control form-horizontal">
@@ -33,7 +33,7 @@
   
 
   <!-- INDEX FILTER SELECT -->
-  <div class="col-xs-3">
+  <div class="col-xs-12 col-sm-3">
     <select ng-model="filterOption" ng-change="filterByOption()" class="form-control" id="filter-lists">
       <option value="Popular" ng-selected>Popular</option>
       <option value="Recent">Recent</option>
@@ -42,7 +42,7 @@
   </div>
 
   <!-- FORM BUTTONS  -->
-  <div class="col-xs-4">
+  <div class="col-xs-12 col-sm-4">
     <button class="btn-success btn new-list-btn pull-right" ng-if="currentUser" ng-click="showNewList()">New List</button>
           
     <a class="btn-success btn new-list-btn pull-right" ng-if="!currentUser" href="/users/sign_in">New List</a>
@@ -61,24 +61,24 @@
     <div class="list">
       <!-- top row -->
       <div class="row list-header">
-        <div class="col-xs-3">
+        <div class="col-xs-4 col-sm-3">
           <p class="vote-count">{{ voteCount(list) }}</p>
 
           
         </div>
 
-        <div class="col-xs-3">
+        <div class="col-xs-4 col-sm-3">
           <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
           <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
         </div>
 
 
-        <div class="col-xs-3">
+        <div class="col-xs-4 col-sm-3">
           <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x" aria-hidden="true" ng-if="favorited(list)"></i>
           <i ng-click="handleFavorite(list)" class="fa fa-star-o fa-md fa-2x" aria-hidden="true" ng-if="!favorited(list)"></i>
         </div>
 
-        <div class="col-xs-3">
+        <div class="col-xs-4 col-sm-3">
           <a ng-click="browseList(list)" class="browse-list">Browse</a>
         </div>
       </div>

@@ -235,4 +235,15 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     });
   });
 
+  //center new-list-btn when window is xs
+  $(window).on('resize', function() {
+    if($(window).width() < 768) {
+        $('.new-list-btn').addClass('center-block');
+        $('.new-list-btn').removeClass('pull-right');
+    } else {
+        $('.new-list-btn').addClass('pull-right');
+        $('.new-list-btn').removeClass('center-block');
+    }
+  });
+
 }]);
