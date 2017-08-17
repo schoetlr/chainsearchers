@@ -10,7 +10,7 @@
         <div class="row" id="browse-navbar" ng-show="showToolBar" ng-mouseleave="showToolBar = false">
           
 
-          <div class="col-xs-5">
+          <div class="col-xs-12 col-sm-5">
             <p id="vote-count" class="spacing">{{ voteCount() }}</p>
 
             <i ng-click="upvote()" class="fa fa-arrow-up fa-3x" aria-hidden="true"></i>
@@ -23,14 +23,14 @@
             </a>
           </div>
 
-          <div class="col-xs-4">
-            <button ng-click="toggleCommenting()" class="btn btn-primary">Comment</button>
-            <button ng-show="!viewDescription" class="btn btn-primary" ng-click="viewDescription = true">View Description</button>
-            <button ng-show="viewDescription" class="btn btn-primary" ng-click="viewDescription = false">Hide Description</button>
+          <div class="col-xs-12 col-sm-4">
+            <button ng-click="toggleCommenting()" class="btn btn-primary" id="toggle-commenting">Comment</button>
+            <button ng-show="!viewDescription" class="btn btn-primary description-btn" ng-click="viewDescription = true">View Description</button>
+            <button ng-show="viewDescription" class="btn btn-primary description-btn" ng-click="viewDescription = false">Hide Description</button>
             
           </div>
 
-          <div class="col-xs-3">
+          <div class="col-xs-12 col-sm-3">
             <i ng-click="previous()" class="fa fa-long-arrow-left fa-3x" aria-hidden="true"></i>
             <i ng-click="next()" class="fa fa-long-arrow-right fa-3x" aria-hidden="true"></i>
             

@@ -179,7 +179,8 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
     var favorite = favorites[0];
 
     return !!favorite;
-  }
+  };
+
 
 
 }]);
