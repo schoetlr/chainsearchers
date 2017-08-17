@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :favorites
 
+  validates_format_of :email, :with => Devise::email_regexp
   validates_uniqueness_of :username
   validates :username, length: { maximum: 20 }
   validates :username, presence: true
