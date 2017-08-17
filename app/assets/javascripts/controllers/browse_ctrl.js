@@ -14,6 +14,14 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   $scope.commentForm = {};
   $scope.commenting = false;
 
+  //Show the toolbar initially
+  $scope.showToolBar = true;
+  //hide it after a few seconds
+  setTimeout(function(){
+    $scope.showToolBar = false;
+    $scope.$apply();
+  }, 2000);
+
   $scope.toggleCommenting = function(){
     if($scope.commenting){
       $scope.commenting = false;
