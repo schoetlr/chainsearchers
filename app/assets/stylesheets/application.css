@@ -56,3 +56,7 @@ Devise Styles (find a better place for these)
   font-size: 25px;
   margin-bottom: 10px;
 }
+
+.sign-up-warning {
+  margin-left: -15px;
+}

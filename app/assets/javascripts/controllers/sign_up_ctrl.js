@@ -12,14 +12,12 @@ app.controller("SignUpCtrl", ['$scope', 'userService', '_', function($scope, use
     console.log("could not get all users");
   });
 
-  $scope.formData = {};
   $scope.usernameTaken = false;
+  $scope.emailTaken = false;
   
-
   $scope.$watch(function($scope){
     return $scope.username;
   }, function(newValue){
-    console.log("watched");
     if($scope.takenUsername()){
       $scope.usernameTaken = true;
     } else {
@@ -27,10 +25,28 @@ app.controller("SignUpCtrl", ['$scope', 'userService', '_', function($scope, use
     };
   });
 
+  $scope.$watch(function($scope){
+    return $scope.email;
+  }, function(newValue){
+    if($scope.takenEmail()){
+      $scope.emailTaken = true;
+    } else {
+      $scope.emailTaken = false;
+    };
+  });
+
 
   $scope.takenUsername = function(){
     var match = _.find($scope.usernames, function(username){
       return username === $scope.username;
+    });
+
+    return !!match;
+  };
+
+  $scope.takenEmail = function(){
+    var match = _.find($scope.emails, function(email){
+      return email === $scope.email;
     });
 
     return !!match;
