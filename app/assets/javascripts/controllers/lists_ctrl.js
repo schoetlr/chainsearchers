@@ -200,7 +200,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     
       modal.element.modal();
       modal.close.then(function(result) {
-        console.log("modal closed");
+        //do nothing
       });
     });
   };
