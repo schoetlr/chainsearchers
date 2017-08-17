@@ -34,7 +34,6 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
 
   //helper function for addLink()
   $scope.elongateModal = function(){
-    console.log("running");
     var $modal = $(".modal .modal-content");
     var currentHeight = $modal.height();
     var newHeight = currentHeight + 180;
