@@ -3,6 +3,7 @@
 <head>
   <title>Chainsearchers</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= render 'layouts/google_analytics' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
@@ -11,6 +12,5 @@
 
   <%= yield %>
   
-  <%= render 'layouts/google_analytics' %>
 </body>
 </html>
