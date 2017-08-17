@@ -3,7 +3,6 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
   Auth.currentUser().then(function(response){
     $scope.currentUser = response;
   }, function(){
-    console.log("No user logged in");
     $scope.currentUser = undefined;
   });
   

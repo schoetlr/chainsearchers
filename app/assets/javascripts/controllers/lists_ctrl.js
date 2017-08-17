@@ -6,7 +6,6 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
   Auth.currentUser().then(function(response){
     $scope.currentUser = response;
   }, function(){
-    console.log("No user logged in");
     $scope.currentUser = undefined;
   });
 
