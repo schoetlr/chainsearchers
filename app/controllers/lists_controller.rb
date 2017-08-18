@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   skip_filter :authenticate_user!, only: [:index, :show]
-  before_filter :validate_ownership, only: [:update]
+  before_filter :validate_ownership, only: [:update, :destroy]
 
   def create
     @list = List.new(list_params)
@@ -65,6 +65,24 @@ class ListsController < ApplicationController
       format.json { render json: @list.to_tree }
     end
 
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    #get all the links of the list and destroy them
+    links = []
+    link = @list.link
+    until !link
+      links.push(link)
+      link = link.links[0]
+    end
+
+    links.each { |link| link.destroy }
+    @list.destroy
+
+    respond_to do |format|
+      format.json { render json: @list }
+    end
   end
 
 

@@ -28,12 +28,16 @@
     </div>
 
     <div class="row" ng-repeat="list in user.lists">
-      <div class="col-xs-8">
+      <div class="col-xs-6">
         <h3 ui-sref="lists.show({id: list.id})" class="text-center">{{ list.title }}</h3>
       </div>
 
-      <div class="col-xs-4">
-        <button class="btn btn-md btn-success edit-btn" ng-if="currentUser.id === user.id" ng-click="editList(list)">Edit List</button>
+      <div class="col-xs-3">
+        <button class="btn btn-sm btn-success edit-btn" ng-if="currentUser.id === user.id" ng-click="editList(list)">Edit List</button>
+      </div>
+
+      <div class="col-xs-3">
+        <button class="btn btn-sm btn-danger delete-btn" ng-if="currentUser.id === user.id" ng-click="deleteList(list, $index)">Delete List</button>
       </div>
     </div>
   </div>

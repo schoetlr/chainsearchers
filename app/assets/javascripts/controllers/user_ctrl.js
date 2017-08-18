@@ -1,4 +1,4 @@
-app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'ModalService', function($scope, userService, $stateParams, Auth, ModalService){
+app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'ModalService', 'Restangular', '$window', function($scope, userService, $stateParams, Auth, ModalService, Restangular, $window){
   
   userService.getUser($stateParams.id).then(function(response){
     $scope.user = response;
@@ -37,6 +37,16 @@ app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Mo
         console.log("modal closed");
       });
     });
+  };
+
+  $scope.deleteList = function(list, index){
+    var confirmed = $window.confirm("Are you sure you want to permanently delete this list?");
+    if(confirmed){
+      var list = Restangular.restangularizeElement(null, list, 'lists');
+      list.remove();
+      
+      $scope.user.lists.splice(index, 1);
+    };
   };
 
 }]);
