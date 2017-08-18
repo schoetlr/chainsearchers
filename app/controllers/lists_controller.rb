@@ -4,13 +4,12 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    
     @list.user_id = current_user.id
-
-    tags = params["selectedTags"]
+    #model takes care of the javascript object tags
+    @list.tags = params["selectedTags"]
 
     if @list.save
-      create_taggings(tags, @list.id)
-
       respond_to do |format|
         format.json { render json: @list.to_tree }
       end
@@ -24,7 +23,7 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
 
-    #update tags
+    #update tags, move this logic to model
     update_tags(params[:tags], @list.id) 
 
     if @list.update(list_params)
@@ -95,25 +94,6 @@ class ListsController < ApplicationController
     end
 
     formatted
-  end
-
-  def create_taggings(tags, list_id)
-    if tags
-      tags.map! do |tag|
-        if !tag[:id]
-          saved_tag = Tag.create(name: tag[:name])
-          tag[:id] = saved_tag.id
-        end
-        
-        tag
-      end
-
-      tags.each do |tag|
-        tagging = ListTagging.new(list_id: list_id, tag_id: tag[:id])
-        tagging.save
-      end
-    end
-
   end
 
   def update_tags(tags, list_id)

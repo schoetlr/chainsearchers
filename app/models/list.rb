@@ -8,7 +8,15 @@ class List < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :title, length: { maximum: 50 }
-  validates :description, length: { maximum: 200 }  
+  validates :description, length: { maximum: 200 } 
+
+  def tags=(tags)
+    #if tags is nil assign an empty array
+    tags = tags ? tags : []
+    tags = Tag.create_tags(tags)
+    
+    super(tags)
+  end 
 
   def to_tree
     json = {}
