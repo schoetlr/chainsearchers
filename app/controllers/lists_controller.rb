@@ -101,7 +101,7 @@ class ListsController < ApplicationController
     if tags
       tags.map! do |tag|
         if !tag[:id]
-          saved_tag = Tag.create(name: tag[:name].downcase)
+          saved_tag = Tag.create(name: tag[:name])
           tag[:id] = saved_tag.id
         end
         
@@ -119,7 +119,7 @@ class ListsController < ApplicationController
   def update_tags(tags, list_id)
     tags.map! do |tag|
       if !tag[:id]
-        saved_tag = Tag.create(name: tag[:name].downcase)
+        saved_tag = Tag.create(name: tag[:name])
         ListTagging.create(list_id: list_id, tag_id: saved_tag.id)
         tag[:id] = saved_tag.id
       end

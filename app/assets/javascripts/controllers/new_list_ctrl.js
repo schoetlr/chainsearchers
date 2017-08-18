@@ -24,10 +24,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
 
     }, function(){
       console.log("something went wrong creating list");
-    });
-
-    //where is this defined???
-    $scope.toggleCreating();    
+    });    
 
     
   };
@@ -52,8 +49,4 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
 
   
   
-  
-
-
-
 }]);

@@ -3,4 +3,11 @@ class Tag < ActiveRecord::Base
   has_many :lists, through: :list_taggings
 
   validates :name, length: { maximum: 20 }
+
+  def name=(value)
+    value.downcase!
+    value.gsub!(" ", "")
+
+    super(value)
+  end
 end
