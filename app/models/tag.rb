@@ -23,5 +23,17 @@ class Tag < ActiveRecord::Base
 
   end
 
+  def self.update_tags(tags, list_id)
+    tags = tags ? tags : []
+    tags = Tag.create_tags(tags)
+
+    @list = List.find(list_id)
+    
+    untagged = @list.tags - tags
+
+    ListTagging.untag(untagged, list_id)
+
+  end
+
 
 end

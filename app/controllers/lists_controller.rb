@@ -22,9 +22,7 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-
-    #update tags, move this logic to model
-    update_tags(params[:tags], @list.id) 
+    Tag.update_tags(params[:tags], @list.id) 
 
     if @list.update(list_params)
       respond_to do |format|
@@ -94,28 +92,6 @@ class ListsController < ApplicationController
     end
 
     formatted
-  end
-
-  def update_tags(tags, list_id)
-    tags.map! do |tag|
-      if !tag[:id]
-        saved_tag = Tag.create(name: tag[:name])
-        ListTagging.create(list_id: list_id, tag_id: saved_tag.id)
-        tag[:id] = saved_tag.id
-      end
-
-      tag
-    end
-
-    @list = List.find(list_id)
-    #if @list.tags includes a tag that is not in tags, delete the ListTagging for it
-    @list.tags.each do |list_tag|
-      if tags.count { |param_tag| list_tag.id == param_tag[:id] } == 0
-        rejected_tag = ListTagging.where(list_id: list_id, tag_id: list_tag.id)
-        rejected_tag.to_a[0].destroy
-      end
-    end
-
   end
 
   def validate_ownership
