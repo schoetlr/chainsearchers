@@ -6,6 +6,7 @@
     </span>
   </div>
   <p ng-if="invalidTag()" class="text-danger">Tag name is too long</p>
+  <span ng-if="!invalidTag() && tagging()" class="label label-success pull-right">Press Enter to Create Tag</span>
   <input type="search" ng-model="search" class="form-control">
   <ul ng-show="tagging()" id="available-tags">
     <div class="potential-tag-wrapper" ng-repeat="tag in tags | filter:{name: search}">
