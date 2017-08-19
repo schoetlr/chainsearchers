@@ -5,6 +5,7 @@
       <h5>{{tag.name}}</h5><span ng-click="removeTag($index)" class="selected-tag-exit">x</span>
     </span>
   </div>
+  <p ng-if="invalidTag()" class="text-danger">Tag name is too long</p>
   <input type="search" ng-model="search" class="form-control">
   <ul ng-show="tagging()" id="available-tags">
     <div class="potential-tag-wrapper" ng-repeat="tag in tags | filter:{name: search}">
