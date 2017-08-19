@@ -7,8 +7,8 @@ class List < ActiveRecord::Base
   has_many :favorites
   has_many :comments, as: :commentable
 
-  validates :title, length: { maximum: 50 }
-  validates :description, length: { maximum: 200 } 
+  validates :title, length: { maximum: 33 }
+  validates :description, length: { maximum: 180 } 
 
   def tags=(tags)
     #if tags is nil assign an empty array
