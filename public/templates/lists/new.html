@@ -38,6 +38,7 @@
 
               <div class="form-group">
                 <label>Link Description</label>
+                <p ng-if="form.description.length > 150" class="text-danger">Link description is too long</p>
                 <textarea ng-model="form.description" class="form-control"></textarea>
               </div>
             </div>
