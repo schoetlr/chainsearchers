@@ -12,20 +12,20 @@
           </div>
 
           <div class="col-xs-3">
-            <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
-            <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+            <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x clickable" aria-hidden="true"></i>
+            <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x clickable" aria-hidden="true"></i>
           </div>
 
           <div class="col-xs-3">
-            <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x" aria-hidden="true" ng-if="currentUser && favorited()"></i>
-            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-2x spacing" aria-hidden="true" ng-if="currentUser && !favorited()"></i>
+            <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x clickable" aria-hidden="true" ng-if="currentUser && favorited()"></i>
+            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-2x spacing clickable" aria-hidden="true" ng-if="currentUser && !favorited()"></i>
             <a href="/users/sign_in">
-              <i class="fa fa-star-o fa-md fa-2x" aria-hidden="true" ng-if="!currentUser"></i>
+              <i class="fa fa-star-o fa-md fa-2x clickable" aria-hidden="true" ng-if="!currentUser"></i>
             </a>
           </div>
 
           <div class="col-xs-3">
-            <a id="browse-list" ng-click="browseList(list)">Browse</a>
+            <a id="browse-list" class="clickable" ng-click="browseList(list)">Browse</a>
           </div>
         </div>
 
@@ -40,7 +40,7 @@
           </div>
         </div>
         
-        <p class="text-center" id="publisher">Published by <span ui-sref="users.show({id: list.user.id})">{{ list.user.username }}</span></p>
+        <p class="text-center" id="publisher">Published by <span ui-sref="users.show({id: list.user.id})" class="clickable">{{ list.user.username }}</span></p>
         <p class="text-center" id="description">{{ list.description }}</p>
         
         

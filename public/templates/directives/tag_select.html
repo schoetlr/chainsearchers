@@ -2,7 +2,7 @@
   <label>Tags</label>
   <div id="selected-tags" class="row">
     <span ng-repeat="tag in selectedTags" class="selected-tag">
-      <h5>{{tag.name}}</h5><span ng-click="removeTag($index)" class="selected-tag-exit">x</span>
+      <h5>{{tag.name}}</h5><span ng-click="removeTag($index)" class="selected-tag-exit clickable">x</span>
     </span>
   </div>
   <p ng-if="invalidTag()" class="text-danger">Tag name is too long</p>

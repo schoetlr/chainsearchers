@@ -36,16 +36,12 @@ NAVBAR
 Application Wide Styles
 */
 
-html {
-  
-  
-
-}
-
 body {
   background-color: #f2f2f2;
   font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 }
+
+.clickable { cursor: pointer; cursor: hand; }
 
 
 /* 
