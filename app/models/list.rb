@@ -7,7 +7,7 @@ class List < ActiveRecord::Base
   has_many :favorites
   has_many :comments, as: :commentable
 
-  validates :title, length: { maximum: 33 }
+  validates :title, length: { maximum: 55 }
   validates :description, length: { maximum: 180 } 
 
   def tags=(tags)
