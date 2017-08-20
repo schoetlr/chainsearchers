@@ -10,7 +10,7 @@ class LinksController < ApplicationController
       link = Link.new(link_params(link_data))
       link.list_id = list_id
       link.save
-      
+      #give the newly created link the proper parent
       if list_links.length > 0
         link.link_id = list_links.last.id
         link.save

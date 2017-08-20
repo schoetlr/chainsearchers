@@ -31,5 +31,20 @@ class Link < ActiveRecord::Base
     end
   end
 
+  def destroy
+    parent_link = self.link
+    child_link = self.links[0]
+
+    if parent_link && child_link
+      child_link.link_id = parent_link.id
+      parent_link.links.push(child_link)
+
+      parent_link.save
+      child_link.save
+    end
+    
+    super
+  end
+
 
 end
