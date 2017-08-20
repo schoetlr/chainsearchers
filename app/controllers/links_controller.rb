@@ -14,6 +14,7 @@ class LinksController < ApplicationController
       if list_links.length > 0
         link.link_id = list_links.last.id
         link.save
+      #don't think this is being used...
       elsif params[:update] #if creating from EditListCtrl do this
         last_link = @list.last_link
         link.link_id = last_link.id

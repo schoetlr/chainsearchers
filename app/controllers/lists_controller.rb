@@ -22,7 +22,8 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-    Tag.update_tags(params[:tags], @list.id) 
+    Tag.update_tags(params[:tags], @list.id)
+    Link.update_links(params[:links], @list.id) 
 
     if @list.update(list_params)
       respond_to do |format|

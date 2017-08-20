@@ -19,40 +19,13 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
   };
 
   $scope.links = $scope.listLinks($scope.list);
-
-  $scope.updateLinks = function(links){
-    //helper method for updateList, this updates each link
-    links.forEach(function(link){
-      var newLinkMade = false;
-      //if link has had patch() it
-      if(link.id !== undefined){
-        link = Restangular.restangularizeElement(null, link, "links");
-        link.patch();
-      } else {
-        newLinkMade = true;
-        var linkData = { list_id: $scope.list.id, links: [], update: true };
-        linkData.links.push(link);
-        linkService.createLinks(linkData);
-      };
-
-      if(newLinkMade){
-        $rootScope.$broadcast("link.created");
-      };
-      
-    });
-  };
   
-
   $scope.updateList = function(){
-    //update list
+    //update list, it's tags and links
     $scope.list.tags = $scope.selectedTags;
     var list = Restangular.restangularizeElement(null, $scope.list, "lists");
-    list.patch();
-
-    //update each link
-    $scope.updateLinks($scope.links);
-
-    //update tags
+    var listParams = {title: $scope.list.title, description: $scope.list.description}
+    list.patch({ links: $scope.links, list: listParams });
     
   };
 
