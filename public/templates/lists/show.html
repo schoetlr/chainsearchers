@@ -48,7 +48,9 @@
 
         <div class="row" id="links">
           <div ng-repeat="link in listLinks(list)" class="col-xs-12">
-            <p class="text-center link-url">{{ link.url }}</p>
+            <a ng-href="{{generatePath(link.url)}}" target="_blank">
+              <p class="text-center link-url">{{ link.url }}</p>
+            </a>
             <p class="text-center link-description">{{ link.description }}</p>
           </div>
         </div>

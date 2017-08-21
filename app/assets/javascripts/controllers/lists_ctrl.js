@@ -1,4 +1,4 @@
-app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', 'voteService', '_', 'Auth', 'Restangular', 'favoriteService', function($scope, listService, ModalService, tagService, voteService, _, Auth, Restangular, favoriteService){
+app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', 'voteService', '_', 'Auth', 'Restangular', 'favoriteService', '$sce', function($scope, listService, ModalService, tagService, voteService, _, Auth, Restangular, favoriteService, $sce){
 
   $scope.selectedTags = [];
   $scope.filterOption = "Popular";
@@ -244,5 +244,24 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
         $('.new-list-btn').removeClass('center-block');
     }
   });
+
+  $scope.generatePath = function(url){
+    if(url){
+      //make youtube vids embeddable
+      if(url.match(/youtube/) !== null){
+        var url = url.replace(/watch\?v=/, function(){ 
+          return "embed/";
+        });
+      }; 
+
+      if(url[0] === 'w'){
+        var url = 'http://' + url;
+        return $sce.trustAsResourceUrl(url);
+      } else {
+        return $sce.trustAsResourceUrl(url);
+      }
+    }
+    
+  };
 
 }]);

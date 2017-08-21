@@ -1,4 +1,4 @@
-app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', 'ModalService', 'commentService', '$rootScope', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, ModalService, commentService, $rootScope){
+app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', 'ModalService', 'commentService', '$rootScope', '$sce', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, ModalService, commentService, $rootScope, $sce){
 
   Auth.currentUser().then(function(response){
     $scope.currentUser = response;
@@ -180,5 +180,24 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
       console.log("there was an error getting comments");
     });
   });
+
+  $scope.generatePath = function(url){
+    if(url){
+      //make youtube vids embeddable
+      if(url.match(/youtube/) !== null){
+        var url = url.replace(/watch\?v=/, function(){ 
+          return "embed/";
+        });
+      }; 
+
+      if(url[0] === 'w'){
+        var url = 'http://' + url;
+        return $sce.trustAsResourceUrl(url);
+      } else {
+        return $sce.trustAsResourceUrl(url);
+      }
+    }
+    
+  };
 
 }]);
