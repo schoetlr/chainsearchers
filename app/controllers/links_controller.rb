@@ -7,6 +7,9 @@ class LinksController < ApplicationController
     @list = List.find(list_id)
 
     params[:links].each do |link_data|
+      byebug
+      next if !link_data[:url] && !link_data[:description]
+
       link = Link.new(link_params(link_data))
       link.list_id = list_id
       link.save
