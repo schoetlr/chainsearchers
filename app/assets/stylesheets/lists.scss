@@ -207,6 +207,10 @@ label#tag-filter-label {
     .links {
       max-height: 400px;
       overflow: auto;
+
+      p.link-description {
+        margin-bottom: 30px;
+      }
     }
 
     ::-webkit-scrollbar {
@@ -301,6 +305,10 @@ label#tag-filter-label {
     #links {
       max-height: 750px;
       overflow: auto;
+
+      .link-description {
+         margin-bottom: 25px;
+      }
     }
 
     p {
