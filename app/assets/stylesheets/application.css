@@ -18,7 +18,9 @@
 /*
 NAVBAR
 */
-
+a.navbar-brand {
+  font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+}
 .navbar-inverse .navbar-brand {
   color: white;
 }
