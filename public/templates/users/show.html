@@ -1,45 +1,63 @@
 <div class="row">
   <!-- Profile Info -->
-  <div class="col-xs-12 col-sm-4" id="profile-info">
-    <div class="row">
-      <div class="col-xs-12">
-        <h2 id="username">{{ user.username }}</h2>
+  <div class="col-xs-12 col-sm-4">
+    <div id="profile-info">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 id="username">{{ user.username }}</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <p id="karma">karma: <span id="karma-score">{{ user.karma }}</span></p>
+        </div>
+
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <p id="karma">karma: <span id="karma-score">{{ user.karma }}</span></p>
+    <div id="favorite-lists">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center">Favorites ({{user.favoriteLists.length}})</h1>
+        </div>
       </div>
 
+      <div class="row" ng-repeat="favorite in user.favoriteLists">
+        <div class="col-xs-12">
+          <h3 ui-sref="lists.show({id: favorite.id})" class="text-center clickable">{{ favorite.title }}</h3>
+        </div>
+      </div>
     </div>
 
-  </div>
+  </div><!-- end left section -->
 
-  <div class="col-sm-1">
-  </div>
+  <!-- <div class="col-sm-1">
+  </div> -->
 
   <!-- Recent Lists -->
-  <div class="col-xs-12 col-sm-7" id="user-lists">
-    <div class="row">
-      <div class="col-xs-12">
-        <h1 class="text-center" id="recent-header">Recent Lists ({{ user.lists.length }})</h1>
-      </div>
-    </div>
-
-    <div class="row" ng-repeat="list in user.lists">
-      <div class="col-xs-6">
-        <h3 ui-sref="lists.show({id: list.id})" class="text-center clickable">{{ list.title }}</h3>
+  <div class="col-xs-12 col-sm-8">
+    <div id="user-lists">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center" id="recent-header">Recent Lists ({{ user.lists.length }})</h1>
+        </div>
       </div>
 
-      <div class="col-xs-3">
-        <button class="btn btn-sm btn-success edit-btn" ng-if="currentUser.id === user.id" ng-click="editList(list)">Edit List</button>
-      </div>
+      <div class="row" ng-repeat="list in user.lists">
+        <div class="col-xs-6">
+          <h3 ui-sref="lists.show({id: list.id})" class="text-center clickable">{{ list.title }}</h3>
+        </div>
 
-      <div class="col-xs-3">
-        <button class="btn btn-sm btn-danger delete-btn" ng-if="currentUser.id === user.id" ng-click="deleteList(list, $index)">Delete List</button>
+        <div class="col-xs-3">
+          <button class="btn btn-sm btn-success edit-btn" ng-if="currentUser.id === user.id" ng-click="editList(list)">Edit List</button>
+        </div>
+
+        <div class="col-xs-3">
+          <button class="btn btn-sm btn-danger delete-btn" ng-if="currentUser.id === user.id" ng-click="deleteList(list, $index)">Delete List</button>
+        </div>
       </div>
-    </div>
-  </div>
+    </div><!-- end user lists -->
+  </div><!-- end right col -->
 
 </div>

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :lists
   has_many :votes
   has_many :favorites
+  has_many :favorited_lists, through: :favorites, source: :list
 
   validates_format_of :email, :with => Devise::email_regexp
   validates_uniqueness_of :username
@@ -16,13 +17,16 @@ class User < ActiveRecord::Base
 
 
   def format_json
+    #formats for users_controller#show
     json = {}
 
     json.merge!(self.attributes)
     lists = self.lists.recent.map { |list| list.to_tree }
+    favorited_lists = self.favorited_lists.recent.map { |list| list.to_tree }
 
     json["lists"] = lists
     json["karma"] = self.karma
+    json["favoriteLists"] = favorited_lists
 
     json
   end

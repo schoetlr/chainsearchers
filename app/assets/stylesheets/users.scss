@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#profile-info, #user-lists {
+#profile-info, #user-lists, #favorite-lists {
   background-color: #fff;
   border-radius: 8px;
 }
@@ -23,11 +23,25 @@
   #karma-score {
     font-size: 21px;
   }
+  
+  box-sizing: border-box;
+  padding: 8px;
+  margin-bottom: 40px;
+}
 
+#favorite-lists {
+  h1 {
+    font-style: italic;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  box-sizing: border-box;
+  padding: 8px;
   margin-bottom: 40px;
 }
 
 .edit-btn, .delete-btn {
   margin-top: 20px;
-  
+
 }
