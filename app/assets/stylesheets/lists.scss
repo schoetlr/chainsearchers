@@ -116,8 +116,12 @@ label#tag-filter-label {
     font-size: 18px;
     }
 
-    .publisher, .description {
+    .publisher {
       font-style: italic;
+      font-weight: bold;
+    }
+
+    .description {
       font-weight: bold;
     }
 
