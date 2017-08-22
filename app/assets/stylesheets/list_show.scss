@@ -1,0 +1,131 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//SHOW PAGE FOR LIST
+#list-show {
+  .list {
+    margin-bottom: 25px;
+
+    border: solid 1px white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+
+    a#browse-list {
+      font-size: 20px;
+      color: black;
+      text-decoration: underline;
+    }
+
+    #links {
+      max-height: 750px;
+      overflow: auto;
+
+      .link-description {
+         margin-bottom: 25px;
+      }
+
+      a { color: black; }
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    h2 {
+      font-weight: bold;
+    }
+
+    #publisher, #description {
+      font-style: italic;
+    }
+
+    #publisher {
+      font-weight: bold;
+    }
+
+    #description {
+      margin-bottom: 40px;
+    }
+
+    .fa-arrow-up {
+      color: green;
+    }
+
+    .fa-arrow-down {
+      color: red;
+    }
+
+    .fa-star {
+      color: #E4E45E;
+    }
+
+    .fa-star-o {
+      color: #E4E45E;
+    }
+
+    .link-url {
+      text-decoration: underline;
+    }
+
+    .vote-count {
+      display: inline-block;
+      font-size: 25px;
+      margin-left: 10px;
+    }
+
+    //rename to comment form section
+    #comment-section {
+      margin-top: 50px;
+
+      button#show-comment-btn {
+        margin-top: 10px;
+      }
+    }
+
+    #display-tags-wrapper {
+      margin-bottom: 10px;
+    }
+
+    .display-tag {
+      background-color: #e6e6e6;
+      padding-top: 0px;
+      padding-bottom: 2px;
+      padding-left: 7px;
+      padding-right: 7px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-left: 3px;
+    }
+
+  }
+
+
+}
+
+//Comment Template
+
+#show-comments {
+  .show-comment {
+    background-color: #fff;
+    border-radius: 5px;
+    
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 17px;
+  }
+
+  .reply {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .comment-username {
+    font-weight: bold;
+  }
+}

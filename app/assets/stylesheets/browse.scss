@@ -1,0 +1,67 @@
+// Place all the styles related to the votes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//BROWSE
+
+.modal .modal-dialog {
+  width: 98%;
+
+}
+
+.modal .modal-content {
+  height: 150vh;
+}
+
+.modal .modal-body {
+  height: 100%;
+}
+
+#selected {
+  height: 90%;
+  width: 100%;
+}
+
+#browse {
+  #vote-count {
+    display: inline-block;
+    font-size: 30px;
+  }
+  
+  #description {
+    border: solid 1px black;
+    opacity: 70%;
+  }
+
+  .spacing {
+    margin-right: 20px;
+  }
+
+  #hover-row {
+    height: 10px;
+    width: 100%;
+  }
+
+  .fa-arrow-up {
+    color: green;
+  }
+
+  .fa-arrow-down {
+    color: red;
+  }
+
+  .fa-star {
+    color: #E4E45E;
+  }
+
+  .fa-star-o {
+    color: #E4E45E;
+  }
+
+  #browse-comment {
+    margin-top: 10px;
+  }
+
+}
+
