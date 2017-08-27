@@ -3,7 +3,7 @@ class Link < ActiveRecord::Base
   belongs_to :link
   belongs_to :list
 
-  validates :description, length: { maximum: 150 }
+  validates :description, length: { maximum: 300 }
 
 
   def to_node

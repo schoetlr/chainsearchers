@@ -19,12 +19,12 @@
           <form class="col-xs-8">
             <div class="form-group">
               <label>Title</label>
-              <p class="text-danger" ng-if="listData.title.length > 55">Title is too long</p>
+              <p class="text-danger" ng-if="listData.title.length > 75">Title is too long</p>
               <input ng-model="listData.title" type="text" class="form-control">
             </div>
             <div class="form-group">
               <label>Description</label>
-              <p class="text-danger" ng-if="listData.description.length > 180">Description is too long</p>
+              <p class="text-danger" ng-if="listData.description.length > 300">Description is too long</p>
               <textarea ng-model="listData.description" class="form-control"></textarea>
             </div>
 
@@ -38,7 +38,7 @@
 
               <div class="form-group">
                 <label>Link Description</label>
-                <p ng-if="form.description.length > 150" class="text-danger">Link description is too long</p>
+                <p ng-if="form.description.length > 300" class="text-danger">Link description is too long</p>
                 <textarea ng-model="form.description" class="form-control"></textarea>
               </div>
             </div>
