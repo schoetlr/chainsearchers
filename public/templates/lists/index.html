@@ -95,8 +95,8 @@
 
       <div id="display-tags-wrapper" class="row">
         <div class="col-xs-12 text-center">
-          <div ng-repeat="tag in list.tags" class="display-tag">
-            <h5>{{ tag.name }}</h5>
+          <div ng-repeat="tag in list.tags" class="display-tag clickable">
+            <h5 ng-click="filterByTag(tag)">{{ tag.name }}</h5>
           </div>
           
         </div>
