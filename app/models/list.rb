@@ -8,7 +8,7 @@ class List < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :title, length: { maximum: 75 }
-  validates :description, length: { maximum: 300 } 
+  validates :description, length: { maximum: 500 } 
 
   def tags=(tags)
     #if tags is nil assign an empty array
