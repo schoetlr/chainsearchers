@@ -1,17 +1,7 @@
-app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'ModalService', 'Restangular', '$window', function($scope, userService, $stateParams, Auth, ModalService, Restangular, $window){
+app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'ModalService', 'Restangular', '$window', 'user', 'currentUser', function($scope, userService, $stateParams, Auth, ModalService, Restangular, $window, user, currentUser){
   
-  userService.getUser($stateParams.id).then(function(response){
-    $scope.user = response;
-  }, function error(){
-    console.log("something went wrong getting user");
-  });
-
-  Auth.currentUser().then(function(response){
-    $scope.currentUser = response;
-  }, function(){
-    console.log("No user logged in");
-    $scope.currentUser = undefined;
-  });
+  $scope.user = user;
+  $scope.currentUser = currentUser;
 
   //if link created in list update from EditListCtrl get the user again so it's links are up to date
   $scope.$on("link.created", function(){

@@ -66,7 +66,17 @@ app.config(function($stateProvider, $urlRouterProvider){
     .state("users.show", {
       url: "/:id",
       templateUrl: '/templates/users/show.html',
-      controller: "UserCtrl"
+      controller: "UserCtrl",
+      resolve: {
+        user: function(userService, $stateParams){
+          return userService.getUser($stateParams.id);
+        },
+
+        currentUser: function(Auth){
+          return Auth.currentUser();
+        }
+      }
+
     })
 
     
