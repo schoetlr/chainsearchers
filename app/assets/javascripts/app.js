@@ -33,6 +33,18 @@ app.config(function($stateProvider, $urlRouterProvider){
       template: '<div ui-view></div>'
     })
 
+    .state("help", {
+      url: "/help",
+      abstract: true,
+      template: '<div ui-view></div>'
+    })
+
+    .state("help.show", {
+      url: "",
+      templateUrl: '/templates/help/help.html'
+      
+    })
+
     .state("lists.index", {
       url: "",
       templateUrl: '/templates/lists/index.html',
@@ -56,6 +68,8 @@ app.config(function($stateProvider, $urlRouterProvider){
       templateUrl: '/templates/users/show.html',
       controller: "UserCtrl"
     })
+
+    
     
 })
 
