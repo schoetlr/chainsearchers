@@ -57,7 +57,7 @@
 
 <!-- LISTS HERE -->
 <div class="row" id="lists">
-  <div ng-repeat="list in lists" class="col-xs-12 col-lg-6">
+  <div ng-repeat="list in lists | filter:withTags" class="col-xs-12 col-lg-6">
     <div class="list">
       <!-- top row -->
       <div class="row list-header">

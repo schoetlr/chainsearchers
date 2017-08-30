@@ -33,11 +33,19 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     $scope.selectedTags.push(tag);
     $scope.tagSearch = "";
 
-    listService.getLists($scope.selectedTags, $scope.filterOption).then(function(lists){
-      $scope.lists = lists;
-    }, function(){
-      console.log("something went wrong filtering lists by tag");
-    })
+  };
+
+  $scope.withTags = function(list){
+      //if list.tags includes every $scope.selctedTags then return it
+      
+      var valid = _.every($scope.selectedTags, function(tag){
+        var match = _.findWhere(list.tags, {id: tag.id});
+        return !!match;
+      });
+      
+      if(valid){
+        return true;
+      } 
   };
 
   $scope.removeTag = function(index){
