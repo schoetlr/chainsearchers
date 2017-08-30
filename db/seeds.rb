@@ -7,10 +7,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-category_names = ["Art", "Sports", "Religon", "Cooking", "Comedy", "Celebrities"]
+# category_names = ["Art", "Sports", "Religon", "Cooking", "Comedy", "Celebrities"]
 
 
-category_names.each do |name|
-  Tag.create(name: name)
+# category_names.each do |name|
+#   Tag.create(name: name)
 
+# end
+
+
+tag_ids = Tag.pluck(:id)
+
+tag_ids.each do |id|
+  Tag.reset_counters(id, :lists)
 end

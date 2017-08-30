@@ -1,6 +1,6 @@
 class ListTagging < ActiveRecord::Base
   belongs_to :list
-  belongs_to :tag
+  belongs_to :tag, counter_cache: :lists_count
 
   def self.untag(untagged, list_id)
     untagged.each do |tag|

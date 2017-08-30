@@ -4,6 +4,8 @@ class Tag < ActiveRecord::Base
 
   validates :name, length: { maximum: 20 }
 
+  scope :popular, -> { order('lists_count DESC') }
+
   def name=(value)
     value.downcase!
     value.gsub!(" ", "")
@@ -34,6 +36,7 @@ class Tag < ActiveRecord::Base
     ListTagging.untag(untagged, list_id)
 
   end
+
 
 
 end
