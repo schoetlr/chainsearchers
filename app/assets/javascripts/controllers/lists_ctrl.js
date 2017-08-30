@@ -36,7 +36,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
   };
 
   $scope.withTags = function(list){
-      //if list.tags includes every $scope.selctedTags then return it
+      //if list.tags includes every $scope.selctedTags then return true
       
       var valid = _.every($scope.selectedTags, function(tag){
         var match = _.findWhere(list.tags, {id: tag.id});
