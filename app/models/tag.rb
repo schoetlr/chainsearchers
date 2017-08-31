@@ -25,6 +25,20 @@ class Tag < ActiveRecord::Base
 
   end
 
+  def self.twenty_popular
+    popular.limit(20)
+  end
+
+  def self.format_json
+    json = {}
+
+    json[:popular] = popular.limit(20)
+    json[:tags] = all
+
+    #return array because front end is having problems w hash
+    [json]
+  end
+
   def self.update_tags(tags, list_id)
     tags = tags ? tags : []
     tags = Tag.create_tags(tags)

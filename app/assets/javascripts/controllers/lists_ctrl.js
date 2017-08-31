@@ -16,8 +16,9 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     console.log("something went wrong getting lists");
   });
 
-  tagService.getTags().then(function(tags){
-    $scope.tags = tags;
+  tagService.getTags().then(function(response){
+    $scope.tags = response[0].tags;
+    $scope.popularTags = response[0].popular
   }, function(){
     console.log('could not get tags');
   })
