@@ -3,7 +3,7 @@ app.controller("TagSelectCtrl", ['$scope', 'tagService', function($scope, tagSer
   $scope.search = "";
 
   tagService.getTags().then(function(response){
-    $scope.tags = response;
+    $scope.tags = response[0].tags;
   }, function(){
     console.log("couldn't load tags");
   });
