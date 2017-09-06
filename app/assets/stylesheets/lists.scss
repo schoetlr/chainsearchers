@@ -79,6 +79,23 @@ label#tag-filter-label {
   }
 }
 
+#popular-tags {
+   margin-top: 10px;
+
+  .popular-tag {
+    background-color: #e6e6e6;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 3px;
+    margin-top: 5px;
+  }
+}
+
+
 #lists {
   
 

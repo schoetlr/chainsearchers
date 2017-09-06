@@ -48,6 +48,12 @@
     <a class="btn-success btn new-list-btn pull-right" ng-if="!currentUser" href="/users/sign_in">New List</a>
   </div>
 
+  <div class="col-xs-12" id="popular-tags">
+    <div ng-repeat="tag in popularTags" class="popular-tag clickable">
+      <h5 ng-click="filterByTag(tag)">{{ tag.name }}</h5>
+    </div>
+
+  </div>
 
 
   
