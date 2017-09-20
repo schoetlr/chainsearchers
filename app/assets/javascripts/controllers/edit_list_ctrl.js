@@ -25,7 +25,7 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
     $scope.list.tags = $scope.selectedTags;
     var list = Restangular.restangularizeElement(null, $scope.list, "lists");
     var listParams = {title: $scope.list.title, description: $scope.list.description}
-    list.patch({ links: $scope.links, list: listParams });
+    list.patch({ links: $scope.links, list: listParams, tags: $scope.selectedTags });
     
   };
 
