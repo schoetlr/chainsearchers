@@ -5,17 +5,19 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
 
   $scope.listLinks = function(list){
     var links = [];
-
+    
     var link = list.link;
-
-    
-    while(link){
-      links.push(link);
-      link = link.children[0];
+    if(link){
+      while(link){
+        links.push(link);
+        link = link.children ? link.children[0] : false;
       
-    }
+      }
     
-    return links;
+      return links;
+    };
+    
+    
   };
 
   $scope.links = $scope.listLinks($scope.list);
