@@ -1,3 +1,8 @@
+#THE ONLY THING BEING USED IN THIS CONTROLLER IS DESTROY.
+#I just haven't got around to cleaning it up.
+#create and update logic was moved to the model so it can be called from the lists controller
+
+
 class LinksController < ApplicationController
   before_action :validate_ownership, only: [:update, :destroy]
 
@@ -7,6 +12,7 @@ class LinksController < ApplicationController
     @list = List.find(list_id)
 
     params[:links] = !params[:links] ? [] : params[:links]
+
     params[:links].each do |link_data|
       next if !link_data[:url] && !link_data[:description]
 
@@ -57,7 +63,7 @@ class LinksController < ApplicationController
   end
 
   private
-
+  #validates the user who made the link is the one destroying it
   def validate_ownership
     @link = Link.find(params[:id])
     list_id = @link.list.id

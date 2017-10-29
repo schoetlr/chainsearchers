@@ -15,8 +15,23 @@ class Link < ActiveRecord::Base
     json
   end
 
+  def self.create_links(links, list_id)
+    #links is an array of hashes(json objects)
+    #links have parents to preserve ordering
+
+    #point to last created link id so can assign its id to the next one
+    last_created_id = nil
+
+    links.each do |link|
+      @link = Link.create(url: link[:url], description: link[:description], list_id: list_id, link_id: last_created_id)
+
+      last_created_id = @link.id
+    end
+  end
+
   def self.update_links(links, list_id)
     #links is an array of hashes(json objects)
+    #links have parents to preserve ordering
     links.each_with_index do |link, i|
       if !link[:id]
         parent_link_id = links[i-1] ? links[i-1][:id] : nil

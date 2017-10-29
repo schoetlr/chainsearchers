@@ -3,25 +3,16 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
   $scope.listData = {};
   $scope.listData.selectedTags = [];
   $scope.linkData = {};
+  //need to refactor so that linkData is just an array
   $scope.linkData.links = [{}, {}, {}];
   $scope.currentUser = currentUser;
 
   $scope.createList = function(){
+    $scope.listData.links = $scope.linkData.links
+
     listService.createList($scope.listData).then(function(list){
-      $scope.linkData.list_id = list.id;
-
-      //create Links after we have a list_id
-      linkService.createLinks($scope.linkData).then(function(){
-        $rootScope.$broadcast("list.created");
-        $scope.listData = {};
-        $scope.linkData = {};
-        $scope.linkData.links = [{}, {}, {}];
-        
-
-      }, function(){
-        console.log("could not create links");
-      });
-
+      
+      $rootScope.$broadcast("list.created");
     }, function(){
       console.log("something went wrong creating list");
     });    
