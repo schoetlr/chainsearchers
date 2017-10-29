@@ -1,1 +1,1 @@
-Hello.  This project has one design flaw that I plan on fixing shortly.  Right now I make two HTTP requests to create a list, one for the list, and one for the links.  I plan on combining this into one request in a few days.  It will be an easy fix, I just need to set aside a half hour or so.
+Hi.  Chainsearchers allows users to browse user submitted lists of links in one window.  Lists are ordered by popularity or creation time, and can be filtered by tag.
