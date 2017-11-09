@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :favorites
   has_many :favorited_lists, through: :favorites, source: :list
+  has_one :wall, class_name: "UserWall"
 
   validates_format_of :email, :with => Devise::email_regexp
   validates_uniqueness_of :username

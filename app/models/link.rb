@@ -2,6 +2,7 @@ class Link < ActiveRecord::Base
   has_many :links
   belongs_to :link
   belongs_to :list
+  belongs_to :user_wall
 
   validates :description, length: { maximum: 500 }
 
