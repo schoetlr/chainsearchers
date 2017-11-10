@@ -8,6 +8,8 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
   $scope.currentUser = currentUser;
 
   $scope.createList = function(){
+    $scope.setPostToWall();
+
     $scope.listData.links = $scope.linkData.links
 
     listService.createList($scope.listData).then(function(list){
@@ -18,6 +20,13 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
     });    
 
     
+  };
+
+  $scope.setPostToWall = function(){
+    //make the postToWall params explicitilly false if it is not checked
+    if (!($scope.listData.postToWall === true)){
+      $scope.listData.postToWall = false;
+    }
   };
 
   //helper function for addLink()

@@ -23,12 +23,24 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
   $scope.links = $scope.listLinks($scope.list);
   
   $scope.updateList = function(){
+    //should move this to list service
     //update list, it's tags and links
     $scope.list.tags = $scope.selectedTags;
     var list = Restangular.restangularizeElement(null, $scope.list, "lists");
     var listParams = {title: $scope.list.title, description: $scope.list.description}
+
+    listParams.postToWall = $scope.setPostToWall();
     list.patch({ links: $scope.links, list: listParams, tags: $scope.selectedTags });
     
+  };
+
+  $scope.setPostToWall = function(){
+    //make the postToWall params explicitilly false if it is not checked
+    if ($scope.list.postToWall === true){
+      return true;
+    } else {
+      return false;
+    }
   };
 
   $scope.removeLink = function(index, link){

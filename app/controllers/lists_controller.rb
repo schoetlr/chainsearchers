@@ -12,7 +12,9 @@ class ListsController < ApplicationController
     #need to refactor so links/tags are handled by accepts_nested_attributes_for method
 
     if @list.save
-      Link.create_links(params["links"], @list.id)
+      wall_id = @list.user.wall.id
+      
+      Link.create_links(params["links"], @list.id, params["postToWall"], wall_id)
 
       respond_to do |format|
         format.json { render json: @list.to_tree }

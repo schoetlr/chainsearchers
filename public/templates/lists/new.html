@@ -30,6 +30,13 @@
 
             <tag-select selected-tags="listData.selectedTags"></tag-select>
 
+            
+            <div class="form-group">
+              <label class="wall-label">Post links to your wall?</label>
+              <input class="wall-checkbox" type="checkbox" ng-model="listData.postToWall" value=true>
+            </div>
+            
+
             <div id="link-fields" ng-repeat="form in linkData.links">
               <div class="form-group">
                 <label>URL</label>

@@ -47,3 +47,19 @@
     display: inline-block;
   }
 }
+
+//check box styling for wall option
+
+.wall-label {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+//this needs to be changed because the zoom looks fuzzy
+
+input[type="checkbox"].wall-checkbox {
+  transform: scale(2);
+    -ms-transform: scale(2);
+    -webkit-transform: scale(2);
+    padding: 10px;
+}

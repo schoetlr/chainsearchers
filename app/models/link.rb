@@ -16,15 +16,21 @@ class Link < ActiveRecord::Base
     json
   end
 
-  def self.create_links(links, list_id)
+  def self.create_links(links, list_id, wall_post, wall_id)
     #links is an array of hashes(json objects)
     #links have parents to preserve ordering
+    #wall_post is a boolean
 
     #point to last created link id so can assign its id to the next one
     last_created_id = nil
 
     links.each do |link|
-      @link = Link.create(url: link[:url], description: link[:description], list_id: list_id, link_id: last_created_id)
+      @link = Link.new(url: link[:url], description: link[:description], list_id: list_id, link_id: last_created_id)
+      #assign the link to a UserWall if wall_id is true
+      wall_post ? @link.user_wall_id = wall_id : nil
+      byebug
+
+      @link.save
 
       last_created_id = @link.id
     end
