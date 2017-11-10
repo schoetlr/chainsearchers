@@ -16,8 +16,16 @@
 # end
 
 
-tag_ids = Tag.pluck(:id)
+# tag_ids = Tag.pluck(:id)
 
-tag_ids.each do |id|
-  Tag.reset_counters(id, :lists)
+# tag_ids.each do |id|
+#   Tag.reset_counters(id, :lists)
+# end
+
+users = User.all
+
+users.each do |user|
+  profile = user.build_profile
+  profile.save
+
 end
