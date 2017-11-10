@@ -25,7 +25,7 @@
 users = User.all
 
 users.each do |user|
-  profile = user.build_profile
+  profile = user.build_wall
   profile.save
 
 end
