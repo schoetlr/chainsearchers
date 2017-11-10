@@ -36,18 +36,23 @@ class Link < ActiveRecord::Base
     end
   end
 
-  def self.update_links(links, list_id)
+  def self.update_links(links, list_id, wall_post, wall_id)
+    byebug
     #links is an array of hashes(json objects)
     #links have parents to preserve ordering
     links.each_with_index do |link, i|
       if !link[:id]
         parent_link_id = links[i-1] ? links[i-1][:id] : nil
-        Link.create(url: link[:url], description: link[:description],
+        @link = Link.new(url: link[:url], description: link[:description],
                     list_id: list_id, link_id: parent_link_id)
+        wall_post ? @link.user_wall_id = wall_id : nil
+
+        @link.save
       else
         @link = Link.find(link[:id])
         @link.description = link[:description]
         @link.url = link[:url]
+        @link.user_wall_id = wall_post ? wall_id : nil 
         @link.save
       end
     end

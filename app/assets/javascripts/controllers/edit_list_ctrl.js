@@ -28,9 +28,9 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
     $scope.list.tags = $scope.selectedTags;
     var list = Restangular.restangularizeElement(null, $scope.list, "lists");
     var listParams = {title: $scope.list.title, description: $scope.list.description}
-
-    listParams.postToWall = $scope.setPostToWall();
-    list.patch({ links: $scope.links, list: listParams, tags: $scope.selectedTags });
+    var params = { links: $scope.links, list: listParams, tags: $scope.selectedTags };
+    params.postToWall = $scope.setPostToWall();
+    list.patch(params);
     
   };
 

@@ -29,8 +29,9 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     @list.tags = params[:tags]
+    wall_id = current_user.wall.id
     
-    Link.update_links(params[:links], @list.id) 
+    Link.update_links(params[:links], @list.id, params["postToWall"], wall_id) 
 
     if @list.update(list_params)
       respond_to do |format|
