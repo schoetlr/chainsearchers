@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(user)
+    # respond_to do |format|
+    #   byebug
+    #   format.html { home_path }
+    #   format.json { render json: current_resource_owner }
+    # end
     home_path
   end
 end

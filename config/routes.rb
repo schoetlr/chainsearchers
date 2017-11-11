@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  use_doorkeeper
   get 'home' => 'static_pages#home', as: "home"
   
   devise_for :users, :controllers => { registrations: 'registrations' }
