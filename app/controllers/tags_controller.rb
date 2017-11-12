@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   def index
     response = Tag.format_json 
-
+    
     respond_to do |format|
       format.json { render json: response }
     end

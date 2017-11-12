@@ -13,4 +13,14 @@ class ApplicationController < ActionController::Base
     # end
     home_path
   end
+
+  def current_user
+   @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+   byebug
+   #@current_user = User.where(username: "anonymous") if !@current_user
+  end
+
+  def json_request?
+    request.format.json?
+  end
 end

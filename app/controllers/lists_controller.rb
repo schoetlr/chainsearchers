@@ -3,6 +3,7 @@ class ListsController < ApplicationController
   before_filter :validate_ownership, only: [:update, :destroy]
 
   def create
+    byebug
     @list = List.new(list_params)
 
     @list.user_id = current_user.id
