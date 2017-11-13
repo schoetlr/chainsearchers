@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_user
-   @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  # def current_user
+  #  @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
    
-   #@current_user = User.where(username: "anonymous") if !@current_user
-  end
+  #  #@current_user = User.where(username: "anonymous") if !@current_user
+  # end
 end
