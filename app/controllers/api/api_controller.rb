@@ -12,8 +12,8 @@ class API::APIController < ApplicationController
 
   
 
-  def public_user?
-    !request.headers["Authorization"]
+  def logged_in_user?
+    !!request.headers["Authorization"]
   end
 
 end

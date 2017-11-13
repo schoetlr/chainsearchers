@@ -1,9 +1,8 @@
 class API::ListsController < API::APIController
   protect_from_forgery except: [:create, :update]
-  before_action :doorkeeper_authorize!, if: :public_user?
+  before_action :doorkeeper_authorize!, if: :logged_in_user?
 
   def create
-
     @list = List.new(list_params)
 
     @list.user_id = resource_owner.id if resource_owner
@@ -27,7 +26,11 @@ class API::ListsController < API::APIController
     end
   end
 
-  
+  private
+
+  def list_params
+    params.require(:list).permit(:title, :description)
+  end
 
   
 
