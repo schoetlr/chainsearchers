@@ -3,6 +3,17 @@ class API::ListsController < ListsController
   protect_from_forgery except: [:create, :update]
   before_action :doorkeeper_authorize!#, if: :public_user?
 
+  def create
+    super
+  end
+
+  protected
+  
+  # def current_user
+  #  @current_user = User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  #  byebug
+  #  #@current_user = User.where(username: "anonymous") if !@current_user
+  # end
 
   private
 
@@ -10,10 +21,6 @@ class API::ListsController < ListsController
     !!request.headers["Authorization"]
   end
 
-  def current_user
-   @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
-   
-   #@current_user = User.where(username: "anonymous") if !@current_user
-  end
+  
 
 end
