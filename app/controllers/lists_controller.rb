@@ -3,7 +3,6 @@ class ListsController < ApplicationController
   before_filter :validate_ownership, only: [:update, :destroy]
 
   def create
-    byebug
     @list = List.new(list_params)
 
     @list.user_id = current_user.id
@@ -47,6 +46,7 @@ class ListsController < ApplicationController
     option = params[:option]
     tags = !tags ? [] : tags
     
+    #I believe I am filtering lists on front end now
     if tags.length > 0 && option == "Popular"
       @lists = List.popular_with_tags(tags)
     elsif tags.length == 0 && option == "Popular"

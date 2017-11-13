@@ -1,0 +1,19 @@
+class API::ListsController < ListsController
+  skip_filter :authenticate_user!
+  protect_from_forgery except: [:create, :update]
+  before_action :doorkeeper_authorize!#, if: :public_user?
+
+
+  private
+
+  def public_user?
+    !!request.headers["Authorization"]
+  end
+
+  def current_user
+   @current_user ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+   
+   #@current_user = User.where(username: "anonymous") if !@current_user
+  end
+
+end
