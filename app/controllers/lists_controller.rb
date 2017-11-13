@@ -3,8 +3,9 @@ class ListsController < ApplicationController
   before_filter :validate_ownership, only: [:update, :destroy]
 
   def create
+
     @list = List.new(list_params)
-    
+
     @list.user_id = current_user.id
     #model takes care of the javascript object tags
     @list.tags = params["selectedTags"]
