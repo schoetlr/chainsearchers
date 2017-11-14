@@ -31,14 +31,14 @@ class API::ListsController < API::APIController
 
   def update
     @list = List.find(params[:id])
-    @list.tags = params[:tags]
+    @list.tags = params["selectedTags"]
     wall_id = resource_owner.wall.id
 
     #add the new links to the existing links
     
     Link.add_links(params[:links], @list, params["postToWall"], wall_id) 
-    tags = Tag.create_tags(params[:tags])
-    ListTagging.create_taggings(tags, @list.id)
+    # tags = Tag.create_tags(params[:tags])
+    # ListTagging.create_taggings(tags, @list.id)
 
     if @list.update(list_params)
       respond_to do |format|
