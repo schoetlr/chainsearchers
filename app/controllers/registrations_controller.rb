@@ -4,6 +4,10 @@ class RegistrationsController < Devise::RegistrationsController
   
   protected
 
+  def after_inactive_sign_up_path_for(resource)
+    confirm_notice_path
+  end
+
   def sign_up_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
