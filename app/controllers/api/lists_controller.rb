@@ -26,6 +26,23 @@ class API::ListsController < API::APIController
     end
   end
 
+
+  def update
+    @list = List.find(params[:id])
+    @list.tags = params[:tags]
+    wall_id = current_user.wall.id
+
+    #add the new links to the existing links
+    
+    Link.update_links(params[:links], @list.id, params["postToWall"], wall_id) 
+
+    if @list.update(list_params)
+      respond_to do |format|
+        format.json { render json: @list }
+      end
+    end
+  end
+
   private
 
   def list_params

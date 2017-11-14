@@ -37,7 +37,6 @@ class Link < ActiveRecord::Base
   end
 
   def self.update_links(links, list_id, wall_post, wall_id)
-    byebug
     #links is an array of hashes(json objects)
     #links have parents to preserve ordering
     links.each_with_index do |link, i|
