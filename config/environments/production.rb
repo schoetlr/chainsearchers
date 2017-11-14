@@ -81,8 +81,12 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "127.0.0.1",
+    :address => 'smtp.sendgrid.net',
     :port    => 587,
-    :domain  => 'chainsearchers.com'
+    :authentication => :plain,
+    :user_name => 'app74779507@heroku.com',
+    :password => 'rrhsd8mu4719',
+    :domain  => 'chainsearchers.com',
+    :enable_starttls_auto => true
   }
 end
