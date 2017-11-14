@@ -33,6 +33,14 @@ class List < ActiveRecord::Base
     json
   end
 
+  def to_api_format
+    json = {}
+
+    json.merge!(self.attributes)
+
+    json
+  end
+
 
   def self.with_tags(tags)
     tags.map! { |tag| JSON.parse(tag) }

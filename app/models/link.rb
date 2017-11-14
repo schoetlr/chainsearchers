@@ -39,6 +39,7 @@ class Link < ActiveRecord::Base
   def self.update_links(links, list_id, wall_post, wall_id)
     #links is an array of hashes(json objects)
     #links have parents to preserve ordering
+    @list = List.find(list_id)
     links.each_with_index do |link, i|
       if !link[:id]
         parent_link_id = links[i-1] ? links[i-1][:id] : nil
@@ -46,15 +47,28 @@ class Link < ActiveRecord::Base
                     list_id: list_id, link_id: parent_link_id)
         wall_post ? @link.user_wall_id = wall_id : nil
 
+        assign_link_to_list(@list, @link) if i == 0
         @link.save
       else
         @link = Link.find(link[:id])
         @link.description = link[:description]
         @link.url = link[:url]
-        @link.user_wall_id = wall_post ? wall_id : nil 
+        @link.user_wall_id = wall_post ? wall_id : nil
+
+        assign_link_to_list(@list, @link) if i == 0 
         @link.save
       end
     end
+  end
+
+  def self.assign_link_to_list(list, link)
+    link.list_id = list.id
+  end
+
+  #allows api to add links without changing new ones
+  def self.add_links(links, existing_links)
+    #existing_links is an array of the already created links
+
   end
 
   def destroy

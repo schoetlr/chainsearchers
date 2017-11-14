@@ -1,6 +1,7 @@
 class API::ListsController < API::APIController
-  protect_from_forgery except: [:create, :update]
-  before_action :doorkeeper_authorize!, if: :logged_in_user?
+  protect_from_forgery except: [:create, :update, :index]
+  before_action :doorkeeper_authorize!, only: [:create, :update], if: :logged_in_user?
+  before_action :doorkeeper_authorize!, only: [:index]
 
   def create
     @list = List.new(list_params)
@@ -30,7 +31,7 @@ class API::ListsController < API::APIController
   def update
     @list = List.find(params[:id])
     @list.tags = params[:tags]
-    wall_id = current_user.wall.id
+    wall_id = resource_owner.wall.id
 
     #add the new links to the existing links
     
@@ -43,7 +44,22 @@ class API::ListsController < API::APIController
     end
   end
 
+
+  def index
+    @lists = resource_owner.lists
+    @lists = format_lists(@lists)
+
+    respond_to do |format|
+      format.json { render json: @lists }
+    end
+  end
+
   private
+
+  def format_lists(lists)
+    lists.map! { |list| list.to_api_format }
+    lists
+  end
 
   def list_params
     params.require(:list).permit(:title, :description)
