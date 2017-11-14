@@ -66,8 +66,35 @@ class Link < ActiveRecord::Base
   end
 
   #allows api to add links without changing new ones
-  def self.add_links(links, existing_links)
-    #existing_links is an array of the already created links
+  #adds new links to front of the lists links
+  def self.add_links(links, list, wall_post, wall_id)
+    if links.length > 0
+      #keep track of old front of list
+      old_front = list.link
+      old_front.list_id = nil
+      old_front.save
+
+      last_created = nil
+      links.each_with_index do |link, i|
+        @link = Link.new(url: link[:url], description: link[:description])
+        if wall_post
+          @link.user_wall_id = wall_id
+        end
+        @link.save
+        last_created = @link
+
+        if i == 0
+          assign_link_to_list(list, @link)
+          @link.save
+        else
+          @link.link_id = last_created.id
+        end
+      end
+
+      #update link ordering of lists previous first link
+      old_front.link_id = last_created.id
+      old_front.save
+    end
 
   end
 

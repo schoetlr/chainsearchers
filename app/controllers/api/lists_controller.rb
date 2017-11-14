@@ -1,7 +1,8 @@
 class API::ListsController < API::APIController
   protect_from_forgery except: [:create, :update, :index]
-  before_action :doorkeeper_authorize!, only: [:create, :update], if: :logged_in_user?
-  before_action :doorkeeper_authorize!, only: [:index]
+  before_action :doorkeeper_authorize!, only: [:create], if: :logged_in_user?
+  before_action :doorkeeper_authorize!, only: [:index, :update]
+  before_action :validate_ownership, only: [:update]
 
   def create
     @list = List.new(list_params)
@@ -35,7 +36,9 @@ class API::ListsController < API::APIController
 
     #add the new links to the existing links
     
-    Link.update_links(params[:links], @list.id, params["postToWall"], wall_id) 
+    Link.add_links(params[:links], @list, params["postToWall"], wall_id) 
+    tags = Tag.create_tags(params[:tags])
+    ListTagging.create_taggings(tags, @list.id)
 
     if @list.update(list_params)
       respond_to do |format|
@@ -46,8 +49,8 @@ class API::ListsController < API::APIController
 
 
   def index
-    @lists = resource_owner.lists
-    @lists = format_lists(@lists)
+    @lists = resource_owner.lists.order(created_at: :desc)
+    @lists = format_lists(@lists.to_a)
 
     respond_to do |format|
       format.json { render json: @lists }
@@ -63,6 +66,13 @@ class API::ListsController < API::APIController
 
   def list_params
     params.require(:list).permit(:title, :description)
+  end
+
+  def validate_ownership
+    @list = List.find(params[:id])
+    unless @list.user_id == resource_owner.id
+      redirect_to :back
+    end
   end
 
   

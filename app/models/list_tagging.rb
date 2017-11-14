@@ -9,4 +9,10 @@ class ListTagging < ActiveRecord::Base
     end
   end
 
+  def self.create_taggings(tags, list_id)
+    tags.each do |tag|
+      ListTagging.create(tag.id, list_id)
+    end
+  end
+
 end

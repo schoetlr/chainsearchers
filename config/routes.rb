@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index]
 
   namespace :api do 
-    resources :lists, only: [:create, :update]
+    resources :lists, only: [:create, :update, :index]
     resources :links, only: [:create]
   end
 
