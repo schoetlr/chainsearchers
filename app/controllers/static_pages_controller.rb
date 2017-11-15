@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
   def home
   end
 
+
   def confirm_notice
   end
 end

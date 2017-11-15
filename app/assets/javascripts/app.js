@@ -45,6 +45,18 @@ app.config(function($stateProvider, $urlRouterProvider){
       
     })
 
+    .state("plugin", {
+      url: "/plugin",
+      abstract: true,
+      template: '<div ui-view></div>'
+    })
+
+    .state("plugin.show", {
+      url: "",
+      templateUrl: '/templates/plugin/plugin.html'
+      
+    })
+
     .state("lists.index", {
       url: "",
       templateUrl: '/templates/lists/index.html',

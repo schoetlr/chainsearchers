@@ -29,6 +29,10 @@ a.navbar-brand {
 
 }
 
+.navbar-inverse .navbar-right .extension-link {
+  color: white;
+}
+
 .fa-user {
   color: #0000CD;
   
