@@ -273,4 +273,16 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     
   };
 
+  $scope.showAttachedLinks = function(btn){ 
+    $(btn).parents(".item-content").toggleClass("attached-links-visible"); event.preventDefault(); 
+  };
+
+  //read more.js options
+  $scope.options = {
+    speed: 500,
+    collapsedHeight: 20,
+    moreLink: '<a href="#">Read more</a>',
+    lessLink: '<a href="#">Read Less</a>'
+  };
+
 }]);

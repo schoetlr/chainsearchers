@@ -64,81 +64,52 @@
 <!-- LISTS HERE -->
 <div class="row" id="lists">
   <div ng-repeat="list in lists | filter:withTags" class="col-xs-12 col-lg-6">
-    <div class="list">
-      <!-- top row -->
-      <div class="row list-header">
-        <div class="col-xs-3">
-          <p class="vote-count">{{ voteCount(list) }}</p>
-
-          
-        </div>
-
-        <div class="col-xs-3">
-          <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x clickable" aria-hidden="true"></i>
-          <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x clickable" aria-hidden="true"></i>
-        </div>
+    <div class="item-wrapper">
+      <div class="item-left-stats">
+          <div class="item-vote-up"><div ng-click="upvote(list)"><i class="zmdi zmdi-chevron-up"></i></div> </div>
+          <div class="item-vote">{{ voteCount(list) }} </div>
+          <div class="item-vote-down"><div ng-click="downvote(list)"><i class="zmdi zmdi-chevron-down"></i></div> </div>
 
 
-        <div class="col-xs-3">
-          <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x clickable" aria-hidden="true" ng-if="currentUser && favorited(list)"></i>
-          <i ng-click="handleFavorite(list)" class="fa fa-star-o fa-md fa-2x clickable" aria-hidden="true" ng-if="currentUser && !favorited(list)"></i>
-
-          <a href="/users/sign_in">
-            <i class="fa fa-star-o fa-md fa-2x clickable" aria-hidden="true" ng-if="!currentUser"></i>
-          </a>
-        </div>
-
-        <div class="col-xs-3">
+      </div>
+      <div class="item-header">
+        <div class="list-actions">
           <a ng-click="browseList(list)" class="browse-list clickable">Browse</a>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="text-center list-title clickable" ui-sref="lists.show({id: list.id})">{{ list.title }}</h2><br>
-        </div>
-      </div>
-
-      <div id="display-tags-wrapper" class="row">
-        <div class="col-xs-12 text-center">
-          <div ng-repeat="tag in list.tags" class="display-tag clickable">
-            <h5 ng-click="filterByTag(tag)">{{ tag.name }}</h5>
-          </div>
-          
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <p class="text-center publisher text-success">Published by <span ui-sref="users.show({id: list.user.id})" class="clickable">{{ list.user.username }}</span></p>
-        </div>
-      </div>
-
-      <div class="row description-wrapper">
-        <div class="col-xs-12">
-          <p class="text-center description">{{ list.description | limitTo:80 }}</p>
-        </div>
-      </div>
-      
-      
-      
-      
-      
-
-      <div class="row links">
-        <div ng-repeat="link in listLinks(list)" class="col-xs-12">
-          <a ng-href="{{generatePath(link.url)}}" target="_blank" class="text-center">
-            <p class="center-block link-url clickable text-primary">{{ link.url }}</p>
+          <a href="/users/sign_in">
+            <i class="fa fa-star-o  clickable" aria-hidden="true" ng-if="!currentUser"></i>
           </a>
-          <p class="text-center link-description">{{ link.description }}</p>
         </div>
-      </div>
+        
+          <h1 ><a href="#" ng-click="browseList(list)" ui-sref="lists.show({id: list.id})">{{ list.title }}</a></h1>
+          <div class="item-tags">
+              <ul class="tag-wrapper">
+                  <li ng-repeat="tag in list.tags"><a href="#" ng-click="filterByTag(tag)"> {{ tag.name }}</a></li>
+              </ul>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-primary center-block" ui-sref="lists.show({id: list.id})">View Comments</button>
-        </div>
+          </div>
       </div>
+        <div ng-class="{itemContent: true, attachedLinksVisible: attachedLinksVisible}">
+          <p class="publisher text-success">Published by <span ui-sref="users.show({id: list.user.id})" class="clickable">{{ list.user.username }}</span></p>
+
+          <p>{{ list.description | limitTo:80 }}</p>
+
+          <div ui-sref="lists.show({id: list.id})"><i class='zmdi zmdi-comment-more commentIconBigger'></i></div>
+          <div class="attached-links">
+            <div  class="links-attached-toggler" ng-click="attachedLinksVisible = !attachedLinksVisible"> {{listLinks(list).length}} links  <i class="zmdi zmdi-chevron-down"></i></div>
+            <div class="attached-links-body">
+
+              <div class="links-list-wrapper">
+                <ul ng-repeat="link in listLinks(list)" class="links-list-group">
+
+                  <li class="link-list-item">
+                    <p><a ng-href="{{generatePath(link.url)}}" target="_blank" class="text-center">{{ link.url }}</a> </p>
+                    <p class="link-list-desc" read-more-options="options" read-more="{{link.description}}"></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </div>

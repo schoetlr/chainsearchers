@@ -22,5 +22,6 @@
 //= require restangular.min.js
 //= require angular-modal-service.js
 //= require fontawesome.js
+//= require readmore.js
 
 //= require_tree .
