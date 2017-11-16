@@ -3,75 +3,68 @@
 
   <div class="row" id="list-show">
     <div class="col-xs-12 col-lg-6 col-lg-offset-3">
-      <div class="list">
-        <!-- top row -->
-        <div class="row">
-          <div class="col-xs-3">
-            <p class="vote-count">{{ voteCount(list) }}</p>
+      <div class="item-wrapper">
+        <div class="item-left-stats">
+          <div class="item-vote-up"><div ng-click="upvote(list)"><i class="zmdi zmdi-chevron-up clickable"></i></div> </div>
+          <div class="item-vote">{{ voteCount(list) }} </div>
+          <div class="item-vote-down clickable"><div ng-click="downvote(list)"><i class="zmdi zmdi-chevron-down"></i></div> </div>
 
-          </div>
 
-          <div class="col-xs-3">
-            <i ng-click="upvote(list)" class="fa fa-arrow-up fa-2x clickable" aria-hidden="true"></i>
-            <i ng-click="downvote(list)" class="fa fa-arrow-down fa-2x clickable" aria-hidden="true"></i>
-          </div>
-
-          <div class="col-xs-3">
-            <i ng-click="handleFavorite(list)" class="fa fa-star fa-2x clickable" aria-hidden="true" ng-if="currentUser && favorited()"></i>
-            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-2x spacing clickable" aria-hidden="true" ng-if="currentUser && !favorited()"></i>
-            <a href="/users/sign_in">
-              <i class="fa fa-star-o fa-md fa-2x clickable" aria-hidden="true" ng-if="!currentUser"></i>
+        </div>
+        <div class="item-header">
+          <div class="list-actions">
+            <a ng-click="browseList(list)" class="browse-list clickable">Browse</a>
+            <a href="/users/sign_in" ng-if="!currentUser">
+              <i class="fa fa-star-o clickable" aria-hidden="true"></i>
             </a>
           </div>
+          
+            <h1 ><a href="#" ng-click="browseList(list)">{{ list.title }}</a></h1>
+            <div class="item-tags">
+              <ul class="tag-wrapper">
+                  <li ng-repeat="tag in list.tags"><a href="#" ng-click="filterByTag(tag)"> {{ tag.name }}</a></li>
+              </ul>
 
-          <div class="col-xs-3">
-            <a id="browse-list" class="clickable" ng-click="browseList(list)">Browse</a>
-          </div>
-        </div>
-
-        <h2 class="text-center">{{ list.title }}</h2><br>
-
-        <div id="display-tags-wrapper" class="row">
-          <div class="col-xs-12 text-center">
-            <div ng-repeat="tag in list.tags" class="display-tag">
-              <h5>{{ tag.name }}</h5>
             </div>
-            
-          </div>
         </div>
-        
-        <p class="text-center text-success" id="publisher">Published by <span ui-sref="users.show({id: list.user.id})" class="clickable">{{ list.user.username }}</span></p>
-        <p class="text-center" id="description">{{ list.description }}</p>
-        
-        
-        
+          <div ng-class="{itemContent: true, attachedLinksVisible: attachedLinksVisible}">
+            <p class="publisher text-success">Published by <span ui-sref="users.show({id: list.user.id})" class="clickable">{{ list.user.username }}</span></p>
 
-        <div class="row" id="links">
-          <div ng-repeat="link in listLinks(list)" class="col-xs-12">
-            <a ng-href="{{generatePath(link.url)}}" target="_blank">
-              <p class="text-center link-url text-primary">{{ link.url }}</p>
-            </a>
-            <p class="text-center link-description">{{ link.description }}</p>
-          </div>
-        </div>
+            <p>{{ list.description }}</p>
 
-        <div class="row" id="comment-section">
-          <div class="col-xs-12"">
-            <form class="row">
-              <div class="form-group col-xs-12 col-sm-9">
-                <textarea ng-model="commentForm.content" class="form-control" placeholder="Comment here..."></textarea>
+            <div ui-sref="lists.show({id: list.id})"><i class='zmdi zmdi-comment-more commentIconBigger clickable'></i></div>
+            <div class="attached-links">
+              <div class="clickable links-attached-toggler" ng-click="attachedLinksVisible = !attachedLinksVisible"> {{listLinks(list).length}} links  <i class="zmdi zmdi-chevron-down"></i></div>
+              <div class="attached-links-body">
+
+                <div class="links-list-wrapper">
+                  <ul ng-repeat="link in listLinks(list)" class="links-list-group">
+
+                    <li class="link-list-item">
+                      <p><a ng-href="{{generatePath(link.url)}}" target="_blank" class="text-center">{{ link.url }}</a> </p>
+                      <p class="link-list-desc" read-more-options="options" read-more="{{link.description}}"></p>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-sm-3 col-xs-12">
-                <button ng-click="comment()" class="btn btn-success" id="show-comment-btn">Submit</button>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
       </div>
-
     </div>
   </div>
 
+  <div class="row" id="comment-section">
+    <div class="col-xs-12"">
+      <form class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-sm-offset-3">
+          <textarea ng-model="commentForm.content" class="form-control" placeholder="Comment here..."></textarea>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+          <button ng-click="comment()" class="btn btn-success" id="show-comment-btn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <!-- COMMENT SECTION -->
   <div id="show-comments">
     <comments comments="comments" list="list"></comments>
