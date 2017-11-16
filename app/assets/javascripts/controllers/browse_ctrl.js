@@ -20,6 +20,7 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
   $scope.dismissModal = function() {
     // close(result, 200); // close, but give 200ms for bootstrap to animate
     close("result", 200);
+    $(".modal-backdrop").remove();
    };
 
 
