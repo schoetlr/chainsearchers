@@ -66,9 +66,9 @@
   <div ng-repeat="list in lists | filter:withTags" class="col-xs-12 col-lg-6">
     <div class="item-wrapper">
       <div class="item-left-stats">
-          <div class="item-vote-up"><div ng-click="upvote(list)"><i class="zmdi zmdi-chevron-up clickable"></i></div> </div>
-          <div class="item-vote">{{ voteCount(list) }} </div>
-          <div class="item-vote-down clickable"><div ng-click="downvote(list)"><i class="zmdi zmdi-chevron-down"></i></div> </div>
+        <div class="item-vote-up"><div ng-click="upvote(list)"><i class="zmdi zmdi-chevron-up clickable"></i></div> </div>
+        <div class="item-vote">{{ voteCount(list) }} </div>
+        <div class="item-vote-down clickable"><div ng-click="downvote(list)"><i class="zmdi zmdi-chevron-down"></i></div> </div>
 
 
       </div>
@@ -82,9 +82,9 @@
         
           <h1 ><a href="#" ng-click="browseList(list)" ui-sref="lists.show({id: list.id})">{{ list.title }}</a></h1>
           <div class="item-tags">
-              <ul class="tag-wrapper">
-                  <li ng-repeat="tag in list.tags"><a href="#" ng-click="filterByTag(tag)"> {{ tag.name }}</a></li>
-              </ul>
+            <ul class="tag-wrapper">
+              <li ng-repeat="tag in list.tags"><a href="#" ng-click="filterByTag(tag)"> {{ tag.name }}</a></li>
+            </ul>
 
           </div>
       </div>
