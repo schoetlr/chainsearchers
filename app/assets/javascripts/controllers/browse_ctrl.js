@@ -1,4 +1,4 @@
-app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService){
+app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', 'close', function($scope, list, links, ModalService, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService, close){
 
   $scope.list = list;
 
@@ -14,6 +14,19 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   $scope.commentForm = {};
   $scope.commenting = false;
 
+  //hide sidebar initially
+  $scope.showSideBar = false;
+
+  $scope.dismissModal = function() {
+    // close(result, 200); // close, but give 200ms for bootstrap to animate
+    close("result", 200);
+   };
+
+
+
+  $scope.toggleSideBar = function(){
+    $(".ModalBodyWrapper").toggleClass("HiddenModalSideBar");
+  };
   //Show the toolbar initially
   $scope.showToolBar = true;
   //hide it after a few seconds

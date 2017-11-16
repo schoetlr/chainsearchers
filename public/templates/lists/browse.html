@@ -1,64 +1,98 @@
-<div class="modal fade" role="dialog" id="browse">
-  <div class="modal-dialog">
+<!-- Modal DetailedDescriptionModal-->
+<div class="modal fade" id="DetailedDescriptionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+              <div class="sidebar-votes">
+                        <div class="sidebar-vote-up" ng-click="upvote()"><i class="zmdi zmdi-chevron-up"></i> </div>
+                        <div class="sidebar-vote-count" id="vote-count">{{ voteCount() }}</div>
+                        <div class="sidebar-vote-down" ng-click="downvote()"><i class="zmdi zmdi-chevron-down"></i> </div>
+                    </div>
+                <div class='ModalBodyWrapper'>
+                    <div class="btn-close-modal" ng-click="dismissModal()"><i class="zmdi zmdi-close"></i> </div>
+                    
+                    <div class="modal-sidebar">
+                        <div class="modal-sidebar-item">
+                            <h3>Tags</h3>
+                            <div class="item-tags">
+                                <ul>
+                                    <li ng-repeat="tag in list.tags"><a href="#" ng-click="filterByTag(tag)"> {{ tag.name }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-sidebar-item no-padding">
+                            <h3 class="sp-left-10">{{links.length}} Links Attached</h3>
+                            <ul ng-repeat="link in links" class="links-list-group">
 
-    
-    <div class="modal-content">
+                              <li class="link-list-item">
+                                <p><a ng-href="{{generatePath(link.url)}}" target="_blank" class="text-center">{{ link.url }}</a> </p>
+                                <p class="link-list-desc" read-more-options="options" read-more="{{link.description}}"></p>
+                              </li>
+                            </ul>
+                        </div>
 
-      <div class="modal-body">
-        <div class="row" id="hover-row" ng-mouseover="showToolBar = true">
+                    </div>
+                    <div class="modal-head">
+                        <div class="top-right-modal-controls">
+                            <div class="TopModalBtn" ng-click="previous()">
+                                <i class="zmdi zmdi-chevron-left"></i>
+                            </div>
+                            <div class="TopModalBtn">
+                                <i class="zmdi zmdi-chevron-right" ng-click="next()"></i>
+                            </div>
+                            <div class="TopModalBtn MakeFavBtnTopRight">
+                                <i ng-click="handleFavorite()" class="zmdi zmdi-star" aria-hidden="true" ng-if="currentUser && favorited()"></i>
+                            <i ng-click="handleFavorite()" class="zmdi zmdi-star-outline" aria-hidden="true" ng-if="currentUser && !favorited()"></i>
+                            <i class="zmdi zmdi-star-outline" aria-hidden="true" ng-if="!currentUser"></i>
+                            </div>
+                            <div class="TopModalBtn" ng-click="toggleSideBar()">
+                                <i class="zmdi zmdi-menu"></i>
+                            </div>
+                        </div>
+
+
+                        
+                        <h1>{{ list.title }}</h1>
+                        <p>{{ selectedLink.description }}</p>
+                        <p class="comments-btn-modal" ng-click="toggleCommenting()"><i class="zmdi zmdi-comment-text"></i> Comments</p>
+
+                        <div class="comments-area" ng-show="commenting">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <textarea class="form-control flat-control" ng-model="commentForm.content" rows="3"></textarea>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-success btn-block" ng-click="comment()" id="browse-comment">Submit Comment</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-cont">
+                        <iframe id="selected" ng-src="{{ generatePath() }}" class="modal-iframe"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-8">
+                    <div class="text-left">
+                        <button type="button" class="btn btn-default" ng-click="previous()"><i class="zmdi zmdi-chevron-left"></i> Prev Link</button>
+                        <button type="button" class="btn btn-default" ng-click="next()"> Next Link <i class="zmdi zmdi-chevron-right"></i></button>
+                        <a  class="btn btn-default" ng-href="{{generatePath()}}"><i class="zmdi zmdi-globe"></i> Open This Link</a>
+
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="row" id="browse-navbar" ng-show="showToolBar" ng-mouseleave="showToolBar = false">
-          
-
-          <div class="col-xs-12 col-sm-5">
-            <p id="vote-count" class="spacing">{{ voteCount() }}</p>
-
-            <i ng-click="upvote()" class="fa fa-arrow-up fa-3x clickable" aria-hidden="true"></i>
-            <i ng-click="downvote()" class="fa fa-arrow-down fa-3x spacing clickable" aria-hidden="true"></i>
-
-            <i ng-click="handleFavorite()" class="fa fa-star fa-3x spacing clickable" aria-hidden="true" ng-if="currentUser && favorited()"></i>
-            <i ng-click="handleFavorite()" class="fa fa-star-o fa-md fa-3x spacing clickable" aria-hidden="true" ng-if="currentUser && !favorited()"></i>
-            <a ng-href="{{generatePath()}}" target="_blank">
-              <i class="fa fa-share-square-o fa-3x spacing" aria-hidden="true"></i>
-            </a>
-          </div>
-
-          <div class="col-xs-12 col-sm-4">
-            <button ng-click="toggleCommenting()" class="btn btn-primary" id="toggle-commenting">Comment</button>
-            <button ng-show="!viewDescription" class="btn btn-primary description-btn" ng-click="viewDescription = true">View Description</button>
-            <button ng-show="viewDescription" class="btn btn-primary description-btn" ng-click="viewDescription = false">Hide Description</button>
-            
-          </div>
-
-          <div class="col-xs-12 col-sm-3">
-            <i ng-click="previous()" class="fa fa-long-arrow-left fa-3x clickable" aria-hidden="true"></i>
-            <i ng-click="next()" class="fa fa-long-arrow-right fa-3x clickable" aria-hidden="true"></i>
-            
-            <i class="fa fa-times fa-3x pull-right clickable" aria-hidden="true" data-dismiss="modal"></i>
-          </div>
-
-          <div class="col-xs-12" ng-show="viewDescription">
-            <p class="text-center">{{ selectedLink.description }}</p>
-          </div>
-
-          <div class="col-xs-12" ng-show="commenting">
-            <form class="row">
-              <div class="form-group col-xs-9">
-                <textarea ng-model="commentForm.content" class="form-control"></textarea>
-              </div>
-
-              <button ng-click="comment()" class="btn btn-success" id="browse-comment">Submit Comment</button>
-            </form>
-          </div>
-        </div>
-
-
-        <iframe id="selected" ng-src="{{ generatePath() }}">
-
-        </iframe>
-      </div>
-
     </div>
-
-  </div>
 </div>
+<!--end modal DetailedDescriptModal -->
+
+<script type='text/javascript'>
+  
+  //hack to remove opitonal modal-backdrop
+  
+  </script>
