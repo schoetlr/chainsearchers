@@ -66,17 +66,17 @@
   <div ng-repeat="list in lists | filter:withTags" class="col-xs-12 col-lg-6">
     <div class="item-wrapper">
       <div class="item-left-stats">
-          <div class="item-vote-up"><div ng-click="upvote(list)"><i class="zmdi zmdi-chevron-up"></i></div> </div>
+          <div class="item-vote-up"><div ng-click="upvote(list)"><i class="zmdi zmdi-chevron-up clickable"></i></div> </div>
           <div class="item-vote">{{ voteCount(list) }} </div>
-          <div class="item-vote-down"><div ng-click="downvote(list)"><i class="zmdi zmdi-chevron-down"></i></div> </div>
+          <div class="item-vote-down clickable"><div ng-click="downvote(list)"><i class="zmdi zmdi-chevron-down"></i></div> </div>
 
 
       </div>
       <div class="item-header">
         <div class="list-actions">
           <a ng-click="browseList(list)" class="browse-list clickable">Browse</a>
-          <a href="/users/sign_in">
-            <i class="fa fa-star-o  clickable" aria-hidden="true" ng-if="!currentUser"></i>
+          <a href="/users/sign_in" ng-if="!currentUser">
+            <i class="fa fa-star-o clickable" aria-hidden="true"></i>
           </a>
         </div>
         
@@ -93,9 +93,9 @@
 
           <p>{{ list.description | limitTo:80 }}</p>
 
-          <div ui-sref="lists.show({id: list.id})"><i class='zmdi zmdi-comment-more commentIconBigger'></i></div>
+          <div ui-sref="lists.show({id: list.id})"><i class='zmdi zmdi-comment-more commentIconBigger clickable'></i></div>
           <div class="attached-links">
-            <div  class="links-attached-toggler" ng-click="attachedLinksVisible = !attachedLinksVisible"> {{listLinks(list).length}} links  <i class="zmdi zmdi-chevron-down"></i></div>
+            <div class="clickable links-attached-toggler" ng-click="attachedLinksVisible = !attachedLinksVisible"> {{listLinks(list).length}} links  <i class="zmdi zmdi-chevron-down"></i></div>
             <div class="attached-links-body">
 
               <div class="links-list-wrapper">

@@ -41,7 +41,7 @@
 
         <%= render "devise/shared/links" %>
         <div class="signup-message text-center">
-          <p>Don't have an account? <a href="#" class="color-base">Sign up now!</a></p>
+          <p>Don't have an account? <%= link_to "Sign up now!", new_user_session_path, class: "color-base" %></p>
         </div>
       </div>
     </div>

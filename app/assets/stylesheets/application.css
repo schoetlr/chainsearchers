@@ -51,7 +51,10 @@ body {
   font-family: 'q_serif',Georgia,Times,"Times New Roman",serif;
 }
 
-.clickable { cursor: pointer; cursor: hand; }
+.clickable:hover { 
+  cursor: pointer !important; 
+  cursor: hand; 
+}
 
 
 /* 
