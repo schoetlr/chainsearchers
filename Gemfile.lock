@@ -106,6 +106,7 @@ GEM
     pg (0.18.4)
     puma (3.10.0)
     rack (1.6.4)
+    rack-cors (1.0.2)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -210,6 +211,7 @@ DEPENDENCIES
   ngannotate-rails
   pg
   puma
+  rack-cors
   rails (= 4.2.6)
   rails-assets-angular-devise!
   rails_12factor

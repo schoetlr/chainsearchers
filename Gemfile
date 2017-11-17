@@ -26,6 +26,8 @@ gem 'devise'
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 source "https://rails-assets.org" do
   gem "rails-assets-angular-devise"
 end
