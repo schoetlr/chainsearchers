@@ -1,4 +1,4 @@
-app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', 'close', '$element', function($scope, list, links, ModalService, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService, close, $element){
+app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', 'close', '$timeout', function($scope, list, links, ModalService, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService, close, $timeout){
 
   $scope.list = list;
 
@@ -16,6 +16,15 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
 
   //hide sidebar initially
   $scope.showSideBar = false;
+  
+  $timeout(function(){
+    alert("ran");
+    $(".modal-backdrop").click(function(){
+      alert("bd ran");
+      $scope.dismissModal();
+    }, 5000);
+  });
+  
 
   $scope.dismissModal = function() {
     // close(result, 200); // close, but give 200ms for bootstrap to animate

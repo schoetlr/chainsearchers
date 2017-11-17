@@ -75,6 +75,12 @@
       <div class="item-header">
         <div class="list-actions">
           <a ng-click="browseList(list)" class="browse-list clickable">Browse</a>
+          <a ng-click="handleFavorite(list)" ng-if="currentUser && !favorited(list)">
+            <i class="fa fa-star-o clickable" aria-hidden="true"></i>
+          </a>
+          <a ng-click="handleFavorite(list)" ng-if="currentUser && favorited(list)">
+            <i class="fa fa-star clickable" aria-hidden="true"></i>
+          </a>
           <a href="/users/sign_in" ng-if="!currentUser">
             <i class="fa fa-star-o clickable" aria-hidden="true"></i>
           </a>
