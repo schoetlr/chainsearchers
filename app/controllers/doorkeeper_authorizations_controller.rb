@@ -1,6 +1,6 @@
 class Doorkeeper::AuthorizationsController
   before_action :correct_uri
-  skip_filter :verify_authenticity_token
+  
   before_action :set_headers
 
 
