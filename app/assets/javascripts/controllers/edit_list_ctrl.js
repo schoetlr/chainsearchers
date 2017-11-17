@@ -80,9 +80,10 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
 
   $scope.dismissModal = function() {
     // close(result, 200); // close, but give 200ms for bootstrap to animate
+    $(".modal").remove();
     close("result", 200);
     $(".modal-backdrop").remove();
-    $(".modal").remove();
+    
     $("body").css("overflow", "scroll");
    };
 
