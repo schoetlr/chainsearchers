@@ -1,7 +1,7 @@
 class Doorkeeper::AuthorizationsController
   before_action :correct_uri
   
-  before_action :set_headers
+  # before_action :set_headers
 
 
   private
