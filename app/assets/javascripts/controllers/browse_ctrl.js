@@ -18,7 +18,7 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
   $scope.showSideBar = false;
   
   $timeout(function(){
-    alert("ran");
+    
     $(".modal-backdrop").click(function(){
       alert("bd ran");
       $scope.dismissModal();
