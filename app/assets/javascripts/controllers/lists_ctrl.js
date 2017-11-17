@@ -198,6 +198,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     ModalService.showModal({
       templateUrl: "/templates/lists/browse.html",
       controller: "BrowseCtrl",
+      
       inputs: {
         list: list,
         links: links, 

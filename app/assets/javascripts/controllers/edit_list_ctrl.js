@@ -83,6 +83,7 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
     close("result", 200);
     $(".modal-backdrop").remove();
     $(".modal").remove();
+    $("body").css("overflow", "scroll");
    };
 
   $scope.addLink = function(){
