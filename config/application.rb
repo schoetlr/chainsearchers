@@ -27,7 +27,7 @@ module Chainsearchers
       DeviseController.respond_to :html, :json
     end
 
-    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+    config.middleware.insert_before 0, "Rack::Cors", debug: true, :logger => (-> {Rails.logger }) do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :options]
