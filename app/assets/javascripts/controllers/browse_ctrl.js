@@ -17,9 +17,15 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
   //hide sidebar initially
   $scope.showSideBar = false;
   
-  $().on("hide.bs.modal", function(){
-    $(".modal-backdrop").remove();
-  });
+  // $("#DetailedDescriptionModal").on("hide.bs.modal", function(){
+  //   $(".modal-backdrop").remove();
+  // });
+
+  // $(".modal-backdrop").click(function(){
+  //   alert("got the click");
+  //   $(".modal-backdrop").remove();
+  //   $(".modal").remove();
+  // });
   
 
   $scope.dismissModal = function() {

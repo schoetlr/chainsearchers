@@ -18,10 +18,10 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
 
   tagService.getTags().then(function(response){
     $scope.tags = response[0].tags;
-    $scope.popularTags = response[0].popular
+    $scope.popularTags = response[0].popular;
   }, function(){
     console.log('could not get tags');
-  })
+  });
 
   
   $scope.tagSearch = "";
@@ -107,9 +107,9 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     } else {
       //otherwise create new vote
       voteService.upvoteList(list).then(function(response){
-        list.votes.push(response)
+        list.votes.push(response);
 
-      }, function(){ console.log("something went wrong voting") });
+      }, function(){ console.log("something went wrong voting"); });
     }
 
     
@@ -139,7 +139,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
       voteService.downvoteList(list).then(function(response){
         list.votes.push(response);
 
-      }, function(){ console.log("something went wrong voting") });
+      }, function(){ console.log("something went wrong voting"); });
       
     }
 
@@ -153,11 +153,11 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     booboo = voteObject;
     if(!voteObject.up){
       voteObject.up = 0;
-    };
+    }
 
     if(!voteObject.down){
       voteObject.down = 0;
-    };
+    }
 
     return voteObject.up - voteObject.down;
   };
@@ -209,7 +209,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     
       modal.element.modal();
       modal.close.then(function(result) {
-        //do nothings
+        $(".modal-backdrop").remove();
       });
     });
   };
@@ -259,13 +259,13 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     if(url){
       //make youtube vids embeddable
       if(url.match(/youtube/) !== null){
-        var url = url.replace(/watch\?v=/, function(){ 
+          url = url.replace(/watch\?v=/, function(){ 
           return "embed/";
         });
-      }; 
+      } 
 
       if(url[0] === 'w'){
-        var url = 'http://' + url;
+        url = 'http://' + url;
         return $sce.trustAsResourceUrl(url);
       } else {
         return $sce.trustAsResourceUrl(url);
