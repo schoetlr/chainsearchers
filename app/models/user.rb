@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates :username, length: { maximum: 20 }
   validates :username, presence: true
+  validates :username, exclusion: { in: ["anonymous"] }
 
   #email validations
   validates_format_of :email, :with => Devise::email_regexp
