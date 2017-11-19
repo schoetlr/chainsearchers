@@ -6,14 +6,15 @@ class ListsController < ApplicationController
 
     @list = List.new(list_params)
 
-    @list.user_id = current_user.id
+    @list.user_id = current_user.id if current_user
     #model takes care of the javascript object tags
     @list.tags = params["selectedTags"]
 
     #need to refactor so links/tags are handled by accepts_nested_attributes_for method
+    @list.anonymous = true if !current_user
 
     if @list.save
-      wall_id = @list.user.wall.id
+      wall_id = @list.user ? @list.user.wall.id : nil
       
       Link.create_links(params["links"], @list.id, params["postToWall"], wall_id)
 
@@ -30,7 +31,7 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     @list.tags = params[:tags]
-    wall_id = current_user.wall.id
+    wall_id = current_user ? current_user.wall.id : nil
     
     Link.update_links(params[:links], @list.id, params["postToWall"], wall_id) 
 

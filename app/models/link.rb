@@ -28,7 +28,7 @@ class Link < ActiveRecord::Base
       @link = Link.new(url: link[:url], description: link[:description], list_id: list_id, link_id: last_created_id)
       #assign the link to a UserWall if wall_id is true
       wall_post ? @link.user_wall_id = wall_id : nil
-      
+      @link.anonymous = true if !wall_id
 
       @link.save
 

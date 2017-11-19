@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113233306) do
+ActiveRecord::Schema.define(version: 20171119174843) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20171113233306) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "user_wall_id"
+    t.boolean  "anonymous"
   end
 
   create_table "list_taggings", force: :cascade do |t|
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20171113233306) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "vote_count",  default: 0
+    t.boolean  "anonymous"
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
