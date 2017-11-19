@@ -17,12 +17,8 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
   //hide sidebar initially
   $scope.showSideBar = false;
   
-  $timeout(function(){
-    
-    $(".modal-backdrop").click(function(){
-      alert("bd ran");
-      $scope.dismissModal();
-    }, 5000);
+  $().on("hide.bs.modal", function(){
+    $(".modal-backdrop").remove();
   });
   
 
@@ -70,13 +66,13 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
     var url = $scope.selectedLink.url;
     //make youtube vids embeddable
     if(url.match(/youtube/) !== null){
-      var url = url.replace(/watch\?v=/, function(){ 
+      url = url.replace(/watch\?v=/, function(){ 
         return "embed/";
       });
-    }; 
+    }
 
     if(url[0] === 'w'){
-      var url = 'http://' + url;
+      url = 'http://' + url;
       return $sce.trustAsResourceUrl(url);
     } else {
       return $sce.trustAsResourceUrl(url);
@@ -141,9 +137,9 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
     } else {
       //otherwise create new vote
       voteService.upvoteList(list).then(function(response){
-        list.votes.push(response)
+        list.votes.push(response);
 
-      }, function(){ console.log("something went wrong voting") });
+      }, function(){ console.log("something went wrong voting"); });
     }
 
     
@@ -173,7 +169,7 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
       voteService.downvoteList(list).then(function(response){
         list.votes.push(response);
 
-      }, function(){ console.log("something went wrong voting") });
+      }, function(){ console.log("something went wrong voting"); });
       
     }
 
@@ -188,11 +184,11 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
     booboo = voteObject;
     if(!voteObject.up){
       voteObject.up = 0;
-    };
+    }
 
     if(!voteObject.down){
       voteObject.down = 0;
-    };
+    }
 
     return voteObject.up - voteObject.down;
   };
