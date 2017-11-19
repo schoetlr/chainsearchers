@@ -4,10 +4,10 @@
         <div class="modal-content">
             <div class="modal-body">
               <div class="sidebar-votes">
-                        <div class="sidebar-vote-up" ng-click="upvote()"><i class="zmdi zmdi-chevron-up"></i> </div>
-                        <div class="sidebar-vote-count" id="vote-count">{{ voteCount() }}</div>
-                        <div class="sidebar-vote-down" ng-click="downvote()"><i class="zmdi zmdi-chevron-down"></i> </div>
-                    </div>
+                <div class="sidebar-vote-up" ng-click="upvote()"><i class="zmdi zmdi-chevron-up"></i> </div>
+                <div class="sidebar-vote-count" id="vote-count">{{ voteCount() }}</div>
+                <div class="sidebar-vote-down" ng-click="downvote()"><i class="zmdi zmdi-chevron-down"></i> </div>
+              </div>
                 <div class='ModalBodyWrapper'>
                     <div class="btn-close-modal" ng-click="dismissModal()"><i class="zmdi zmdi-close" aria-hidden="true" data-dismiss="modal"></i> </div>
                     
@@ -76,9 +76,9 @@
             <div class="modal-footer">
                 <div class="col-xs-8">
                     <div class="text-left">
-                        <button type="button" class="btn btn-default" ng-click="previous()"><i class="zmdi zmdi-chevron-left"></i> Prev Link</button>
-                        <button type="button" class="btn btn-default" ng-click="next()"> Next Link <i class="zmdi zmdi-chevron-right"></i></button>
-                        <a  class="btn btn-default" ng-href="{{generatePath()}}"><i class="zmdi zmdi-globe"></i> Open This Link</a>
+                      <button type="button" class="btn btn-default" ng-click="previous()"><i class="zmdi zmdi-chevron-left"></i> Prev Link</button>
+                      <button type="button" class="btn btn-default" ng-click="next()"> Next Link <i class="zmdi zmdi-chevron-right"></i></button>
+                      <a class="btn btn-default" target="_blank" ng-href="{{generatePath()}}"><i class="zmdi zmdi-globe"></i> Open This Link</a>
 
                     </div>
                 </div>
