@@ -138,11 +138,11 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     }
   };
 
-  $scope.browseList = function(list){
+  $scope.browseList = function(list, index){
     list = $scope.list;
     var links = $scope.listLinks(list);
     
-    var selectedIndex = 0;
+    var selectedIndex = index;
 
     ModalService.showModal({
       templateUrl: "/templates/lists/browse.html",

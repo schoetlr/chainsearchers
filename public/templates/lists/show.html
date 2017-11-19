@@ -13,13 +13,13 @@
         </div>
         <div class="item-header">
           <div class="list-actions">
-            <a ng-click="browseList(list)" class="browse-list clickable">Browse</a>
+            <a ng-click="browseList(list, 0)" class="browse-list clickable">Browse</a>
             <a href="/users/sign_in" ng-if="!currentUser">
               <i class="fa fa-star-o clickable" aria-hidden="true"></i>
             </a>
           </div>
           
-            <h1 ><a href="#" ng-click="browseList(list)">{{ list.title }}</a></h1>
+            <h1 ><a href="#" ng-click="browseList(list, 0)">{{ list.title }}</a></h1>
             <div class="item-tags">
               <ul class="tag-wrapper">
                   <li ng-repeat="tag in list.tags"><a href="#" ng-click="filterByTag(tag)"> {{ tag.name }}</a></li>
@@ -46,6 +46,7 @@
                     <li class="link-list-item">
                       <p><a ng-href="{{generatePath(link.url)}}" target="_blank" class="text-center">{{ link.url }}</a> </p>
                       <p class="link-list-desc" read-more-options="options" read-more="{{link.description}}"></p>
+                      <p class="clickable browse-from-here" ng-click="browseList(list, $index)">Browse</p>
                     </li>
                   </ul>
                 </div>
