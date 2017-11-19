@@ -201,6 +201,7 @@ label#tag-filter-label {
 
 //Redesign starts here
 
+
 li.link-list-item {
     position: relative;
 }
@@ -210,7 +211,13 @@ p.browse-from-here {
     position: absolute;
     display: inline-block;
     top: 0px;
-    right: 10px;
+    right: 30px;
+}
+
+a.open-external {
+    position: absolute;
+    top: 0px;
+    right: 5px;
 }
 
 .item-wrapper a {
@@ -468,6 +475,7 @@ p.browse-from-here {
 .links-list-group li a{
     color: #186bd2;
     font-size: 14px;
+    cursor: pointer;
 }
 .commentIconBigger{
 font-size:22px !important;

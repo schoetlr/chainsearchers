@@ -44,9 +44,10 @@
                   <ul ng-repeat="link in listLinks(list)" class="links-list-group">
 
                     <li class="link-list-item">
-                      <p><a ng-href="{{generatePath(link.url)}}" target="_blank" class="text-center">{{ link.url }}</a> </p>
+                      <p><a ng-click="browseList(list, $index)" class="text-center">{{ link.url }}</a> </p>
                       <p class="link-list-desc" read-more-options="options" read-more="{{link.description}}"></p>
                       <p class="clickable browse-from-here" ng-click="browseList(list, $index)">Browse</p>
+                      <a class="open-external" ng-href="{{generatePath(link.url)}}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
                     </li>
                   </ul>
                 </div>
