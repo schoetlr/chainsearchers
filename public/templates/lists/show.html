@@ -28,7 +28,10 @@
             </div>
         </div>
           <div ng-class="{itemContent: true, attachedLinksVisible: attachedLinksVisible}">
-            <p class="publisher text-success">Published by <span ui-sref="users.show({id: list.user.id})" class="clickable">{{ list.user.username }}</span></p>
+            <p class="publisher text-success">Published by 
+              <span ng-if="list.user" ui-sref="users.show({id: list.user.id})" class="clickable">{{ list.user.username }}</span>
+              <span ng-if="!list.user">anonymous</span>
+            </p>
 
             <p>{{ list.description }}</p>
 
