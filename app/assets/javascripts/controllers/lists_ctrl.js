@@ -206,11 +206,15 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
         currentUser: $scope.currentUser
       }
     }).then(function(modal) {
-    
+      
       modal.element.modal();
-      modal.close.then(function(result) {
+      modal.element.on('hidden.bs.modal', function () {
+        
+        $(".modal").remove();
         $(".modal-backdrop").remove();
+        
       });
+      
     });
   };
 

@@ -48,9 +48,9 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     } else {
       //otherwise create new vote
       voteService.upvoteList(list).then(function(response){
-        list.votes.push(response)
+        list.votes.push(response);
 
-      }, function(){ console.log("something went wrong voting") });
+      }, function(){ console.log("something went wrong voting"); });
     }
 
     
@@ -80,7 +80,7 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
       voteService.downvoteList(list).then(function(response){
         list.votes.push(response);
 
-      }, function(){ console.log("something went wrong voting") });
+      }, function(){ console.log("something went wrong voting"); });
       
     }
 
@@ -94,14 +94,14 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
 
       if(!voteObject.up){
         voteObject.up = 0;
-      };
+      }
 
       if(!voteObject.down){
         voteObject.down = 0;
-      };
+      }
 
       return voteObject.up - voteObject.down;
-    };
+    }
     
   };
 
@@ -135,11 +135,11 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
       var favorite = favorites[0];
 
       return !!favorite;
-    };
+    }
   };
 
   $scope.browseList = function(list){
-    var list = $scope.list;
+    list = $scope.list;
     var links = $scope.listLinks(list);
     
     var selectedIndex = 0;
@@ -156,6 +156,12 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     }).then(function(modal) {
     
       modal.element.modal();
+      modal.element.on('hidden.bs.modal', function () {
+        
+        $(".modal").remove();
+        $(".modal-backdrop").remove();
+        
+      });
       modal.close.then(function(result) {
         console.log("modal closed");
       });
@@ -185,13 +191,13 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     if(url){
       //make youtube vids embeddable
       if(url.match(/youtube/) !== null){
-        var url = url.replace(/watch\?v=/, function(){ 
+        url = url.replace(/watch\?v=/, function(){ 
           return "embed/";
         });
-      }; 
+      }
 
       if(url[0] === 'w'){
-        var url = 'http://' + url;
+        url = 'http://' + url;
         return $sce.trustAsResourceUrl(url);
       } else {
         return $sce.trustAsResourceUrl(url);
