@@ -1,4 +1,4 @@
-app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'ModalService', 'Restangular', '$window', 'user', 'currentUser', function($scope, userService, $stateParams, Auth, ModalService, Restangular, $window, user, currentUser){
+app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', '$uibModalService', 'Restangular', '$window', 'user', 'currentUser', function($scope, userService, $stateParams, Auth, $uibModalService, Restangular, $window, user, currentUser){
   
   $scope.user = user;
   $scope.currentUser = currentUser;
@@ -13,30 +13,33 @@ app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Mo
   });
 
   $scope.editList = function(list){
-    ModalService.showModal({
-      templateUrl: "/templates/lists/edit.html",
+    $uibModal.open({
+      
+      bindToController: true,
       controller: "EditListCtrl",
-      inputs: {
-        currentUser: $scope.currentUser,
-        list: list
+      templateUrl: "templates/lists/edit.html",
+      windowTemplateUrl: "templates/modal/form_window.html",
+
+      resolve: {
+        currentUser: function(){
+          return $scope.currentUser;
+        },
+
+        list: function(){
+          return list;
+        }
       }
-    }).then(function(modal) {
-    
-      modal.element.modal();
-      modal.close.then(function(result) {
-        console.log("modal closed");
-      });
     });
   };
 
   $scope.deleteList = function(list, index){
     var confirmed = $window.confirm("Are you sure you want to permanently delete this list?");
     if(confirmed){
-      var list = Restangular.restangularizeElement(null, list, 'lists');
+      list = Restangular.restangularizeElement(null, list, 'lists');
       list.remove();
       
       $scope.user.lists.splice(index, 1);
-    };
+    }
   };
 
 }]);

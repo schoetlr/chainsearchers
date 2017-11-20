@@ -227,19 +227,19 @@ app.controller("ListsCtrl", ['$scope', 'listService', '$uibModal', 'tagService',
 
   $scope.showNewList = function(){
 
-    // ModalService.showModal({
-    //   templateUrl: "/templates/lists/new.html",
-    //   controller: "NewListCtrl",
-    //   inputs: {
-    //     currentUser: $scope.currentUser
-    //   }
-    // }).then(function(modal) {
-    
-    //   modal.element.modal();
-    //   modal.close.then(function(result) {
-    //     console.log("modal closed");
-    //   });
-    // });
+    $uibModal.open({
+      
+      bindToController: true,
+      controller: "NewListCtrl",
+      templateUrl: "templates/lists/new.html",
+      windowTemplateUrl: "templates/modal/form_window.html",
+
+      resolve: {
+        currentUser: function(){
+          return $scope.currentUser;
+        }
+      }
+    });
   };
 
   $scope.showList = function(list){

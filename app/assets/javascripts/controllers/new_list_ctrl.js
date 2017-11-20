@@ -1,4 +1,4 @@
-app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootScope', 'currentUser', function($scope, listService, linkService, $rootScope, currentUser){
+app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootScope', 'currentUser', '$uibModalInstance', function($scope, listService, linkService, $rootScope, currentUser, $uibModalInstance){
 
   $scope.listData = {};
   $scope.listData.selectedTags = [];
@@ -10,7 +10,7 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
   $scope.createList = function(){
     $scope.setPostToWall();
 
-    $scope.listData.links = $scope.linkData.links
+    $scope.listData.links = $scope.linkData.links;
 
     listService.createList($scope.listData).then(function(list){
       
@@ -47,14 +47,9 @@ app.controller("NewListCtrl", ['$scope', 'listService', 'linkService', '$rootSco
 
   $scope.dismissModal = function() {
     // close(result, 200); // close, but give 200ms for bootstrap to animate
-    $(".modal").remove();
-    close("result", 200);
-    $(".modal-backdrop").remove();
-    
-    $("body").css("overflow", "scroll");
-   };
+    $uibModalInstance.close();
 
-
+  };
 
   
   

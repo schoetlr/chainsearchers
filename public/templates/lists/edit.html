@@ -1,72 +1,69 @@
-<div class="modal fade" role="dialog" id="browse">
-  <div class="modal-dialog">
+
 
     
-    <div class="modal-content">
+<div class="modal-content">
 
-      <div class="modal-body">
+  <div class="modal-body">
 
-        <div class="row">
-          <div class="col-xs-12">
-            <i class="fa fa-times fa-3x pull-right" aria-hidden="true" data-dismiss="modal" ng-click="dismissModal()"></i>
+    <div class="row">
+      <div class="col-xs-12">
+        <i class="fa fa-times fa-3x pull-right" aria-hidden="true" data-dismiss="modal" ng-click="dismissModal()"></i>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-xs-2">
+      </div>
+      
+      <form class="col-xs-8">
+        <div class="form-group">
+          <label>Title</label>
+          <p class="text-danger" ng-if="list.title.length > 75">Title is too long</p>
+          <input ng-model="list.title" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <p class="text-danger" ng-if="list.description.length > 500">Description is too long</p>
+          <textarea ng-model="list.description" class="form-control"></textarea>
+        </div>
+
+        <tag-select selected-tags="selectedTags"></tag-select>
+
+        <div class="form-group">
+          <label class="wall-label">Post links to your wall?</label>
+          <input class="wall-checkbox" type="checkbox" ng-model="list.postToWall" value=true>
+        </div>
+
+        <div id="link-fields" ng-repeat="link in links">
+          
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-8">
+                <label>URL</label>
+              </div>
+
+              <div class="col-xs-4">
+                <p class="text-danger pull-right" ng-click="removeLink($index, link)">Delete Below Link</p>
+              </div>
+            </div>
+            <input ng-model="link.url" type="text" class="form-control" placeholder="http://example.com">
+          </div>
+
+          <div class="form-group">
+            <label>Link Description</label>
+            <p class="text-danger" ng-if="link.description.length > 500">Link description is too long</p>
+            <textarea ng-model="link.description" class="form-control"></textarea>
           </div>
         </div>
         
-        <div class="row">
-          <div class="col-xs-2">
-          </div>
-          
-          <form class="col-xs-8">
-            <div class="form-group">
-              <label>Title</label>
-              <p class="text-danger" ng-if="list.title.length > 75">Title is too long</p>
-              <input ng-model="list.title" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label>Description</label>
-              <p class="text-danger" ng-if="list.description.length > 500">Description is too long</p>
-              <textarea ng-model="list.description" class="form-control"></textarea>
-            </div>
+        <button class="btn btn-primary btn-lg" ng-click="addLink()">Add Link</button><br>
 
-            <tag-select selected-tags="selectedTags"></tag-select>
+        <button ng-click="updateList()" type="submit" class="btn btn-success btn-lg" data-dismiss="modal">Submit</button>
+      </form>
 
-            <div class="form-group">
-              <label class="wall-label">Post links to your wall?</label>
-              <input class="wall-checkbox" type="checkbox" ng-model="list.postToWall" value=true>
-            </div>
-
-            <div id="link-fields" ng-repeat="link in links">
-              
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-xs-8">
-                    <label>URL</label>
-                  </div>
-
-                  <div class="col-xs-4">
-                    <p class="text-danger pull-right" ng-click="removeLink($index, link)">Delete Below Link</p>
-                  </div>
-                </div>
-                <input ng-model="link.url" type="text" class="form-control" placeholder="http://example.com">
-              </div>
-
-              <div class="form-group">
-                <label>Link Description</label>
-                <p class="text-danger" ng-if="link.description.length > 500">Link description is too long</p>
-                <textarea ng-model="link.description" class="form-control"></textarea>
-              </div>
-            </div>
-            
-            <button class="btn btn-primary btn-lg" ng-click="addLink()">Add Link</button><br>
-
-            <button ng-click="updateList()" type="submit" class="btn btn-success btn-lg" data-dismiss="modal">Submit</button>
-          </form>
-
-          
-        </div> 
-      </div>
-
-    </div>
-
+      
+    </div> 
   </div>
+
 </div>
+

@@ -1,4 +1,4 @@
-app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootScope', 'Restangular', 'list', function($scope, listService, linkService, $rootScope, Restangular, list){
+app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootScope', 'Restangular', 'list', '$uibModalInstance', function($scope, listService, linkService, $rootScope, Restangular, list, $uibModalInstance){
 
   $scope.list = list;
   $scope.selectedTags = $scope.list.tags;
@@ -15,7 +15,7 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
       }
     
       return links;
-    };
+    }
     
     
   };
@@ -27,7 +27,7 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
     //update list, it's tags and links
     $scope.list.tags = $scope.selectedTags;
     var list = Restangular.restangularizeElement(null, $scope.list, "lists");
-    var listParams = {title: $scope.list.title, description: $scope.list.description}
+    var listParams = {title: $scope.list.title, description: $scope.list.description};
     var params = { links: $scope.links, list: listParams, tags: $scope.selectedTags };
     params.postToWall = $scope.setPostToWall();
     list.patch(params);
@@ -79,12 +79,7 @@ app.controller("EditListCtrl", ['$scope', 'listService', 'linkService', '$rootSc
   $scope.setModalHeight();
 
   $scope.dismissModal = function() {
-    // close(result, 200); // close, but give 200ms for bootstrap to animate
-    $(".modal").remove();
-    close("result", 200);
-    $(".modal-backdrop").remove();
-    
-    $("body").css("overflow", "scroll");
+    $uibModalInstance.close();
    };
 
   $scope.addLink = function(){
