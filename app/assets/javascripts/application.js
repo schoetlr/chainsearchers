@@ -20,7 +20,7 @@
 //= require angular-ui-router.min.js
 //= require underscore-min.js
 //= require restangular.min.js
-//= require angular-modal-service.js
+//= require ui-bootstrap.min.js
 //= require fontawesome.js
 //= require readmore.js
 

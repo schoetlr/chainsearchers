@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'restangular', 'angularModalService', 'Devise', 'angular-read-more']);
+var app = angular.module('app', ['ui.router', 'restangular', 'ui.bootstrap', 'Devise', 'angular-read-more']);
 
 
 
@@ -89,11 +89,11 @@ app.config(function($stateProvider, $urlRouterProvider){
         }
       }
 
-    })
+    });
 
     
     
-})
+});
 
 
 
