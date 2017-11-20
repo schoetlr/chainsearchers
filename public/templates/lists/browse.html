@@ -24,7 +24,8 @@
                             <ul ng-repeat="link in links" class="links-list-group">
 
                               <li class="link-list-item">
-                                <p><a ng-href="{{generatePath(link.url)}}" target="_blank" class="text-center">{{ link.url }}</a> </p>
+                                <p><a ng-click="jump($index)" class="text-center">{{ link.url }}</a> </p>
+
                                 <p class="link-list-desc" read-more-options="options" read-more="{{link.description}}"></p>
                               </li>
                             </ul>

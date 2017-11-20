@@ -111,6 +111,11 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
     }
   };
 
+  $scope.jump = function(index){
+    $scope.selectedIndex = index;
+    $scope.selectedLink = $scope.links[$scope.selectedIndex];
+  };
+
   $scope.handleFavorite = function(){
     //if a favorite in list.favorites w the currentUser id exists then remove it AND delete in DB
     var list = $scope.list;
