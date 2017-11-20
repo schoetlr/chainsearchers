@@ -7,13 +7,13 @@ class CommentsController < ApplicationController
     
     if @comment.save
       respond_to do |format|
-        format.json { render json: @comment }
+        format.json { render json: @comment }  
       end
     else
       respond_to do |format|
         format.json {}
-      end
-    end
+      end 
+    end     
   end
 
   def index

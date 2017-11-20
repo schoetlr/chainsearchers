@@ -208,12 +208,18 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     }).then(function(modal) {
       
       modal.element.modal();
-      modal.element.on('hidden.bs.modal', function () {
-        
-        $(".modal").remove();
+      modal.element.on('hide.bs.modal', function () {
+        $("#DetailedDescriptionModal").remove();
         $(".modal-backdrop").remove();
+        $(".modal").remove();
         
       });
+      // $("body").on("hidden.bs.modal", function(){
+      //   alert("hidden bs ran");
+      //   $(".modal").remove();
+      //   $(".modal-backdrop").remove();
+      //   $("body").removeClass(".modal-open");
+      // });
       
     });
   };

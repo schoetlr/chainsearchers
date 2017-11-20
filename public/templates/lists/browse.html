@@ -1,15 +1,14 @@
-<!-- Modal DetailedDescriptionModal-->
 <div class="modal fade" id="DetailedDescriptionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body">    
               <div class="sidebar-votes">
                 <div class="sidebar-vote-up" ng-click="upvote()"><i class="zmdi zmdi-chevron-up"></i> </div>
                 <div class="sidebar-vote-count" id="vote-count">{{ voteCount() }}</div>
                 <div class="sidebar-vote-down" ng-click="downvote()"><i class="zmdi zmdi-chevron-down"></i> </div>
               </div>
                 <div class='ModalBodyWrapper'>
-                    <div class="btn-close-modal" ng-click="dismissModal()"><i class="zmdi zmdi-close" aria-hidden="true" data-dismiss="modal"></i> </div>
+                    <div class="btn-close-modal" ng-click="dismissModal()"><i class="zmdi zmdi-close" data-dismiss="modal" aria-hidden="true"></i> </div>
                     
                     <div class="modal-sidebar">
                         <div class="modal-sidebar-item">
@@ -21,7 +20,7 @@
                             </div>
                         </div>
                         <div class="modal-sidebar-item no-padding">
-                            <h3 class="sp-left-10">{{links.length}} Links Attached</h3>
+                            <h3 class="sp-left-10">{{links.length}} links</h3>
                             <ul ng-repeat="link in links" class="links-list-group">
 
                               <li class="link-list-item">
@@ -34,6 +33,12 @@
                     </div>
                     <div class="modal-head">
                         <div class="top-right-modal-controls">
+                            <div class="TopModalBtn" ng-if="showModalHeadBody" ng-click="toggleModalHeadBody()">
+                                <i class="zmdi zmdi-chevron-up"></i>
+                            </div>
+                            <div class="TopModalBtn" ng-click="toggleModalHeadBody()" ng-if="!showModalHeadBody">
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </div>
                             <div class="TopModalBtn" ng-click="previous()">
                                 <i class="zmdi zmdi-chevron-left"></i>
                             </div>
@@ -51,10 +56,11 @@
                         </div>
 
 
-                        
-                        <h1>{{ list.title }}</h1>
-                        <p>{{ selectedLink.description }}</p>
-                        <p class="comments-btn-modal" ng-click="toggleCommenting()"><i class="zmdi zmdi-comment-text"></i> Comments</p>
+                        <div id="modal-head-body" ng-class="{'active': showModalHeadBody}">
+                            <h1>{{ list.title }}</h1>
+                            <p>{{ selectedLink.description }}</p>
+                            <p class="comments-btn-modal" ng-click="toggleCommenting()"><i class="zmdi zmdi-comment-text"></i> Comments</p>
+                        </div>
 
                         <div class="comments-area" ng-show="commenting">
                             <div class="row">
@@ -89,4 +95,4 @@
         </div>
     </div>
 </div>
-<!--end modal DetailedDescriptModal -->
+

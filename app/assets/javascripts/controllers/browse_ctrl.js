@@ -1,5 +1,6 @@
-app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', 'close', '$timeout', function($scope, list, links, ModalService, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService, close, $timeout){
+app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', 'close', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService, close){
 
+  console.log("browse ctrl loaded");
   $scope.list = list;
 
   $scope.links = links;
@@ -16,23 +17,30 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
 
   //hide sidebar initially
   $scope.showSideBar = false;
-  
-  // $("#DetailedDescriptionModal").on("hide.bs.modal", function(){
-  //   $(".modal-backdrop").remove();
-  // });
 
-  // $(".modal-backdrop").click(function(){
-  //   alert("got the click");
-  //   $(".modal-backdrop").remove();
-  //   $(".modal").remove();
-  // });
+  $scope.showModalHeadBody = true;
+  
+  $scope.toggleModalHeadBody = function(){
+    if($scope.showModalHeadBody){
+      $("#modal-head-body").slideUp(400);
+    } else {
+      $("#modal-head-body").slideDown(400);
+    }
+    $scope.showModalHeadBody = !$scope.showModalHeadBody;
+
+  };
   
 
   $scope.dismissModal = function() {
-    // close(result, 200); // close, but give 200ms for bootstrap to animate
-    close(true, 200);
     $(".modal-backdrop").remove();
     $("body").css("overflow", "scroll");
+    $("body").removeClass(".modal-open");
+    close(true); // close, but give 200ms for bootstrap to animate
+    console.log("dismiss ran");
+    // close(true, 600);
+    
+
+    
    };
 
 
@@ -40,6 +48,7 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'ModalService', 'select
   $scope.toggleSideBar = function(){
     $(".ModalBodyWrapper").toggleClass("HiddenModalSideBar");
   };
+
   //Show the toolbar initially
   $scope.showToolBar = true;
   //hide it after a few seconds
