@@ -68,6 +68,13 @@
 
 //redesign
 
+.modal-iframe {
+    min-height: 400px;
+    width: 100%;
+    border: 0px;
+    height: 90vh !important;
+}
+
 button#browse-comment {
     margin-left: -25px;
     margin-top: 40px;
