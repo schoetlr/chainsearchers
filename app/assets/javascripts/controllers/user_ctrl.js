@@ -1,4 +1,4 @@
-app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', '$uibModalService', 'Restangular', '$window', 'user', 'currentUser', function($scope, userService, $stateParams, Auth, $uibModalService, Restangular, $window, user, currentUser){
+app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Restangular', '$window', 'user', 'currentUser', '$uibModal', function($scope, userService, $stateParams, Auth, Restangular, $window, user, currentUser, $uibModal){
   
   $scope.user = user;
   $scope.currentUser = currentUser;
