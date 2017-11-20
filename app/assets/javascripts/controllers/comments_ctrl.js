@@ -1,4 +1,4 @@
-app.controller("CommentsCtrl", ['$scope', 'ModalService', function($scope, ModalService){
+app.controller("CommentsCtrl", ['$scope', function($scope, ModalService){
   
   $scope.parentComment = function(comment){
     return comment.comments.length > 0;
@@ -14,8 +14,8 @@ app.controller("CommentsCtrl", ['$scope', 'ModalService', function($scope, Modal
 
   $scope.newComment = function(comment){
     if(!comment){
-      var comment = undefined;
-    };
+      comment = undefined;
+    }
 
     ModalService.showModal({
       templateUrl: "/templates/comments/new.html",
