@@ -12,10 +12,10 @@
         </div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-group">
-              <%= f.email_field :email, autofocus: true, class: "form-control login-control" %>
+              <%= f.email_field :email, autofocus: true, class: "form-control login-control", placeholder: "Email" %>
             </div>
             <div class="form-group">
-              <%= f.password_field :password, autocomplete: "off", class: "form-control login-control" %>
+              <%= f.password_field :password, autocomplete: "off", class: "form-control login-control", placeholder: "Password" %>
             </div>
             <div class="login-options">
               <div class="row">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-xs-6">
                   <div class="text-right">
-                    <a href="#">Forgot Password?</a>
+                    <%= link_to "Forgot password?", new_password_path(resource_name) %>
                   </div>
                 </div>
               </div>
@@ -41,7 +41,7 @@
 
         <%= render "devise/shared/links" %>
         <div class="signup-message text-center">
-          <p>Don't have an account? <%= link_to "Sign up now!", new_user_session_path, class: "color-base" %></p>
+          <p>Don't have an account? <%= link_to "Sign up now!", new_user_registration_path, class: "color-base" %></p>
         </div>
       </div>
     </div>
