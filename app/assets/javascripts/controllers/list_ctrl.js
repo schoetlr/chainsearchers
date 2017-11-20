@@ -145,16 +145,25 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     var selectedIndex = index;
 
     $uibModal.open({
-      backdropClass: "modal-backdrop",
+      
       bindToController: true,
       controller: "BrowseCtrl",
-      templateUrl: "/public/templates/lists/browse.html",
+      templateUrl: "templates/lists/browse.html",
+      windowTemplateUrl: "templates/modal/window.html",
 
       resolve: {
-        list: list,
-        links: links,
-        selectedIndex: index,
-        currentUser: $scope.currentUser
+        list: function(){
+          return list;
+          },
+        links: function() {
+          return links;
+        },
+        selectedIndex: function(){
+          return index;
+        },
+        currentUser: function(){
+          return $scope.currentUser;
+        }
       }
     });
   };
