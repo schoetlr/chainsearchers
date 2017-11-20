@@ -1,4 +1,4 @@
-app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', 'ModalService', 'commentService', '$rootScope', '$sce', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, ModalService, commentService, $rootScope, $sce){
+app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listService', '$stateParams', 'Auth', 'Restangular', '$uibModal', 'commentService', '$rootScope', '$sce', function($scope, voteService, favoriteService, listService, $stateParams, Auth, Restangular, $uibModal, commentService, $rootScope, $sce){
 
   Auth.currentUser().then(function(response){
     $scope.currentUser = response;
@@ -144,27 +144,18 @@ app.controller("ListCtrl", ['$scope', 'voteService', 'favoriteService', 'listSer
     
     var selectedIndex = index;
 
-    ModalService.showModal({
-      templateUrl: "/templates/lists/browse.html",
+    $uibModal.open({
+      backdropClass: "modal-backdrop",
+      bindToController: true,
       controller: "BrowseCtrl",
-      inputs: {
+      templateUrl: "/public/templates/lists/browse.html",
+
+      resolve: {
         list: list,
-        links: links, 
-        selectedIndex: selectedIndex, 
+        links: links,
+        selectedIndex: index,
         currentUser: $scope.currentUser
       }
-    }).then(function(modal) {
-    
-      modal.element.modal();
-      modal.element.on('hidden.bs.modal', function () {
-        
-        $(".modal").remove();
-        $(".modal-backdrop").remove();
-        
-      });
-      modal.close.then(function(result) {
-        console.log("modal closed");
-      });
     });
   };
 

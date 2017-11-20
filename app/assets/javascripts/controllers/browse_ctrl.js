@@ -1,4 +1,4 @@
-app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', 'close', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService, close){
+app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce', 'voteService', 'favoriteService', 'currentUser', 'commentService', '$uibModalInstance', function($scope, list, links, selectedIndex, $sce, voteService, favoriteService, currentUser, commentService, $uibModalInstance){
 
   console.log("browse ctrl loaded");
   $scope.list = list;
@@ -32,13 +32,13 @@ app.controller("BrowseCtrl", ['$scope', 'list', 'links', 'selectedIndex', '$sce'
   
 
   $scope.dismissModal = function() {
-    $(".modal-backdrop").remove();
-    $("body").css("overflow", "scroll");
-    $("body").removeClass(".modal-open");
-    close(true); // close, but give 200ms for bootstrap to animate
-    console.log("dismiss ran");
-    // close(true, 600);
-    
+    // $(".modal-backdrop").remove();
+    // $("body").css("overflow", "scroll");
+    // $("body").removeClass(".modal-open");
+    // close(true); // close, but give 200ms for bootstrap to animate
+    // console.log("dismiss ran");
+    // // close(true, 600);
+    $uibModalInstance.close();
 
     
    };

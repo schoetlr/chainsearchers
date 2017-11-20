@@ -1,4 +1,4 @@
-app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagService', 'voteService', '_', 'Auth', 'Restangular', 'favoriteService', '$sce', function($scope, listService, ModalService, tagService, voteService, _, Auth, Restangular, favoriteService, $sce){
+app.controller("ListsCtrl", ['$scope', 'listService', '$uibModal', 'tagService', 'voteService', '_', 'Auth', 'Restangular', 'favoriteService', '$sce', function($scope, listService, $uibModal, tagService, voteService, _, Auth, Restangular, favoriteService, $sce){
 
   $scope.selectedTags = [];
   $scope.filterOption = "Popular";
@@ -194,51 +194,52 @@ app.controller("ListsCtrl", ['$scope', 'listService', 'ModalService', 'tagServic
     var links = $scope.listLinks(list);
     
     var selectedIndex = index;
-
-    ModalService.showModal({
-      templateUrl: "/templates/lists/browse.html",
-      controller: "BrowseCtrl",
-      
-      inputs: {
+    var inputs = {
         list: list,
         links: links, 
         selectedIndex: selectedIndex, 
         currentUser: $scope.currentUser
+      };
+    
+    $uibModal.open({
+      
+      bindToController: true,
+      controller: "BrowseCtrl",
+      templateUrl: "templates/lists/browse.html",
+      windowTemplateUrl: "templates/modal/window.html",
+
+      resolve: {
+        list: function(){
+          return list;
+          },
+        links: function() {
+          return links;
+        },
+        selectedIndex: function(){
+          return index;
+        },
+        currentUser: function(){
+          return $scope.currentUser;
+        }
       }
-    }).then(function(modal) {
-      
-      modal.element.modal();
-      modal.element.on('hide.bs.modal', function () {
-        $("#DetailedDescriptionModal").remove();
-        $(".modal-backdrop").remove();
-        $(".modal").remove();
-        
-      });
-      // $("body").on("hidden.bs.modal", function(){
-      //   alert("hidden bs ran");
-      //   $(".modal").remove();
-      //   $(".modal-backdrop").remove();
-      //   $("body").removeClass(".modal-open");
-      // });
-      
     });
   };
 
   $scope.showNewList = function(){
 
-    ModalService.showModal({
-      templateUrl: "/templates/lists/new.html",
-      controller: "NewListCtrl",
-      inputs: {
-        currentUser: $scope.currentUser
-      }
-    }).then(function(modal) {
+    // ModalService.showModal({
+    //   templateUrl: "/templates/lists/new.html",
+    //   controller: "NewListCtrl",
+    //   inputs: {
+    //     currentUser: $scope.currentUser
+    //   }
+    // }).then(function(modal) {
     
-      modal.element.modal();
-      modal.close.then(function(result) {
-        console.log("modal closed");
-      });
-    });
+    //   modal.element.modal();
+    //   modal.close.then(function(result) {
+    //     console.log("modal closed");
+    //   });
+    // });
   };
 
   $scope.showList = function(list){
