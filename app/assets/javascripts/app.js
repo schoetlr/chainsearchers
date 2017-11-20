@@ -79,15 +79,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       url: "/:id",
       templateUrl: '/templates/users/show.html',
       controller: "UserCtrl",
-      resolve: {
-        user: function(userService, $stateParams){
-          return userService.getUser($stateParams.id);
-        },
-
-        currentUser: function(Auth){
-          return Auth.currentUser();
-        }
-      }
+      
 
     });
 
