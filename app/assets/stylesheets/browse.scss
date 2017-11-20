@@ -68,6 +68,10 @@
 
 //redesign
 
+//hide-show header 
+i.zmdi.zmdi-long-arrow-up, i.zmdi.zmdi-long-arrow-down {
+    color: green;
+}
     
 .modal-backdrop {
   opacity: 1 !important;
@@ -91,6 +95,8 @@
 #DetailedDescriptionModal .modal-head h1{
     font-family:Lora !important;
     font-weight: 700;
+    font-size: 30px;
+    margin-top: -3px;
     
 }
 #DetailedDescriptionModal .ModalBodyWrapper{
