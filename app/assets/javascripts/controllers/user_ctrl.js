@@ -53,4 +53,33 @@ app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Re
     }
   };
 
+  $scope.browseLinks = function(index){
+    var list = {};
+    list.title = $scope.user.username + "'s Wall";
+    var links = $scope.wallLinks;
+    
+    $uibModal.open({
+      
+      bindToController: true,
+      controller: "BrowseCtrl",
+      templateUrl: "templates/lists/browse.html",
+      windowTemplateUrl: "templates/modal/window.html",
+
+      resolve: {
+        list: function(){
+          return list;
+          },
+        links: function() {
+          return links;
+        },
+        selectedIndex: function(){
+          return index;
+        },
+        currentUser: function(){
+          return $scope.currentUser;
+        }
+      }
+    });
+  };
+
 }]);

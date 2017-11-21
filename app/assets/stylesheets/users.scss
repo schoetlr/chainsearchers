@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div#wall-links-wrapper {
+    background-color: white;
+    border-radius: 2%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+li.wall-link {
+  position: relative;
+}
+
+ul#wall-links {
+    list-style: none;
+    max-height: 500px;
+    overflow: scroll;
+}
 
 #profile-info, #user-lists, #favorite-lists {
   background-color: #fff;

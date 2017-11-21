@@ -37,6 +37,17 @@
 
   <!-- Recent Lists -->
   <div class="col-xs-12 col-sm-8">
+    <div id="wall-links-wrapper">
+      <ul id="wall-links">
+        <li class="wall-link" ng-repeat="link in wallLinks">
+          <p><a class="text-center">{{ link.url }}</a> </p>
+          <p class="link-list-desc" read-more-options="options" read-more="{{link.description}}"></p>
+          <p class="clickable browse-from-here" ng-click="browseLinks($index)">Browse</p>
+          <a class="open-external" ng-href="{{generatePath(link.url)}}" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </div>
+
     <div id="user-lists">
       <div class="row">
         <div class="col-xs-12">
