@@ -3,8 +3,14 @@
   <div class="col-xs-12 col-sm-4">
     <div id="profile-info">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
           <h2 id="username">{{ user.username }}</h2>
+        </div>
+
+        <div class="col-xs-6">
+          <a class="follow-link pull-right clickable" ng-if="!currentUser" href="/users/sign_up">follow</a>
+          <a class="follow-link pull-right clickable" ng-click="followUser()" ng-if="!followed() && currentUser && currentUser.id !== user.id">follow</a>
+          <a class="follow-link pull-right clickable" ng-click="unfollowUser()" ng-if="followed() && currentUser && currentUser.id !== user.id">unfollow</a>
         </div>
       </div>
 

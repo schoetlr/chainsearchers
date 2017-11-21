@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :favorites
   resources :comments
   resources :users, only: [:show, :index]
+  resources :followings, only: [:create, :destroy]
 
   namespace :api do 
     resources :lists, only: [:create, :update, :index]

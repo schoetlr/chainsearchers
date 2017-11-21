@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
     json["karma"] = self.karma
     json["favoriteLists"] = favorited_lists
     json["wallLinks"] = self.wall.links.order(created_at: :desc)
+    json["receivedFollowings"] = self.received_followings
 
     json
   end

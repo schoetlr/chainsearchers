@@ -1,15 +1,19 @@
-app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Restangular', '$window', '$uibModal', function($scope, userService, $stateParams, Auth, Restangular, $window, $uibModal){
+app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Restangular', '$window', '$uibModal', 'followService', '_', function($scope, userService, $stateParams, Auth, Restangular, $window, $uibModal, followService, _){
   
   userService.getUser($stateParams.id).then(function(response){
       $scope.user = response;
       $scope.wallLinks = response.wallLinks;
+      $scope.receivedFollowings = response.receivedFollowings;
     }, function error(){
+      $scope.user = undefined;
       console.log("something went wrong getting user");
   });
 
 
   Auth.currentUser().then(function(response){
     $scope.currentUser = response;
+    $scope.wallLinks = response.wallLinks;
+    $scope.usersFollowedBy = response.usersFollowedBy;
   }, function(){
     $scope.currentUser = undefined;
   });
@@ -80,6 +84,25 @@ app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Re
         }
       }
     });
+  };
+
+  $scope.followUser = function(){
+    followService.createFollowing($scope.currentUser.id, $scope.user.id);
+  };
+
+  $scope.unfollowUser = function(){
+    var following = _.find($scope.receivedFollowings, function(following){
+      return following.follower_id === $scope.currentUser.id;
+    }); 
+    followService.destroyFollowing(following.id);
+  };
+
+  $scope.followed = function(){
+    var following = _.find($scope.receivedFollowings, function(following){
+      return following.follower_id === $scope.currentUser.id;
+    }); 
+
+    return !!following;
   };
 
 }]);

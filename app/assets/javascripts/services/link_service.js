@@ -8,8 +8,8 @@ app.factory("linkService", ['Restangular', '_', function(Restangular, _){
     });
     
     return Restangular.all("links").post(linksData);
-  }
+  };
 
   return service;
 
-}])
+}]);
