@@ -14,6 +14,16 @@ class User < ActiveRecord::Base
   has_many :favorited_lists, through: :favorites, source: :list
   has_one :wall, class_name: "UserWall"
 
+  #follower associations
+  has_many :followings, foreign_key: :follower_id, class_name: "Following"
+  has_many :followed_users, through: :followings, source: :followed
+
+  has_many :received_followings, foreign_key: :followed_id, 
+                                  class_name: "Following"
+                                  
+  has_many :users_followed_by, through: :received_followings, 
+                                source: :following
+
   #username validations
   validates_uniqueness_of :username
   validates :username, length: { maximum: 20 }
