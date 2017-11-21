@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
   private
 
   def create_wall(user_id)
-    puts "IT RAN"
     UserWall.create(user_id: user_id)
     return true
   end
