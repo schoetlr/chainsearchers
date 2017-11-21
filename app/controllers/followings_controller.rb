@@ -1,4 +1,6 @@
 class FollowingsController < ApplicationController
+  before_action :validate_create, only: [:create]
+  before_action :validate_destroy, only: [:destroy]
 
   def create
     @following = Following.create(following_params)
@@ -30,6 +32,19 @@ class FollowingsController < ApplicationController
   end
 
   private
+
+  def validate_destroy
+    @following = Following.find(params[:id])
+    unless @following.follower_id == current_user.id
+      redirect_to :back
+    end
+  end
+
+  def validate_create
+    unless following_params[:follower_id] == current_user.id
+      redirect_to :back
+    end
+  end
 
   def following_params
     params.require(:following).permit(:follower_id, :followed_id)
