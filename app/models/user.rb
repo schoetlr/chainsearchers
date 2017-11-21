@@ -20,9 +20,9 @@ class User < ActiveRecord::Base
 
   has_many :received_followings, foreign_key: :followed_id, 
                                   class_name: "Following"
-                                  
+
   has_many :users_followed_by, through: :received_followings, 
-                                source: :following
+                                source: :follower
 
   #username validations
   validates_uniqueness_of :username
