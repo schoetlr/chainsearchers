@@ -43,7 +43,7 @@
 
   <!-- Recent Lists -->
   <div class="col-xs-12 col-sm-8">
-    <div id="wall-links-wrapper" ng-if="!!wallLinks">
+    <div id="wall-links-wrapper" ng-if="!!wallLinks && wallLinks.length > 0">
       <ul id="wall-links">
         <li class="wall-link" ng-repeat="link in wallLinks">
           <p><a class="text-center">{{ link.url }}</a> </p>
