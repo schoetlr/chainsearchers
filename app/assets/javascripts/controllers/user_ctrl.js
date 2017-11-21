@@ -87,14 +87,19 @@ app.controller("UserCtrl", ['$scope', 'userService', '$stateParams', 'Auth', 'Re
   };
 
   $scope.followUser = function(){
-    followService.createFollowing($scope.currentUser.id, $scope.user.id);
+    followService.createFollowing($scope.currentUser.id, $scope.user.id).then(function(response){
+      $scope.receivedFollowings.push(response);
+    });
   };
 
   $scope.unfollowUser = function(){
     var following = _.find($scope.receivedFollowings, function(following){
       return following.follower_id === $scope.currentUser.id;
-    }); 
-    followService.destroyFollowing(following.id);
+    });
+    var index = _.indexOf($scope.receivedFollowings, following); 
+    followService.destroyFollowing(following.id).then(function(){
+      $scope.receivedFollowings.splice(index, 1);
+    });
   };
 
   $scope.followed = function(){

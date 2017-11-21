@@ -15,12 +15,16 @@ class FollowingsController < ApplicationController
   end
 
   def destroy
-    @following = Following.find_by(following_params)
+    @following = Following.find(params[:id])
 
-    @following.destroy
-
-    respond_to do |format|
-      format.json { render json: {} }
+    if @following.destroy
+      respond_to do |format|
+        format.json { render json: @following }
+      end
+    else 
+      respond_to do |format|
+        format.json {}
+      end
     end
 
   end

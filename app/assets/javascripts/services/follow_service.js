@@ -9,7 +9,7 @@ app.factory("followService", ['Restangular', '_', function(Restangular, _){
   };
 
   service.destroyFollowing = function(id){
-    return Restangular.one("following", id).remove();
+    return Restangular.one("followings", id).remove();
   };
 
   return service;
