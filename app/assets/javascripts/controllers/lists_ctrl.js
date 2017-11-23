@@ -38,7 +38,7 @@ app.controller("ListsCtrl", ['$scope', 'listService', '$uibModal', 'tagService',
 
   $scope.withTags = function(list){
       //if list.tags includes every $scope.selctedTags then return true
-      
+      //every is the equivalent of rails all?
       var valid = _.every($scope.selectedTags, function(tag){
         var match = _.findWhere(list.tags, {id: tag.id});
         return !!match;
@@ -47,6 +47,21 @@ app.controller("ListsCtrl", ['$scope', 'listService', '$uibModal', 'tagService',
       if(valid){
         return true;
       } 
+  };
+
+  $scope.filterAnon = false;
+
+  $scope.toggleAnon = function(){
+    $scope.filterAnon = !$scope.filterAnon;
+  };
+
+  $scope.anonFilter = function(list){
+    //filter it out if it has a user
+    if($scope.filterAnon){
+      return !list.user;
+    } else {
+      return true;
+    }
   };
 
   $scope.removeTag = function(index){

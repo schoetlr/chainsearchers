@@ -42,8 +42,13 @@
 
   </div>
 
+  <div class="col-xs-12 col-sm-2">
+    <a class="clickable anon-link" ng-click="toggleAnon()" ng-if="!filterAnon">anonymous lists</a>
+    <a class="clickable anon-link" ng-click="toggleAnon()" ng-if="filterAnon">all lists</a>
+  </div>
+
   <!-- FORM BUTTONS  -->
-  <div class="col-xs-12 col-sm-4">
+  <div class="col-xs-12 col-sm-2">
     <button class="btn-success btn new-list-btn pull-right" ng-if="currentUser" ng-click="showNewList()">New List</button>
           
     <a class="btn-success btn new-list-btn pull-right" ng-if="!currentUser" href="/users/sign_in">New List</a>
@@ -64,7 +69,7 @@
 
 <!-- LISTS HERE -->
 <div class="row" id="lists">
-  <div ng-repeat="list in lists | filter:withTags" class="col-xs-12 col-lg-6">
+  <div ng-repeat="list in lists | filter:withTags | filter:anonFilter" class="col-xs-12 col-lg-6">
     <div class="item-wrapper">
       <div class="item-left-stats">
         <div class="item-vote-up"><div ng-click="upvote(list)"><i class="zmdi zmdi-chevron-up clickable"></i></div> </div>
