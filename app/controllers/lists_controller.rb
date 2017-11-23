@@ -57,6 +57,8 @@ class ListsController < ApplicationController
       @lists = List.recent_with_tags(tags)
     elsif tags.length == 0 && option == "Recent"
       @lists = List.recent
+    elsif option == "PersonalFeed"
+      @lists = Feed.personal_feed(current_user)
     end
 
     @lists = format_lists(@lists)
